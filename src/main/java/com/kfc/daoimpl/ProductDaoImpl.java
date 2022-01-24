@@ -27,7 +27,7 @@ public class ProductDaoImpl implements ProductDao {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
-						rs.getString(6),rs.getString(7));
+						rs.getString(6), rs.getString(7));
 //				listOfProducts.add(product);
 //				System.out.format("%-5s%-27s%-6s%-10s%-5s%-8s%-7s%-9s", "name=", rs.getString(2), "price=",
 //						rs.getDouble(4), "type-", rs.getString(5), "Status-", rs.getString(6));
@@ -82,24 +82,23 @@ public class ProductDaoImpl implements ProductDao {
 		Connection con = conect.getDBConnection();
 		PreparedStatement pstmt;
 		Products productDelete = null;
-		boolean flag=false;
+		boolean flag = false;
 		try {
 			pstmt = con.prepareStatement(delProd);
 			pstmt.setInt(1, products.getProductId());
 
 			int i = pstmt.executeUpdate();
 //			System.out.println(i + "product  deleted Succesfully");
-			if(i>0) {
-				flag= true;
-			}
-			else {
-				flag= false;
+			if (i > 0) {
+				flag = true;
+			} else {
+				flag = false;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
 
@@ -181,6 +180,7 @@ public class ProductDaoImpl implements ProductDao {
 		return productValid;
 
 	}
+
 	public List<Products> showTrending() {
 		List<Products> listOfProducts = new ArrayList<Products>();
 //		
@@ -194,7 +194,7 @@ public class ProductDaoImpl implements ProductDao {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
-						rs.getString(6));				
+						rs.getString(6));
 				listOfProducts.add(products);
 //				System.out.println(listOfProducts);
 
@@ -208,6 +208,7 @@ public class ProductDaoImpl implements ProductDao {
 		return listOfProducts;
 
 	}
+
 	public List<Products> showBucket() {
 		List<Products> listOfProducts = new ArrayList<Products>();
 //		
@@ -221,7 +222,7 @@ public class ProductDaoImpl implements ProductDao {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
-						rs.getString(6));				
+						rs.getString(6));
 				listOfProducts.add(products);
 //				System.out.println(listOfProducts);
 
@@ -235,6 +236,7 @@ public class ProductDaoImpl implements ProductDao {
 		return listOfProducts;
 
 	}
+
 	public List<Products> showProductAdmin() {
 		List<Products> listOfProducts = new ArrayList<Products>();
 //		
@@ -262,6 +264,7 @@ public class ProductDaoImpl implements ProductDao {
 		return listOfProducts;
 
 	}
+
 	public boolean updatePrice(Products products) {
 
 		String updateProduct = "update products_kfc set product_price=? where product_name=? ";
@@ -286,29 +289,30 @@ public class ProductDaoImpl implements ProductDao {
 
 		return false;
 	}
-	public ResultSet serachProduct(String proName) {
-		String pro = "select * from PRODUCTS_KFC where lower(product_name ) like '"+proName  +"%' ";
-				ResultSet rs=null;
+
+	public List<Products> serachProduct(String proName) {
+		String pro = "select * from PRODUCTS_KFC where lower(product_name ) like '" + proName + "%' ";
+		List<Products> listOfProducts = new ArrayList<Products>();
+		Products products = null;
+		ConnectionUtil conect = new ConnectionUtil();
+		Connection con = conect.getDBConnection();
+		PreparedStatement pstmt;
 		try {
-			System.out.println("sercahpro"+proName);
-			Connection con = ConnectionUtil.getDBConnection();
+			pstmt = con.prepareStatement(pro);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
+						rs.getString(5), rs.getString(6), rs.getString(7));
+				listOfProducts.add(products);
 
-			
-			
-			PreparedStatement pre=con.prepareStatement(pro);
-			
-			
-			rs = pre.executeQuery();
-
-//		System.out.println("serach");
-		} catch (Exception e) {
+			}
+			return listOfProducts;
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return rs;
+
+		return listOfProducts;
 	}
-
-
 
 }

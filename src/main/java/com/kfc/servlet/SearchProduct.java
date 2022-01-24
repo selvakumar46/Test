@@ -3,6 +3,7 @@ package com.kfc.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +41,10 @@ public class SearchProduct extends HttpServlet {
 		String productName=request.getParameter("search");
 		Products search=new Products(0, productName, null, 0, null, null, null, null);
 		ProductDaoImpl productDao=new ProductDaoImpl();
-		ResultSet rs=productDao.serachProduct(productName);
+		List<Products> rs=productDao.serachProduct(productName);
 		session.setAttribute("searchProduct", rs);
+//		String rs1=(String)session.getAttribute("searchProduct") ;
+//		System.out.println(rs);
 		if(rs!=null) {
 			response.sendRedirect("SearchProduct.jsp");
 		}
