@@ -23,7 +23,7 @@ User user = (User) session.getAttribute("currentUser");
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body {
-	background: linear-gradient(to right, brown, white);
+		background: linear-gradient(to bottom right, #BDB76B, white);
 }
 
 .topnav {
@@ -70,6 +70,21 @@ body {
 	padding: 20px 20px;
 	color: blanchedalmond;
 }
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: 100%;
+	border: thin;
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+	padding: 2px 0px;
+}
 </style>
 </head>
 <body>
@@ -109,18 +124,26 @@ body {
 						<tbody>
 							<tr>
 
-								<td><span>Meal name: <b> <%=meals.getProductName()%></b>
-								</span><br> <span> meal Description: <%=meals.getDescription()%>
-								</span><br> <span>meal price:<b> <%=meals.getPrice()%></b>
-								</span><br> <span>Meal Type:<%=meals.getProductType()%>
-								</span><br> <span>Meal Status:<%=meals.getProductStatus()%></span><br>
+								<td>
+									<div class="card">
+										<img alt="meal" src="<%=meals.getProductImg()%>"
+											style="width: 100%">
+										<div class="container">
+											<span>Meal name: <b> <%=meals.getProductName()%></b>
+											</span><br> <span> meal Description: <%=meals.getDescription()%>
+											</span><br> <span>meal price:<b> <%=meals.getPrice()%></b>
+											</span><br> <span>Meal Type:<%=meals.getProductType()%>
+											</span><br> <span>Meal Status:<%=meals.getProductStatus()%></span><br>
 
-									<span> <a
-										href="product.jsp?pname=<%=meals.getProductName()%>">
-											<button type="submit" class="btn btn-outline-dark btn-sm">Add
-												Cart</button>
-									</a>
-								</span></td>
+											<span> <a
+												href="product.jsp?pname=<%=meals.getProductName()%>">
+													<button type="submit" class="btn btn-outline-dark btn-sm">Add
+														Cart</button>
+											</a>
+											</span>
+										</div>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>

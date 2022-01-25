@@ -23,7 +23,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style >
 body {
-	background:linear-gradient(to right,brown,white);
+		background: linear-gradient(to bottom right, #BDB76B, white);
 }
 .container {
 	margin-top: 100px;
@@ -35,7 +35,7 @@ body {
 		<div class="container">
 		<% if(meal!=null){  %>
 			
-			<b>Enter Quantity: </b><input type="number" name="Quantity" min="1">
+			<b>Enter Quantity: </b><input type="number" name="Quantity" min="1" autofocus>
 			<button type="submit" class="btn btn-info btn-sm">Submit</button>
 			<%session.setAttribute("price", meal.getPrice()); %>
 			<%session.setAttribute("productId", meal.getProductId()); %>

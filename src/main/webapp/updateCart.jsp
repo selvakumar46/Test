@@ -19,7 +19,7 @@ int userId=(int)session.getAttribute("userId");
 <title>update cart Kfc</title>
 <style >
 body {
-	background:linear-gradient(to right,brown,white);
+		background: linear-gradient(to bottom right, #BDB76B, white);
 }
 </style>
 </head>

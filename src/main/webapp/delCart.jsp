@@ -14,7 +14,7 @@ Products meal = productDao.validateProduct(pName); %>
 <title>del cart</title>
 <style >
 body {
-	background:linear-gradient(to right,brown,white);
+		background: linear-gradient(to bottom right, #BDB76B, white);
 }
 </style>
 </head>

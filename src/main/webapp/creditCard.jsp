@@ -18,7 +18,7 @@ LocalDate date1 = date.plusDays(1);
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body {
-	background: linear-gradient(to right, brown, white);
+		background: linear-gradient(to bottom right, #BDB76B, white);
 }
 
 .container {

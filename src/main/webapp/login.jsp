@@ -13,9 +13,7 @@
 <style>
  
 body {
-	background-image:url("image/backround.jpg");
-	
-	background-size: 1400px;
+		background: linear-gradient(to bottom right, #BDB76B, white);
 	
 	
 }
