@@ -1,8 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -38,16 +36,12 @@ public class SearchProduct extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
 		String productName = request.getParameter("search");
-//		System.out.println(productName);
 		Products search = new Products(0, productName, null, 0, null, null, null, null);
 		ProductDaoImpl productDao = new ProductDaoImpl();
-		List<Products> rs = productDao.serachProduct(productName);
+		List<Products> rs = productDao.serachProduct(search);
 		session.setAttribute("searchProduct", rs);
-//		String rs1=(String)session.getAttribute("searchProduct") ;
-//		System.out.println(rs);
 		if (rs != null) {
 			response.sendRedirect("SearchProduct.jsp");
 		} else {

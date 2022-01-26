@@ -36,7 +36,6 @@ public class TrendingMeals extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		Products product = new Products();
 		ProductDaoImpl productDao = new ProductDaoImpl();
 		List<Products> trend = productDao.showTrending();
 		if (trend != null) {

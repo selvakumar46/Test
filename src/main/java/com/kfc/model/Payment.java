@@ -10,42 +10,55 @@ public class Payment {
 	private String cardType;
 	private String upiID;
 	private Date transactionDate;
+
 	public int getTransactionId() {
 		return transactionId;
 	}
+
 	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
 	}
+
 	public int getUser_id() {
 		return user_id;
 	}
+
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
+
 	public long getCardNumber() {
 		return cardNumber;
 	}
+
 	public void setCardNumber(long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
+
 	public String getCardType() {
 		return cardType;
 	}
+
 	public void setCardType(String cardType) {
 		this.cardType = cardType;
 	}
+
 	public String getUpiID() {
 		return upiID;
 	}
+
 	public void setUpiID(String upiID) {
 		this.upiID = upiID;
 	}
+
 	public Date getTransactionDate() {
 		return transactionDate;
 	}
+
 	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
 	}
+
 	public Payment(int transactionId, int user_id, long cardNumber, String cardType, String upiID,
 			Date transactionDate) {
 		super();
@@ -56,14 +69,16 @@ public class Payment {
 		this.upiID = upiID;
 		this.transactionDate = transactionDate;
 	}
+
 	public Payment() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cardNumber, cardType, transactionDate, transactionId, upiID, user_id);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,11 +92,11 @@ public class Payment {
 				&& Objects.equals(transactionDate, other.transactionDate) && transactionId == other.transactionId
 				&& Objects.equals(upiID, other.upiID) && user_id == other.user_id;
 	}
+
 	@Override
 	public String toString() {
 		return "Payment [transactionId=" + transactionId + ", user_id=" + user_id + ", cardNumber=" + cardNumber
 				+ ", cardType=" + cardType + ", upiID=" + upiID + ", transactionDate=" + transactionDate + "]";
 	}
-	
-	
+
 }

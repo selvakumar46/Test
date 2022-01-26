@@ -1,8 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,17 +34,11 @@ public class CartUpdate extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
 		int userId = (int) session.getAttribute("userId");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-//		System.out.println(quantity);
-//		System.out.println(userId);
 		int productId = (int) session.getAttribute("productId");
-
-//		System.out.println(productId);
 		double price = (double) session.getAttribute("price");
-//		System.out.println(price);
 		double totalPrice = price * quantity;
 		OrdersDaoImpl orderDao = new OrdersDaoImpl();
 		Orders order = new Orders(0, productId, userId, quantity, totalPrice);

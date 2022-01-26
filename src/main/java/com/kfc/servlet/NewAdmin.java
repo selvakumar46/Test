@@ -1,15 +1,12 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.kfc.daoimpl.UserDaoImpl;
-import com.kfc.model.Admin;
 import com.kfc.model.User;
 
 /**
@@ -35,7 +32,6 @@ public class NewAdmin extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
 		String name = request.getParameter("adminName");
 		long mobileNumber = Long.parseLong(request.getParameter("adminNumber"));
 		String mailId = request.getParameter("adminMailId");

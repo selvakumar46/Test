@@ -1,8 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
 		String mailId = request.getParameter("mailId");
 		long mobileNumber = Long.parseLong(request.getParameter("mobileNumber"));
@@ -45,10 +42,8 @@ public class LoginServlet extends HttpServlet {
 		UserDaoImpl userDao = new UserDaoImpl();
 		User currentUser = userDao.validateUser(user);
 		if (currentUser != null) {
-//		System.out.println(currentUser.getUserName());
 			String role = currentUser.getRoleType();
 			if (role.equals("User")) {
-
 				session.setAttribute("currentUser", currentUser);
 				session.setAttribute("userId", currentUser.getUserId());
 				response.sendRedirect("mainPage.jsp");

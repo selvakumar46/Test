@@ -7,5 +7,5 @@ public class UsedMobileNumberException extends Exception {
 		// TODO Auto-generated method stub
 		return "Register.jsp";
 	}
-	
+
 }

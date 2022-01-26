@@ -2,7 +2,7 @@
 <%@page import="com.kfc.model.Orders"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kfc.model.CartItem"%>
-<%@page import="com.kfc.daoimpl.cartItemDaoImpl"%>
+<%@page import="com.kfc.daoimpl.CartItemDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,11 +10,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>My Orders</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body {
-		background: linear-gradient(to bottom right, #BDB76B, white);
+	background: linear-gradient(to bottom right, #BDB76B, white);
 }
 
 .topnav {
@@ -65,133 +68,141 @@ body {
 </head>
 <body>
 	<form action="cancelOrder">
-	<%
-	User user = (User) session.getAttribute("currentUser");
-	%>
-	<%
-	int userId = user.getUserId();
-	cartItemDaoImpl cartDao = new cartItemDaoImpl();
-	CartItem cart = new CartItem();
-	cart.setUserId(userId);
-	List<CartItem> showOrders;
-	List<CartItem> showOrders1;
-	showOrders = cartDao.showInvoice(cart);
-	showOrders1 = cartDao.showInvoiceDelevered(cart);
-	%>
-	
-	<img src="image/KFC Logo2.png " width="150px" height="100px"margin-top: "20px" >
-	<div class="topnav">
-		<a href="mainPage.jsp">Home</a> <a class="" href="showProducts.jsp">Menu</a>
-		<a href="showOrders.jsp?userId=<%=user.getUserId()%>">My Orders</a>
-		<div class="search">
-			<input type="text" onkeyup="myFunction()"
-				placeholder="Search your meal" title="Type in a name">
-			<button type="submit">Search</button>
+		<%
+		User user = (User) session.getAttribute("currentUser");
+		%>
+		<%
+		int userId = user.getUserId();
+		CartItemDaoImpl cartDao = new CartItemDaoImpl();
+		CartItem cart = new CartItem();
+		cart.setUserId(userId);
+		List<CartItem> showOrders;
+		List<CartItem> showOrders1;
+		showOrders = cartDao.showInvoice(cart);
+		showOrders1 = cartDao.showInvoiceDelevered(cart);
+		%>
 
-			<div class="topnav-right">
-				<a href="cart.jsp?userId=<%=user.getUserId()%>">My Cart</a> <a
-					href="login.jsp">LogOut</a>
+		<img src="image/KFC Logo2.png " width="150px" height="100px" >
+		<div class="topnav">
+			<a href="mainPage.jsp">Home</a> <a class="" href="showProducts.jsp">Menu</a>
+			<a href="showOrders.jsp?userId=<%=user.getUserId()%>">My Orders</a>
+			<div class="search">
+				<input type="text" onkeyup="myFunction()"
+					placeholder="Search your meal" title="Type in a name">
+				<button type="submit">Search</button>
+
+				<div class="topnav-right">
+					<a href="cart.jsp?userId=<%=user.getUserId()%>">My Cart</a> <a
+						href="login.jsp">LogOut</a>
+				</div>
 			</div>
 		</div>
-	</div>
-	<p>
-	<center>
-		<%
-   if(session.getAttribute("CancelOrder") != null){%>
-	  <i> <h1 style="color:red;background-color:white;font-size:20px;float:right;">Your Order Will be Cancelled</h1></i>
-	   
-   <%session.removeAttribute("CancelOrder"); }
-   %>
-		<b><h3>Your Orders</h3> </b>
-	</center>
-	</p>
-	<table>
-		<tbody>
-			<tr>
+		<p>
+		<center>
+			<%
+			if (session.getAttribute("CancelOrder") != null) {
+			%>
+			<i>
+				<h1
+					style="color: red; background-color: white; font-size: 20px; float: right;">Your
+					Order Will be Cancelled</h1>
+			</i>
 
-				<%
-				int count = 0;
-				for (CartItem orders : showOrders) {
-				%>
+			<%
+			session.removeAttribute("CancelOrder");
+			}
+			%>
+			<b><h3>Your Orders</h3> </b>
+		</center>
+		</p>
+		<table>
+			<tbody>
+				<tr>
 
-				<td>
-					<table id="OrdersTable">
-						<tbody>
-							<tr>
-								<td><span>Meal name: <%=orders.getProductName()%>
-								</span><br> <span> Quantity: <%=orders.getQuantity()%>
-								</span><br> <span>meal price: <%=orders.getTotalPrice()%>
-								</span><br> <span>Delivery Status:<b><%=orders.getStatus()%></b>
-								</span><br> <span>Order Date :<b><%=orders.getOrderDate()%></b></span><br>
-								<span><button type="submit" class="btn btn-outline-danger btn-sm">Cancel Order</button></span>
-								<%session.setAttribute("cartId", orders.getCartId()); %>
-								
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<%
+					int count = 0;
+					for (CartItem orders : showOrders) {
+					%>
 
-				</td>
-				<%
-				count++;
+					<td>
+						<table id="OrdersTable">
+							<tbody>
+								<tr>
+									<td><span>Meal name: <%=orders.getProductName()%>
+									</span><br> <span> Quantity: <%=orders.getQuantity()%>
+									</span><br> <span>meal price: <%=orders.getTotalPrice()%>
+									</span><br> <span>Delivery Status:<b><%=orders.getStatus()%></b>
+									</span><br> <span>Order Date :<b><%=orders.getOrderDate()%></b></span><br>
+										<span><button type="submit"
+												class="btn btn-outline-danger btn-sm">Cancel Order</button></span>
+										<%
+										session.setAttribute("cartId", orders.getCartId());
+										%></td>
+								</tr>
+							</tbody>
+						</table>
 
-				if (count == 4) {
-				%>
-			</tr>
-			<tr>
-				<%
-				count = 0;
+					</td>
+					<%
+					count++;
 
-				}
-				}
-				%>
+					if (count == 4) {
+					%>
+				</tr>
+				<tr>
+					<%
+					count = 0;
 
-			</tr>
-		</tbody>
-		<tbody>
+					}
+					}
+					%>
 
-			<tr>
+				</tr>
+			</tbody>
+			<tbody>
 
-				<%
-				int count1 = 0;
-				for (CartItem order : showOrders1) {
-				%>
+				<tr>
 
-				<td>
-					<table id="OrdersTable1">
-						<tbody>
-							<tr>
+					<%
+					int count1 = 0;
+					for (CartItem order : showOrders1) {
+					%>
 
-								<td><span>Meal name: <%=order.getProductName()%>
-								</span><br> <span> Quantity: <%=order.getQuantity()%>
-								</span><br> <span>meal price: <%=order.getTotalPrice()%>
-								</span><br> <span>Delivery Status:<b><%=order.getStatus()%></b>
-								</span><br> <span>Order Date :<b><%=order.getOrderDate()%></b></span><br>
+					<td>
+						<table id="OrdersTable1">
+							<tbody>
+								<tr>
+
+									<td><span>Meal name: <%=order.getProductName()%>
+									</span><br> <span> Quantity: <%=order.getQuantity()%>
+									</span><br> <span>meal price: <%=order.getTotalPrice()%>
+									</span><br> <span>Delivery Status:<b><%=order.getStatus()%></b>
+									</span><br> <span>Order Date :<b><%=order.getOrderDate()%></b></span><br>
 
 
-								</td>
-							</tr>
-						</tbody>
-					</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 
-				</td>
-				<%
-				count1++;
+					</td>
+					<%
+					count1++;
 
-				if (count1 == 4) {
-				%>
-			</tr>
-			<tr>
-				<%
-				count1 = 0;
+					if (count1 == 4) {
+					%>
+				</tr>
+				<tr>
+					<%
+					count1 = 0;
 
-				}
-				}
-				%>
+					}
+					}
+					%>
 
-			</tr>
-		</tbody>
-	</table>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </body>
 </html>

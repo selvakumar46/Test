@@ -1,8 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +34,7 @@ public class UpdateStatus extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		PrintWriter pw = response.getWriter();
 		String productName = request.getParameter("productName");
-//		System.out.println(productName);
 		String productStatus = request.getParameter("productStatus");
 		Products products = new Products(0, productName, null, 0, null, productStatus, null);
 		ProductDaoImpl productDao = new ProductDaoImpl();

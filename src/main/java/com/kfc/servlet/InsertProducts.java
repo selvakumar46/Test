@@ -1,8 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +33,6 @@ public class InsertProducts extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
 		String mealName = request.getParameter("mealName");
 		String mealDescription = request.getParameter("mealDescription");
 		double mealPrice = Double.parseDouble(request.getParameter("mealPrice"));

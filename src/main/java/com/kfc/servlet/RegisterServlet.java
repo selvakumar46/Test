@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kfc.daoimpl.UserDaoImpl;
-import com.kfc.exception.InvalidUserException;
 import com.kfc.exception.UsedMailIdException;
 import com.kfc.exception.UsedMobileNumberException;
 import com.kfc.model.User;
@@ -51,12 +50,9 @@ public class RegisterServlet extends HttpServlet {
 			String mailId = request.getParameter("mailId");
 			User user2 = new User(0, null, mailId, 0, null);
 			User usedMail = userDao.validateUserMail(user2);
-//			System.out.println(usedMail);
 			if (usedMail == null) {
 				User user = new User(0, name, mailId, mobileNumber, null);
-
 				boolean flag = userDao.insertUser(user);
-//			System.out.println(flag);
 				if (flag == true) {
 					response.sendRedirect("login.jsp");
 

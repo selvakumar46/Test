@@ -15,6 +15,7 @@ public interface cartItemDao {
 	public List<CartItem> showUsers();
 
 	public List<CartItem> showInvoice(CartItem carts);
-	public double sumOfPrice(LocalDate date) ;
+
+	public double sumOfPrice(LocalDate date);
 
 }

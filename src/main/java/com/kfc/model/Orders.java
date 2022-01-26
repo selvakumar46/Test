@@ -10,8 +10,7 @@ public class Orders {
 	private Double totalPrice;
 	private String productName;
 	private double price;
-	
-	
+
 	public double getPrice() {
 		return price;
 	}
@@ -59,7 +58,6 @@ public class Orders {
 	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
 
 	public String getProductName() {
 		return productName;
@@ -80,21 +78,19 @@ public class Orders {
 
 	@Override
 	public String toString() {
-		return "orderId=" + orderId + ", productId=" + productId + ", userId=" + userId + ", quantity="
-				+ quantity + ", totalPrice=" + totalPrice ;
+		return "orderId=" + orderId + ", productId=" + productId + ", userId=" + userId + ", quantity=" + quantity
+				+ ", totalPrice=" + totalPrice;
 	}
 
 	public Orders() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(String productName,double price, int Quantity, double totalPrice,int productId) {
-		// TODO Auto-generated constructor stub
-		this.productName=productName;
-		this.price=price;
-		this.quantity=Quantity;
-		this.totalPrice=totalPrice;
+	public Orders(String productName, double price, int Quantity, double totalPrice, int productId) {
+		this.productName = productName;
+		this.price = price;
+		this.quantity = Quantity;
+		this.totalPrice = totalPrice;
 		this.productId = productId;
 	}
 

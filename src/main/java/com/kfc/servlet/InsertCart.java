@@ -1,8 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,16 +34,10 @@ public class InsertCart extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
 		double price = (double) session.getAttribute("price");
-
 		int productId = (int) session.getAttribute("productId");
-
-//		System.out.println(productId);
-//		int productId=Integer.parseInt(session.getAttribute("productId"));
 		int quantity = Integer.parseInt(request.getParameter("Quantity"));
-
 		int userId = (int) session.getAttribute("userId");
 		double totalPrice = quantity * price;
 		Orders cart = new Orders(0, productId, userId, quantity, totalPrice);

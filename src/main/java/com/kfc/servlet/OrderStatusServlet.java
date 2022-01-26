@@ -1,7 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kfc.daoimpl.cartItemDaoImpl;
+import com.kfc.daoimpl.CartItemDaoImpl;
 import com.kfc.model.CartItem;
 
 /**
@@ -37,11 +36,8 @@ public class OrderStatusServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter pw = response.getWriter();
-		CartItem cart = new CartItem();
-		cartItemDaoImpl cartDao = new cartItemDaoImpl();
+		CartItemDaoImpl cartDao = new CartItemDaoImpl();
 		List<CartItem> status = cartDao.orderStatus();
-//		System.out.println(status);
 		HttpSession session = request.getSession();
 		session.setAttribute("status", status);
 		if (status != null) {
