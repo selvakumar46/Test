@@ -41,18 +41,18 @@ public class CancelOrder extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession();
 		int cartId = (int) session.getAttribute("cartId");
-		System.out.println(cartId);
+//		System.out.println(cartId);
 		cartItemDaoImpl cartDao = new cartItemDaoImpl();
 		CartItem cart = new CartItem(cartId, 0, 0, null, 0, 0, null, null);
 		boolean flag = cartDao.delete1(cart);
 		if (flag == true) {
 			try {
 				throw new CancelOrderException();
-			}catch(CancelOrderException e) {
+			} catch (CancelOrderException e) {
 				session.setAttribute("CancelOrder", "Success");
-				String validate=e.getMessage();
+				String validate = e.getMessage();
 				response.sendRedirect(validate);
-				
+
 			}
 		} else {
 			response.sendRedirect("showOrders.jsp");

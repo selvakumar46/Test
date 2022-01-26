@@ -40,7 +40,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
 	public Invoice showInvoice(Invoice user) {
 
 		Invoice invoice = null;
-		String query = "select * from invoice_kfc where user_id=? order by(invoice_id) desc";
+		String query = "select invoice_id,user_id,total_price,delivery_adress,order_date from invoice_kfc where user_id=? order by(invoice_id) desc";
 		ConnectionUtil conect = new ConnectionUtil();
 		Connection con = conect.getDBConnection();
 		try {

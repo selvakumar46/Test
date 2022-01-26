@@ -44,27 +44,26 @@ public class LoginServlet extends HttpServlet {
 		User user = new User(0, null, mailId, mobileNumber, null);
 		UserDaoImpl userDao = new UserDaoImpl();
 		User currentUser = userDao.validateUser(user);
-		if(currentUser!=null) {
+		if (currentUser != null) {
 //		System.out.println(currentUser.getUserName());
-		String role=currentUser.getRoleType();
-		if (role.equals("User")) {
-			
-			session.setAttribute("currentUser", currentUser);
-			session.setAttribute("userId", currentUser.getUserId());
-			response.sendRedirect("mainPage.jsp");
+			String role = currentUser.getRoleType();
+			if (role.equals("User")) {
 
-		} 
-		else if(role.equals("Admin")) {
-			response.sendRedirect("AdminPage.jsp");
-		}}
-		else {
+				session.setAttribute("currentUser", currentUser);
+				session.setAttribute("userId", currentUser.getUserId());
+				response.sendRedirect("mainPage.jsp");
+
+			} else if (role.equals("Admin")) {
+				response.sendRedirect("AdminPage.jsp");
+			}
+		} else {
 			try {
 				throw new InvalidUserException();
-			}catch(InvalidUserException e) {
+			} catch (InvalidUserException e) {
 				session.setAttribute("invalidUser", "invalid");
-				String validate=e.getMessage();
+				String validate = e.getMessage();
 				response.sendRedirect(validate);
-				
+
 			}
 		}
 	}

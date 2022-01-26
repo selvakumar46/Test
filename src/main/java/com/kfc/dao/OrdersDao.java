@@ -17,4 +17,6 @@ public interface OrdersDao {
 
 	public boolean delOrderCart(Orders deleteOrder);
 
+	public double sumOfPrice(Orders user);
+
 }

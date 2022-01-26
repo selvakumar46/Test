@@ -10,4 +10,10 @@ public interface UserDao {
 	public User updateUser(User user1);
 
 	public User delUser(User deleteUser);
+
+	public boolean insertAdmin(User admin);
+
+	public User validateUserNum(User user);
+
+	public User validateUserMail(User user);
 }

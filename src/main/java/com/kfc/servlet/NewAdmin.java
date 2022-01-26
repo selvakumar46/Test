@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.kfc.daoimpl.AdminDaoImpl;
 import com.kfc.daoimpl.UserDaoImpl;
 import com.kfc.model.Admin;
 import com.kfc.model.User;
@@ -41,10 +39,10 @@ public class NewAdmin extends HttpServlet {
 		String name = request.getParameter("adminName");
 		long mobileNumber = Long.parseLong(request.getParameter("adminNumber"));
 		String mailId = request.getParameter("adminMailId");
-		User admin=new User(0, name, mailId, mobileNumber, null);
-		UserDaoImpl userDao=new UserDaoImpl();
-		boolean flag=userDao.insertAdmin(admin);
-		if (flag==true) {
+		User admin = new User(0, name, mailId, mobileNumber, null);
+		UserDaoImpl userDao = new UserDaoImpl();
+		boolean flag = userDao.insertAdmin(admin);
+		if (flag == true) {
 			response.sendRedirect("AdminPage.jsp");
 		} else {
 			response.sendRedirect("NewAdmin.jsp");

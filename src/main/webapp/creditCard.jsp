@@ -18,7 +18,7 @@ LocalDate date1 = date.plusDays(1);
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 body {
-		background: linear-gradient(to bottom right, #BDB76B, white);
+	background: linear-gradient(to bottom right, #BDB76B, white);
 }
 
 .container {
@@ -80,6 +80,51 @@ label {
 	padding: 20px 20px;
 	color: blanchedalmond;
 }
+
+.moveTop {
+	width: 1198 px;
+	margin-left: 150px;
+	margin-top: -90px;
+}
+
+.button {
+	border-radius: 4px;
+	background-color: #0000FF;
+	border: none;
+	color: #FFFAFA;
+	text-align: center;
+	font-size: 23px;
+	padding: 2px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: move;
+	margin: 5px;
+}
+
+.button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.button span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 10;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.button:hover span {
+	padding-right: 25px;
+}
+
+.button:hover span:after {
+	opacity: 1;
+	right: 0;
+}
 </style>
 </head>
 
@@ -87,21 +132,49 @@ label {
 	<%
 	User user = (User) session.getAttribute("currentUser");
 	%>
+	<!--logoImage -->
 	<img src="image/KFC Logo2.png " width="150px" height="100px"margin-top: "20px" >
-	<div class="topnav">
-		<a href="mainPage.jsp">Home</a> <a class="" href="showProducts.jsp">Menu</a>
-		<a href="showOrders.jsp?userId=<%=user.getUserId()%>">My Orders</a>
-		<div class="search">
-			<input type="text" onkeyup="myFunction()"
-				placeholder="Search your meal" title="Type in a name">
-			<button type="submit">Search</button>
+	<!-- navbar-->
+	<div class="moveTop">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid justify-content-between">
+				<!-- Left elements -->
+				<a class="nav-link d-sm-flex align-items-lg-center"> <img
+					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="d-none d-sm-block ms-7"><%=user.getUserName()%></strong>
+				</a>
+				<div class="d-flex">
+					<a href="mainPage.jsp">
+						<button type="submit" class="btn btn-light button">Home</button>
+					</a> <a class="" href="showProducts.jsp">
+						<button type="submit" class="btn btn-light  button">Menu</button>
+					</a> <a href="showOrders.jsp?userId=<%=user.getUserId()%>"><button
+							type="submit" class="btn btn-light button">My Orders</button></a>
 
-			<div class="topnav-right">
-				<a href="cart.jsp?userId=<%=user.getUserId()%>">My Cart</a> <a
-					href="login.jsp">LogOut</a>
+					<!-- Search form -->
+					<form action="searchProduct" class="input-group w-auto">
+						<input autocomplete="off" type="search" name="search"
+							class="form-control " placeholder="search by meal" />
+						<button type="submit" class="btn btn-dark btn-sm">search</button>
+					</form>
+				</div>
+				<!-- Left elements -->
+
+				<!-- Center elements -->
+				<a href="cart.jsp?userId=<%=user.getUserId()%>"><button
+						type="submit" class="btn btn-light button">My Cart</button></a>
+
+				<!-- Center elements -->
+
+				<!-- Right elements -->
+				<a href="login.jsp"><button type="submit"
+						class="btn btn-light button">Logout</button></a>
+				<!-- Right elements -->
 			</div>
-		</div>
+		</nav>
 	</div>
+	<!-- Navbar -->
 	<center>
 		<h3>Credit Card details:</h3>
 		<div class="container">
@@ -110,13 +183,15 @@ label {
 
 				<label for="cardNumber"><b>Card Number:</b></label> <input
 					type="text" name="cardNumber" pattern="[0-9]{16}"
-					title="enter 16 digit card number" required placeholder="16 digit card number"><br> <br>
-				<label for="cardType"><b>Card type</b></label> <input type="text"
-					name="cardType" required placeholder="(ex:visa)"> <br> <br> <label
-					for="cardDate"><b>Card exp Date:</b></label> <input type="date"
-					name="cardDate" id="cardDate" min="<%=date%>" required><br>
+					title="enter 16 digit card number" required
+					placeholder="16 digit card number"><br> <br> <label
+					for="cardType"><b>Card type</b></label> <input type="text"
+					name="cardType" required placeholder="(ex:visa)"> <br>
+				<br> <label for="cardDate"><b>Card exp Date:</b></label> <input
+					type="date" name="cardDate" id="cardDate" min="<%=date%>" required><br>
 				<br> <label for="cvv"><b>Cvv:</label></b> <input
-					type="password" name="Cvv" required placeholder="3 digit cvv number"><br> <br>
+					type="password" name="Cvv" pattern="[0-9]{3}" title="enter 3 digit cvv number" required
+					placeholder="3 digit cvv number"><br> <br>
 
 
 

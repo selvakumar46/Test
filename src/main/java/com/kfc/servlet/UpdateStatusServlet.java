@@ -43,15 +43,6 @@ public class UpdateStatusServlet extends HttpServlet {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		HttpSession session = request.getSession();
 		int userId = (int) session.getAttribute("userId1");
-//		System.out.println(userId);
-
-//		Date date=(Date) session.getAttribute("orderDate1");
-//		System.out.println(date);
-//		System.out.println(userId);
-//		String dateString =  request.getParameter("orderDate");
-//		Date date;
-
-//			date = (Date) dateFormat.parse(dateString);
 		CartItem cart = new CartItem(0, 0, userId, null, 0, 0, null, null);
 		cartItemDaoImpl cartDao = new cartItemDaoImpl();
 		boolean flag = cartDao.updateStatus(cart);

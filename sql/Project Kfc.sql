@@ -134,7 +134,7 @@ select sum(total_price ) as totalPrice from cart_items where to_char(order_date,
 select sum(total_price) as totalPrice from order_kfc where user_id=24;
 select * from invoice_kfc where user_id=106 order by(invoice_id) desc;
 select * from invoice_kfc where user_id=106 order by(invoice_id) desc;
-delete  from invoice_kfc ;
+rollback;
 
 commit;
 update cart_items set status='delevered' where user_id=3 and to_char(order_date,'dd-MM-yyyy')='07-01-2022';

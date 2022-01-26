@@ -17,4 +17,15 @@ public interface ProductDao {
 	public boolean insertProducts(Products productInsert);
 
 	public Products validateProduct1(Products product);
+
+	public List<Products> showTrending();
+
+	public List<Products> showBucket();
+
+	public List<Products> showProductAdmin();
+
+	public boolean updatePrice(Products products);
+
+	public List<Products> serachProduct(String proName);
+
 }

@@ -58,15 +58,10 @@ public class OrdersDaoImpl implements OrdersDao {
 
 			ResultSet rs = cstmt.executeQuery();
 			while (rs.next()) {
-//				System.out.format("%-16s%-30s%-12s%-25s%-8s%-16s", "product name=", rs.getString(1), "Quantity=",
-//						rs.getInt(2), "Price=", rs.getDouble(3));
-//				System.out.println();
-//				Orders order1=new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
-				orders = new Orders(rs.getString(1),rs.getDouble(2) ,rs.getInt(3), rs.getDouble(4),rs.getInt(5));
-						
+				orders = new Orders(rs.getString(1), rs.getDouble(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5));
+
 				listOfOrders.add(orders);
 //				System.out.println(listOfOrders);
-
 			}
 			return listOfOrders;
 		} catch (SQLException e) {
@@ -88,8 +83,7 @@ public class OrdersDaoImpl implements OrdersDao {
 			pstmt = con.prepareStatement(delQuery);
 			pstmt.setInt(1, deleteOrders.getUserId());
 			int i = pstmt.executeUpdate();
-			System.out.println(i + "delete succesfully");
-
+//			System.out.println(i + "delete succesfully");
 			return orders;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -124,7 +118,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	public List<Orders> allCart(Orders order1) {
 
 		List<Orders> viewAll = new ArrayList<Orders>();
-		String query = "select * from order_kfc where user_id=?";
+		String query = "select cart_id,product_id,user_id,quantity,total_price from order_kfc where user_id=?";
 		ConnectionUtil conect = new ConnectionUtil();
 		Connection con = conect.getDBConnection();
 		try {
@@ -158,8 +152,8 @@ public class OrdersDaoImpl implements OrdersDao {
 //			System.out.println(i + "delete succesfully");
 
 			return true;
-		} 
-		
+		}
+
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -167,18 +161,19 @@ public class OrdersDaoImpl implements OrdersDao {
 		return false;
 
 	}
-	public  double sumOfPrice(Orders user) {
-		double invoiceBill=0;
+
+	public double sumOfPrice(Orders user) {
+		double invoiceBill = 0;
 //		System.out.println(date);
-		String query="select sum(total_price) as totalPrice from order_kfc where user_id=?";
-		ConnectionUtil conect=new ConnectionUtil();
-		Connection con=conect.getDBConnection();
+		String query = "select sum(total_price) as totalPrice from order_kfc where user_id=?";
+		ConnectionUtil conect = new ConnectionUtil();
+		Connection con = conect.getDBConnection();
 		try {
 			CallableStatement pstmt = con.prepareCall(query);
 			pstmt.setInt(1, user.getUserId());
-			ResultSet rs=pstmt.executeQuery();
-			while(rs.next()) {
-				 invoiceBill=rs.getDouble(1);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				invoiceBill = rs.getDouble(1);
 				System.out.println(invoiceBill);
 			}
 			return invoiceBill;
@@ -186,8 +181,8 @@ public class OrdersDaoImpl implements OrdersDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return invoiceBill;
-		
+
 	}
 }

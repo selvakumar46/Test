@@ -42,7 +42,7 @@ public class cartItemDaoImpl implements cartItemDao {
 
 	public List<CartItem> showUsers(User user) {
 		List<CartItem> cartItem = new ArrayList<CartItem>();
-		String show = "select * from cart_items where status='Ordered'and user_id=?";
+		String show = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered'and user_id=?";
 		ConnectionUtil conect = new ConnectionUtil();
 		Connection con = conect.getDBConnection();
 		try {
@@ -70,7 +70,7 @@ public class cartItemDaoImpl implements cartItemDao {
 		try {
 			PreparedStatement pstmt = con.prepareStatement(delete);
 			pstmt.setInt(1, cart.getCartId());
-			int i=pstmt.executeUpdate();
+			int i = pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -87,10 +87,10 @@ public class cartItemDaoImpl implements cartItemDao {
 		Connection con = conect.getDBConnection();
 		try {
 			PreparedStatement pstmt = con.prepareStatement(update);
-			
+
 			pstmt.setInt(1, cart.getUserId());
-			
-			int i=pstmt.executeUpdate();
+
+			int i = pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -103,7 +103,7 @@ public class cartItemDaoImpl implements cartItemDao {
 	public List<CartItem> showInvoice(CartItem carts) {
 		List<CartItem> invoice = new ArrayList<CartItem>();
 		CartItem cart = null;
-		String show = "select * from cart_items where user_id=? and status='Ordered' order by(order_date) desc";
+		String show = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where user_id=? and status='Ordered' order by(order_date) desc";
 		ConnectionUtil conect = new ConnectionUtil();
 		Connection con = conect.getDBConnection();
 		try {
@@ -153,7 +153,7 @@ public class cartItemDaoImpl implements cartItemDao {
 	public List<CartItem> orderStatus() {
 		List<CartItem> allCart = new ArrayList<CartItem>();
 		CartItem cart = null;
-		String query = "select * from cart_items where status='Ordered'";
+		String query = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered'";
 		ConnectionUtil conect = new ConnectionUtil();
 		Connection con = conect.getDBConnection();
 		try {
@@ -163,7 +163,7 @@ public class cartItemDaoImpl implements cartItemDao {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
 						rs.getDouble(6), rs.getString(7), rs.getDate(8));
 				allCart.add(cart);
-				
+
 			}
 			return allCart;
 		} catch (SQLException e) {
@@ -173,10 +173,11 @@ public class cartItemDaoImpl implements cartItemDao {
 
 		return allCart;
 	}
+
 	public List<CartItem> showInvoiceDelevered(CartItem carts) {
 		List<CartItem> invoice = new ArrayList<CartItem>();
 		CartItem cart = null;
-		String show = "select * from cart_items where user_id=? and status='Delevered' order by(order_date) desc";
+		String show = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where user_id=? and status='Delevered' order by(order_date) desc";
 		ConnectionUtil conect = new ConnectionUtil();
 		Connection con = conect.getDBConnection();
 		try {
@@ -228,6 +229,5 @@ public class cartItemDaoImpl implements cartItemDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }
