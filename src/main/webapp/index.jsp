@@ -31,7 +31,7 @@ button{
 	<div class="container">
 		<form action="login.jsp">
 			<h2>
-				<b><i>Welcome To KFC!</i></b>
+				<strong><em>Welcome To KFC!</em></strong>
 			</h2>
 			<button type="submit" class="btn btn-success">Login</button>
 		</form>

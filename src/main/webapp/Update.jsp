@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Update Admin</title>
@@ -22,13 +22,13 @@ body {
 	<center class="container">
 		<div>
 			<form action="" method="post">
-				<h4><b>Update Admin Details</b> </h4>
+				<h4><strong>Update Admin Details</strong> </h4>
 				<button type="submit" class="btn btn-success btn-sm">Submit </button>			
 			</form>
 		</div>
 		<div>
 			<form action="OrderStatus" >
-				<h4><b>Update Order Status</b></h4>
+				<h4><strong>Update Order Status</strong></h4>
 				<button type="submit" class="btn btn-success btn-sm">Submit </button>			
 			</form> <br>
 		</div> <br>

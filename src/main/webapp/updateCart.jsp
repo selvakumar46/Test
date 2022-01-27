@@ -13,7 +13,7 @@ int userId=(int)session.getAttribute("userId");
 %>
     
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>update cart Kfc</title>

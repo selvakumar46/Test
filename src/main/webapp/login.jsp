@@ -58,10 +58,10 @@ button{
 			<form action="login" method="post">
 
 
-				<h2 class="head"><i>Login KFC</i></h2>
-				<label> <b>Mail ID:</b></label><input type="email" name="mailId"
+				<h2 class="head"><em>Login KFC</em></h2>
+				<label> <strong>Mail ID:</strong></label><input type="email" name="mailId"
 					autofocus required placeholder="ex:kfc@gmail.com"> <br>
-				<br><label><b>Mobile Number:</b></label><input type="number" name="mobileNumber"
+				<br><label><strong>Mobile Number:</strong></label><input type="number" name="mobileNumber"
 					required placeholder="Enter mobile Number"> <br> <br>
 				<button type="submit" class="button btn btn-success btn-sm">Login</button><br>
 				
@@ -73,8 +73,8 @@ button{
 			if (session.getAttribute("invalidUser") != null) {
 			%>
 			
-				<h1 class="exception"><b>
-					<i>Invalid MailId or Password</i></b>
+				<h1 class="exception"><strong>
+					<em>Invalid MailId or Password</em></strong>
 				</h1>
 			
 
