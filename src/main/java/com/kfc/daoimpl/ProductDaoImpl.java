@@ -36,14 +36,14 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 
-	public Products validateProduct(String selectProduct) {
+	public Products validateProduct(Products products) {
 		Products productValid = null;
 		String validatePro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc where product_name=?";
 		Connection con = ConnectionUtil.getDBConnection();
 		PreparedStatement pstmt;
 		try {
 			pstmt = con.prepareStatement(validatePro);
-			pstmt.setString(1, selectProduct);
+			pstmt.setString(1, products.getProductName());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				productValid = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
@@ -256,5 +256,12 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Products validateProduct(String selectProduct) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

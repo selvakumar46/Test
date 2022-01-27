@@ -2,6 +2,7 @@ package com.kfc.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kfc.daoimpl.OrdersDaoImpl;
-import com.kfc.model.Orders;
+import com.kfc.daoimpl.ProductDaoImpl;
+import com.kfc.model.Products;
 
 /**
- * Servlet implementation class InsertCart
+ * Servlet implementation class AddCart
  */
-@WebServlet("/insertCart")
-public class InsertCart extends HttpServlet {
+@WebServlet("/addCart")
+public class AddCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public InsertCart() {
+	public AddCart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,22 +35,19 @@ public class InsertCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("hello selva: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		double price = (double) session.getAttribute("productPrice");
-		int productId = (int) session.getAttribute("productId");
-		int quantity = Integer.parseInt(request.getParameter("Quantity"));
-		int userId = (int) session.getAttribute("userId");
-		double totalPrice = quantity * price;
-		Orders cart = new Orders(0, productId, userId, quantity, totalPrice);
-		OrdersDaoImpl orderDao = new OrdersDaoImpl();
-		boolean flag = orderDao.insertOrder(cart);
-		if (flag == true) {
-			response.sendRedirect("showProducts");
-		} else {
-			response.sendRedirect("mainPage.jsp");
-		}
-
+		String productName = (String) request.getParameter("productName");
+		ProductDaoImpl cart = new ProductDaoImpl();
+		Products products = new Products(0, productName, null, 0, null, null, null, null);
+		Products meal = cart.validateProduct(products);
+		double price = meal.getPrice();
+		int productId = meal.getProductId();
+		request.setAttribute("validateProduct", meal);
+		session.setAttribute("productPrice", price);
+		session.setAttribute("productId", productId);
+		RequestDispatcher rd = request.getRequestDispatcher("product.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

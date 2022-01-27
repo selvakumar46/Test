@@ -161,15 +161,12 @@ public class CartItemDaoImpl implements cartItemDao {
 		Connection con = ConnectionUtil.getDBConnection();
 		try {
 			PreparedStatement pstmt = con.prepareStatement(show);
-//			System.out.println(carts.getUserId());
 			pstmt.setInt(1, carts.getUserId());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-//				System.out.println(rs.getString(4));
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
 						rs.getDouble(6), rs.getString(7), rs.getDate(8));
 				invoice.add(cart);
-
 			}
 			return invoice;
 		} catch (SQLException e) {
@@ -178,7 +175,6 @@ public class CartItemDaoImpl implements cartItemDao {
 		}
 		return invoice;
 	}
-
 	@Override
 	public List<CartItem> showUsers() {
 		return null;

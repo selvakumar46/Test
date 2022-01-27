@@ -1,8 +1,4 @@
 <%@page import="com.kfc.model.User"%>
-<%@page import="com.kfc.daoimpl.ProductDaoImpl"%>
-<%@page import="com.kfc.model.Products"%>
-
-<%@page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -134,19 +130,11 @@ body {
 
 </head>
 <body>
-
-	<%
-	String pName = request.getParameter("pname");
-	ProductDaoImpl products = new ProductDaoImpl();
-	List<Products> showProduct;
-
-	showProduct = products.showProduct();
-	%>
 	<%
 	User user = (User) session.getAttribute("currentUser");
 	%>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " width="150px" height="100px"margin-top: "20px" >
+	<img src="image/KFC Logo2.png " width="150px" height="100px" >
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -189,72 +177,45 @@ body {
 	</div>
 	<!-- Navbar -->
 
-
-	<center>
-		<b><h3>
-				<u>Meals list</u>
-			</h3></b>
-	</center>
-
-	<table>
+	<table id="productTable">
 		<tbody>
 			<tr>
-
-				<%
-				int count = 0;
-				int i = showProduct.size();
-				for (Products meals : showProduct) {
-				%>
-
-				<td>
-					<table id="productTable">
-						<tbody>
-							<tr>
-
-								<td>
-									<div class="card">
-										<img alt="meal" src="<%=meals.getProductImg()%>"
-											style="width: 100%"><br>
-										<div class="container">
-											<span>Meal name: <b> <%=meals.getProductName()%></b>
-											</span><br> <span> meal Description: <%=meals.getDescription()%>
-											</span><br> <span>meal price:<b> <%=meals.getPrice()%></b>
-											</span><br> <span>Meal Type:<%=meals.getProductType()%>
-											</span><br> <span>Meal Status:<%=meals.getProductStatus()%></span><br>
-
-											<span> <a
-												href="product.jsp?pname=<%=meals.getProductName()%>">
-													<button type="submit" class="btn btn-outline-dark btn-sm">Add
-														Cart</button>
-											</a>
-											</span>
-										</div>
+				<th>
+				<c:set var="count" value="1" />
+					<c:forEach items="${showProductsList}" var="productList">
+						<td>
+							<div class="card">
+								<img src="image/Chicken.jpg}" style="width: 100%"><br>
+									<div class="container">
+									${productList.productName} <br> 
+									${productList.description} <br>
+									${productList.price} <br>
+							 		${productList.productType} <br>
+									${productList.productStatus} <br>
+										<a href="addCart?productName=${productList.productName }">
+											<button type="submit" class="btn btn-outline-dark btn-sm">Add Cart</button>
+										</a>
 									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-
-				</td>
-				<%
-				count++;
-
-				if (count == 3) {
-				%>
-			</tr>
-			<tr>
-				<%
-				count = 0;
-
-				}
-				}
-				%>
-
-			</tr>
+							</div>
+						</td>
+						<c:choose>
+						<c:when test="${count==3}">
+						</th>
+						</tr>
+						<tr>
+							<c:set var="count" value="1" />
+							</c:when>
+			<c:otherwise>
+				<c:set var="count" value="${count+1}" />
+			</c:otherwise>
+		</c:choose>
+	</tr>
+					</c:forEach>
+				
+			
 		</tbody>
 	</table>
-
-
+	
 </body>
 </html>
 
