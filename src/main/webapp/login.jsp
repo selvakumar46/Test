@@ -66,23 +66,8 @@ button{
 				<button type="submit" class="button btn btn-success btn-sm">Login</button><br>
 				
 			</form><br>
-			<a href="Register.jsp"><button type="submit" class="btn btn-success btn-sm">SignUp</button></a> <br> <br>
+			<a href="register.jsp"><button type="submit" class="btn btn-success btn-sm">SignUp</button></a> <br> <br>
 			<br>
-			
-			<%
-			if (session.getAttribute("invalidUser") != null) {
-			%>
-			
-				<h1 class="exception"><strong>
-					<em>Invalid MailId or Password</em></strong>
-				</h1>
-			
-
-			<%
-			session.removeAttribute("invalidUser");
-			}
-			%>
-
 	</div>
 </body>
 </html>

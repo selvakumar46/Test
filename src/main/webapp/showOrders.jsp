@@ -1,27 +1,47 @@
+<%@page import="com.kfc.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome to KFC</title>
-
+<meta charset="ISO-8859-1">
+<title>My Orders</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
 }
 
-nav {
-	padding: 10px;
+.topnav {
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	size: 500px;
+	width: 1200px;
+	position: relative;
+	margin-top: -110px;
+	margin-left: 150px;
+}
+
+.topnav a {
+	float: left;
+	color: #ffffff;
+	text-align: center;
+	padding: 20px 20px;
+	font-size: 18px;
+}
+
+.topnav-right {
+	float: right;
+}
+
+.search {
+	text-align: center;
+	align-self: center;
 }
 
 .downnav {
@@ -40,10 +60,6 @@ nav {
 	font-size: 18px;
 	padding: 20px 20px;
 	color: blanchedalmond;
-}
-
-.slide {
-	margin-top: 20px;
 }
 
 .moveTop {
@@ -91,8 +107,17 @@ nav {
 	right: 0;
 }
 
-input {
-	width: 200px;
+th, td {
+	padding: 10px;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: 100%;
+	padding: 20px;
+	border-radius: 3px;
+	border: thin;
 }
 </style>
 </head>
@@ -109,12 +134,14 @@ input {
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
 					class="rounded-circle" height="25" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
-							value="${user.userName}" /> </strong>
+							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
-					<a class="" href="showProducts">
+					<a href="mainPage.jsp">
+						<button type="submit" class="btn btn-light button">Home</button>
+					</a> <a class="" href="showProducts.jsp">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userid1=${user.userId}"><button type="submit"
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
 							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
@@ -140,47 +167,71 @@ input {
 		</nav>
 	</div>
 	<!-- Navbar -->
-	<center>
-		<div class="slide">
-			<img src="image/Bucket.png" width="800px" height="300px"
-				alt="Kfc Food Special">
-			<h4>
-				<b>Hi <c:out value="${user.userName}"></c:out></b>
-			</h4>
-			<h3>
-				<b>Welcome to KFC</b>
-			</h3>
-		</div>
-	</center>
-	-
-	<div>
-		<div></div>
-		<h3>
-			<b>Categories:</b>
-		</h3>
-	</div>
-	<div>
-		<form action="BucketMeals.jsp" method="post">
-			<div>
-				<b>Bucket meals:</b>
-				<button type="submit" class="btn btn-success btn-sm">Submit</button>
-			</div>
-		</form>
-		<br>
-		<form action="TrendMeals.jsp" method="post">
-			<div>
-				<b>Trending meals:</b>
-				<button type="submit" class="btn btn-success btn-sm">Submit</button>
-			</div>
-		</form>
-	</div>
-	<br>
-	<br>
-	<div></div>
-	<div class="downnav">
-		<a href="">Get helpS</a> <a href="">About Us</a> <a href="">Contact
-			Us</a>
-	</div>
+	<p>
+		<c:if test="${not empty cancelOrder}">
 
+			<h1
+				style="color: red; background-color: white; font-size: 20px; float: right;">
+				<i>Your Order Will be Cancelled</i>
+			</h1>
+		</c:if>
+	<h3>
+		<b>Your Orders </b>
+	</h3>
+	<table id="showOrders">
+		<tbody>
+
+			<tr>
+				<th><c:set var="count" value="1" /> <c:forEach
+						items="${cancelOrder}" var="orderList">
+						<td>
+							<div class="card">
+								${orderList.productName} <br> ${orderList.quantity} <br>
+								${orderList.totalPrice} <br> ${orderList.orderDate} <br>
+
+								<a href="CancelOrder?cartId=${orderList.cartId}">
+									<button type="submit" class="btn btn-outline-danger btn-sm">cancel
+										order</button>
+								</a>
+							</div>
+						<td><c:choose>
+								<c:when test="${count==3}">
+			</tr>
+			<tr>
+				<c:set var="count" value="1" />
+				</c:when>
+				<c:otherwise>
+					<c:set var="count" value="${count+1}" />
+				</c:otherwise>
+				</c:choose>
+				</c:forEach>
+			</tr>
+			</th>
+		</tbody>
+	</table>
+	<table>
+		<tbody>
+			<tr>
+				<th><c:forEach items="${deleveredOrder }" var="orderList1">
+						<td>
+							<div class="card">
+								${orderList1.productName} <br> ${orderList1.quantity} <br>
+								${orderList1.totalPrice} <br> ${orderList1.orderDate} <br>
+							</div>
+						<td><c:choose>
+								<c:when test="${count==3}">
+			</tr>
+			<tr>
+				<c:set var="count" value="1" />
+				</c:when>
+				<c:otherwise>
+					<c:set var="count" value="${count+1}" />
+				</c:otherwise>
+				</c:choose>
+				</c:forEach>
+			</tr>
+			</th>
+		</tbody>
+	</table>
 </body>
 </html>

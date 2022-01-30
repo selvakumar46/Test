@@ -25,13 +25,13 @@ body {
 	<h2>Hello Admin</h2>
 		<div class="container">
 	
-		<form action="Insert.jsp"> <br>
+		<form action="insert.jsp"> <br>
 			<button type="submit" class="btn btn-primary btn-sm">Insert</button> 
 		</form><br>
-		<form action="Update.jsp">
+		<form action="update.jsp">
 			<button type="submit" class="btn btn-primary btn-sm">Update</button>
 		</form><br>
-		<form action="ShowProductsAdmin.jsp">
+		<form action="showProductsAdmin.jsp">
 			<button type="submit" class="btn btn-primary btn-sm ">List of products</button> 
 		</form><br>
 		</div>

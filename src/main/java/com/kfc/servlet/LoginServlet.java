@@ -1,6 +1,9 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,32 +37,37 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
 		String mailId = request.getParameter("mailId");
 		long mobileNumber = Long.parseLong(request.getParameter("mobileNumber"));
 		User user = new User(0, null, mailId, mobileNumber, null);
 		UserDaoImpl userDao = new UserDaoImpl();
 		User currentUser = userDao.validateUser(user);
-		if (currentUser != null) {
-			String role = currentUser.getRoleType();
-			if (role.equals("User")) {
-				session.setAttribute("currentUser", currentUser);
-				session.setAttribute("userId", currentUser.getUserId());
-				response.sendRedirect("mainPage.jsp");
+		try {
+			if (currentUser != null) {
+				String role = currentUser.getRoleType();
+				if (role.equals("User")) {
+					request.setAttribute("currentUser", currentUser);
+					session.setAttribute("currentUser", currentUser);
+					request.setAttribute("userId", currentUser.getUserId());
+					RequestDispatcher rd = request.getRequestDispatcher("mainPage.jsp");
+					rd.forward(request, response);
 
-			} else if (role.equals("Admin")) {
-				response.sendRedirect("AdminPage.jsp");
-			}
-		} else {
-			try {
+				} else if (role.equals("Admin")) {
+					response.sendRedirect("AdminPage.jsp");
+				}
+			} else {
+
 				throw new InvalidUserException();
-			} catch (InvalidUserException e) {
-				session.setAttribute("invalidUser", "invalid");
-				String validate = e.getMessage();
-				response.sendRedirect(validate);
-
 			}
+
+		} catch (InvalidUserException e) {
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Invlid MailId or Password');");
+			out.println("location='login.jsp';");
+			out.println("</script>");
 		}
 	}
 

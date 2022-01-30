@@ -36,7 +36,7 @@ public class ShowProducts extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		ProductDaoImpl products = new ProductDaoImpl();
 		List<Products> showProduct = products.showProduct();
 		request.setAttribute("showProductsList", showProduct);

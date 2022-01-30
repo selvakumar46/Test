@@ -144,3 +144,5 @@ select * from cart_items where user_id=126 order by(order_date) desc;
 select * from user_kfc where mobile_number=9787689246;
 select * from user_kfc where mail_id= 'selvaganesankgs@gmail.com';  
 select * from PRODUCTS_KFC where lower(product_name ) like 'friend%';
+select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items;
+select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items;

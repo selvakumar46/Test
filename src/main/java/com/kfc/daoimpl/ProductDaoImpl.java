@@ -230,7 +230,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Products> serachProduct(Products proName) {
-		String pro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from PRODUCTS_KFC where lower(product_name ) like ?%";
+		String pro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from PRODUCTS_KFC where product_name  like ?%";
 		List<Products> listOfProducts = new ArrayList<Products>();
 		Products products = null;
 		Connection con = ConnectionUtil.getDBConnection();

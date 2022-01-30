@@ -1,6 +1,8 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,19 +19,7 @@ import com.kfc.model.CartItem;
  */
 @WebServlet("/CancelOrder")
 public class CancelOrder extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CancelOrder() {
-		super();
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("served at: ").append(request.getContextPath());
@@ -42,9 +32,10 @@ public class CancelOrder extends HttpServlet {
 			try {
 				throw new CancelOrderException();
 			} catch (CancelOrderException e) {
-				session.setAttribute("CancelOrder", "Success");
+				request.setAttribute("CancelOrder", "Success");
 				String validate = e.getMessage();
-				response.sendRedirect(validate);
+				RequestDispatcher rd=request.getRequestDispatcher(validate);
+				rd.forward(request, response);
 
 			}
 		} else {
@@ -52,13 +43,5 @@ public class CancelOrder extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
-
+	
 }

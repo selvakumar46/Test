@@ -35,7 +35,7 @@ public class MyOrders extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session=request.getSession();
 		User user = (User) session.getAttribute("currentUser");
 		int userId = user.getUserId();
@@ -46,7 +46,7 @@ public class MyOrders extends HttpServlet {
 //		System.out.println(showOrders1);
 		request.setAttribute("cancelOrder", showOrders);
 		request.setAttribute("deleveredOrder", showOrders1);
-		RequestDispatcher rd = request.getRequestDispatcher("show_orders.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("showOrders.jsp");
 		rd.forward(request, response);
 		
 	}
