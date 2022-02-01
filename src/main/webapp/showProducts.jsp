@@ -14,6 +14,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 table img {
@@ -157,10 +158,10 @@ th, td {
 				<div class="d-flex">
 					<a href="mainPage.jsp">
 						<button type="submit" class="btn btn-light button">Home</button>
-					</a> <a class="" href="showProducts.jsp">
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userId=${user.userId}"><button
-							type="submit" class="btn btn-light button">My Orders</button></a>
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
+							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
@@ -172,7 +173,7 @@ th, td {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=${user.userId}"><button type="submit"
+				<a href="ShowCart"><button type="submit"
 						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->

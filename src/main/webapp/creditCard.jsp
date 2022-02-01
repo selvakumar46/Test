@@ -129,7 +129,7 @@ label {
 </head>
 
 <body>
-		<c:set value="${currentUser}" var="user"></c:set>
+	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
 	<img src="image/KFC Logo2.png " width="150px" height="100px">
 	<!-- navbar-->
@@ -141,12 +141,14 @@ label {
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
 					class="rounded-circle" height="25" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
-							value="${user.userName}" /> </strong>
+							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
-					<a class="" href="showProducts">
+					<a href="mainPage.jsp">
+						<button type="submit" class="btn btn-light button">Home</button>
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userid1=${user.userId}"><button type="submit"
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
 							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
@@ -188,7 +190,8 @@ label {
 				<br> <label for="cardDate"><b>Card exp Date:</b></label> <input
 					type="date" name="cardDate" id="cardDate" min="<%=date%>" required><br>
 				<br> <label for="cvv"><b>Cvv:</label></b> <input
-					type="password" name="Cvv" pattern="[0-9]{3}" title="enter 3 digit cvv number" required
+					type="password" name="Cvv" pattern="[0-9]{3}"
+					title="enter 3 digit cvv number" required
 					placeholder="3 digit cvv number"><br> <br>
 
 

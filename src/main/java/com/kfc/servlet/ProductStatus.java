@@ -1,6 +1,8 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +13,16 @@ import com.kfc.daoimpl.ProductDaoImpl;
 import com.kfc.model.Products;
 
 /**
- * Servlet implementation class UpdateStatus
+ * Servlet implementation class ProductStatus
  */
-@WebServlet("/statusUpdate")
-public class UpdateStatus extends HttpServlet {
+@WebServlet("/ProductStatus")
+public class ProductStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateStatus() {
+	public ProductStatus() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,14 +35,14 @@ public class UpdateStatus extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String productName = request.getParameter("productName");
-		String productStatus = request.getParameter("productStatus");
-		Products products = new Products(0, productName, null, 0, null, productStatus, null);
+		String productName = request.getParameter("proName");
+		Products product = new Products(0, productName, null, 0, null, null, null, null);
 		ProductDaoImpl productDao = new ProductDaoImpl();
-		boolean flag = productDao.updateProduct(products);
-		if (flag == true) {
-			response.sendRedirect("ShowProductsAdmin");
-		}
+		Products meal = productDao.validateProduct(product);
+		request.setAttribute("validMeal", meal);
+		RequestDispatcher rd = request.getRequestDispatcher("statusUpdate.jsp");
+		rd.forward(request, response);
+
 	}
 
 	/**

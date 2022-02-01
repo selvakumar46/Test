@@ -145,6 +145,6 @@ select * from user_kfc where mobile_number=9787689246;
 select * from user_kfc where mail_id= 'selvaganesankgs@gmail.com';  
 select * from PRODUCTS_KFC where lower(product_name ) like 'friend%';
 select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items;
-select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items;
+select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered' order by cart_id ;
 select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from PRODUCTS_KFC where product_name like'Classic%';
 commit;

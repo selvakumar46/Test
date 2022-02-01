@@ -106,6 +106,7 @@ body {
 	opacity: 1;
 	right: 0;
 }
+
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
@@ -117,9 +118,9 @@ body {
 </style>
 </head>
 <body>
-	<c:set value="${currentUser}" var="user"/>
+	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " width="150px" height="100px"margin-top: "20px" >
+	<img src="image/KFC Logo2.png " width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -128,15 +129,16 @@ body {
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
 					class="rounded-circle" height="25" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><c:out value="${user.userName}"/></strong>
+					class="d-none d-sm-block ms-7"><c:out
+							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
 					<a href="mainPage.jsp">
 						<button type="submit" class="btn btn-light button">Home</button>
 					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userId2=${user.userId}"><button
-							type="submit" class="btn btn-light button">My Orders</button></a>
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
+							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
@@ -148,8 +150,8 @@ body {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="ShowCart"><button
-						type="submit" class="btn btn-light button">My Cart</button></a>
+				<a href="ShowCart"><button type="submit"
+						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
 
@@ -168,46 +170,41 @@ body {
 	<table>
 		<tbody>
 			<tr>
-			<th>
-			<c:set var="count" value="1"/>
-				<c:forEach items="${cart}" var="showCart">
-				<td>
-				<div class="container">
-					Product Name : <b>${showCart.productName}</b><br>
-					Product Price : <b>${showCart.price}</b><br>
-					Qauntity : <b>${showCart.quantity}</b>
-		<a href="UpdateQuantity?pname=${showCart.productName}">
-			<button type="submit">Update</button>
-		</a>
-		<br> 
-					Total Price : <b>${showCart.totalPrice}</b><br>
-		<a href="delCart?productName=${showCart.productName}">
-			<button type="submit" class="btn btn-danger btn-sm">Remove</button>
-		</a><br><br>
-		
-				</div>
-				
-				<td>
-				<c:choose>
-				<c:when test="">
-						<c:otherwise>
-							<c:set var="count" value="${count+1}"/>
-						</c:otherwise>
-						</c:when>
-				</c:choose>
-				</c:forEach>
-				</tr>
-				</th>
-		</tbody>	
+				<th><c:set var="count" value="1" /> <c:forEach items="${cart}"
+						var="showCart">
+						<td>
+							<div class="container">
+								Product Name : <b>${showCart.productName}</b><br> Product
+								Price : <b>${showCart.price}</b><br> Qauntity : <b>${showCart.quantity}</b>
+								<a href="UpdateQuantity?pname=${showCart.productName}">
+									<button type="submit">Update</button>
+								</a> <br> Total Price : <b>${showCart.totalPrice}</b><br>
+								<a href="delCart?productName=${showCart.productName}">
+									<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+								</a><br>
+								<br>
+
+							</div>
+						<td><c:choose>
+								<c:when test="">
+									<c:otherwise>
+										<c:set var="count" value="${count+1}" />
+									</c:otherwise>
+								</c:when>
+							</c:choose>
+					</c:forEach>
+			</tr>
+			</th>
+		</tbody>
 	</table>
 	<a href="payment.jsp">
-			<button type="submit" class="btn btn-primary btn-sm"
-				value="${totalPrice}">
-				<c:out value="${totalPrice}" />
-			</button>
-		</a>
-		<a href="DeleteAllCart">
-			<button type="submit" class="btn btn-dark btn-sm">Clear Cart</button>
-		</a>
-	</body>
-	</html>
+		<button type="submit" class="btn btn-primary btn-sm"
+			value="${totalPrice}">
+			<c:out value="${totalPrice}" />
+		</button>
+	</a>
+	<a href="DeleteAllCart">
+		<button type="submit" class="btn btn-dark btn-sm">Clear Cart</button>
+	</a>
+</body>
+</html>

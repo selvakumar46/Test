@@ -105,6 +105,7 @@ body {
 	opacity: 1;
 	right: 0;
 }
+
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
@@ -137,10 +138,10 @@ body {
 				<div class="d-flex">
 					<a href="mainPage.jsp">
 						<button type="submit" class="btn btn-light button">Home</button>
-					</a> <a class="" href="showProducts.jsp">
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userId=${user.userId}"><button
-							type="submit" class="btn btn-light button">My Orders</button></a>
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
+							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
@@ -152,7 +153,7 @@ body {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=${user.userId}"><button type="submit"
+				<a href="ShowCart"><button type="submit"
 						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
@@ -165,7 +166,7 @@ body {
 		</nav>
 	</div>
 	<!-- Navbar -->
-		<strong><em>Trending Meals:</em></strong>
+	<strong><em>Trending Meals:</em></strong>
 	<table>
 		<tbody>
 			<th>

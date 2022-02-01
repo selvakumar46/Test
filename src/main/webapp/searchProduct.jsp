@@ -125,7 +125,7 @@ body {
 </style>
 </head>
 <body>
-		<c:set value="${currentUser}" var="user"></c:set>
+	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
 	<img src="image/KFC Logo2.png " width="150px" height="100px">
 	<!-- navbar-->
@@ -142,10 +142,10 @@ body {
 				<div class="d-flex">
 					<a href="mainPage.jsp">
 						<button type="submit" class="btn btn-light button">Home</button>
-					</a> <a class="" href="showProducts.jsp">
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userId=${user.userId}"><button
-							type="submit" class="btn btn-light button">My Orders</button></a>
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
+							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
@@ -157,7 +157,7 @@ body {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=${user.userId}"><button type="submit"
+				<a href="ShowCart"><button type="submit"
 						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
@@ -184,40 +184,36 @@ body {
 					<table id="productTable">
 						<tbody>
 							<tr>
-								<th>
-									<c:set var="count" value="1"/>
-									<c:forEach items="${searchProduct}" var="search">
+								<th><c:set var="count" value="1" /> <c:forEach
+										items="${searchProduct}" var="search">
 										<td>
-						<div class="card">
-							<img src="${search.productImg}" style="width: 100%"><br>
+											<div class="card">
+												<img src="${search.productImg}" style="width: 100%"><br>
 
-							${search.productName} <br> 
-							${search.description} <br>
-							${search.price} <br> 
-							${search.productType} <br>
-							${search.productStatus} <br> <a
-								href="addCart?productName=${productList.productName }">
-								<button type="submit" class="btn btn-outline-dark btn-sm">Add
-									Cart</button>
-							</a>
-						</div>
-					<td><c:choose>
-							<c:when test="${count==3}">
-			</tr>
-			<tr>
-				<c:set var="count" value="1" />
-				</c:when>
-				<c:otherwise>
-					<c:set var="count" value="${count+1}" />
-				</c:otherwise>
-				</c:choose>
+												${search.productName} <br> ${search.description} <br>
+												${search.price} <br> ${search.productType} <br>
+												${search.productStatus} <br> <a
+													href="addCart?productName=${productList.productName }">
+													<button type="submit" class="btn btn-outline-dark btn-sm">Add
+														Cart</button>
+												</a>
+											</div>
+										<td><c:choose>
+												<c:when test="${count==3}">
+							</tr>
+							<tr>
+								<c:set var="count" value="1" />
+								</c:when>
+								<c:otherwise>
+									<c:set var="count" value="${count+1}" />
+								</c:otherwise>
+								</c:choose>
 
-				</c:forEach>
+								</c:forEach>
 
-			</tr>
-			</th>
-		</tbody>
-	</table>
-
+							</tr>
+							</th>
+						</tbody>
+					</table>
 </body>
 </html>

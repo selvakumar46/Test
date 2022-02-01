@@ -1,6 +1,8 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +13,16 @@ import com.kfc.daoimpl.ProductDaoImpl;
 import com.kfc.model.Products;
 
 /**
- * Servlet implementation class UpdateStatus
+ * Servlet implementation class DeleteProductConfirm
  */
-@WebServlet("/statusUpdate")
-public class UpdateStatus extends HttpServlet {
+@WebServlet("/DeleteProductConfirm")
+public class DeleteProductConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateStatus() {
+	public DeleteProductConfirm() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,13 +36,12 @@ public class UpdateStatus extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String productName = request.getParameter("productName");
-		String productStatus = request.getParameter("productStatus");
-		Products products = new Products(0, productName, null, 0, null, productStatus, null);
-		ProductDaoImpl productDao = new ProductDaoImpl();
-		boolean flag = productDao.updateProduct(products);
-		if (flag == true) {
-			response.sendRedirect("ShowProductsAdmin");
-		}
+		ProductDaoImpl cart = new ProductDaoImpl();
+		Products products = new Products(0, productName, null, 0, null, null, null, null);
+		Products validMeal = cart.validateProduct(products);
+		request.setAttribute("delMeal", validMeal);
+		RequestDispatcher rd = request.getRequestDispatcher("delete.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

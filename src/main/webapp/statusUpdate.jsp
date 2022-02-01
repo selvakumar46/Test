@@ -1,14 +1,6 @@
-<%@page import="com.kfc.model.Products"%>
-<%@page import="com.kfc.daoimpl.ProductDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%String productName1=request.getParameter("proName"); 
-ProductDaoImpl productDao = new ProductDaoImpl();
-Products product = new Products();
-Products meal = productDao.validateProduct(productName1);
-String productName=meal.getProductName();
-double productPrice=meal.getPrice();
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +11,7 @@ double productPrice=meal.getPrice();
 <style>
 body {
 		background: linear-gradient(to bottom right, #BDB76B, white);
+		background-attachment: fixed;
 }
 
 .container {
@@ -40,7 +33,7 @@ body {
 			<form action="statusUpdate" method="post"  >
 				<h3>Change Product Status</h3>
 				<label for="update" id="productName" ><b>Product Name</b></label>
-				<input  name="productName"  value="<%=productName %>"  > <br> <br>
+				<input  name="productName"  value="${validMeal.productName}"  > <br> <br>
 				<label for="status" id="productStatus"><b>Product Status</b></label>
 				<input type="text" name="productStatus" required autofocus placeholder="Availble/Sold-Out" > <br> <br>
 				<button type="submit" class="btn btn-outline-success btn-sm" >Update</button>
@@ -50,16 +43,16 @@ body {
 		<form action="PriceUpdate">
 			<h3>Change product Price</h3>
 			<label for="update" id="productName1" ><b>Product Name</b></label>
-				<input  name="productName1"  value="<%=productName %>"  > <br> <br>
+				<input  name="productName1"  value="${validMeal.productName}"  > <br> <br>
 				<label for="status" id="productPrice"><b>Product Old Price </b></label>
-				<input type="text" name="productPrice"  value="<%=productPrice %>" disabled > <br> <br>
+				<input type="text" name="productPrice"  value="${validMeal.price }" disabled > <br> <br>
 				<label for="status" id="productNewPrice"><b>Product Price </b></label>
 				<input type="number" name="productNewPrice" required placeholder="Enter new price..."  > <br> <br>
 				<button type="submit" class="btn btn-outline-success btn-sm" >Update</button>
 				<button type="reset" class="btn btn-outline-primary btn-sm">Cancel</button>
 			
 		</form>
-		<a href="AdminPage.jsp"> <button class="btn btn-outline-dark  button" >Home</button> </a>
+		<a href="adminPage.jsp"> <button class="btn btn-outline-dark  button" >Home</button> </a>
 		</div>
 		
 	</center>

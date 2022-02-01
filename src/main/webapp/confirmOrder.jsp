@@ -137,12 +137,14 @@ label {
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
 					class="rounded-circle" height="25" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
-							value="${user.userName}" /> </strong>
+							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
-					<a class="" href="showProducts">
+					<a href="mainPage.jsp">
+						<button type="submit" class="btn btn-light button">Home</button>
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userid1=${user.userId}"><button type="submit"
+					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
 							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->

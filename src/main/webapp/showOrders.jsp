@@ -138,7 +138,7 @@ th, td {
 				<div class="d-flex">
 					<a href="mainPage.jsp">
 						<button type="submit" class="btn btn-light button">Home</button>
-					</a> <a class="" href="showProducts.jsp">
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
 					</a> <a href="MyOrders?userId=${user.userId}"><button type="submit"
 							class="btn btn-light button">My Orders</button></a>
@@ -153,7 +153,7 @@ th, td {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=${user.userId}"><button type="submit"
+				<a href="ShowCart"><button type="submit"
 						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
@@ -167,13 +167,6 @@ th, td {
 	</div>
 	<!-- Navbar -->
 	<p>
-		<c:if test="${not empty cancelOrder}">
-
-			<h1
-				style="color: red; background-color: white; font-size: 20px; float: right;">
-				<i>Your Order Will be Cancelled</i>
-			</h1>
-		</c:if>
 	<h3>
 		<b>Your Orders </b>
 	</h3>
@@ -185,10 +178,8 @@ th, td {
 						items="${cancelOrder}" var="orderList">
 						<td>
 							<div class="card">
-								${orderList.productName} <br>
-								 ${orderList.quantity} <br>
-								${orderList.totalPrice} <br> 
-								${orderList.orderDate} <br>
+								${orderList.productName} <br> ${orderList.quantity} <br>
+								${orderList.totalPrice} <br> ${orderList.orderDate} <br>
 
 								<a href="CancelOrder?cartId=${orderList.cartId}">
 									<button type="submit" class="btn btn-outline-danger btn-sm">cancel

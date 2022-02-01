@@ -14,8 +14,6 @@
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
 	background-attachment: fixed;
-	background-size: 100%;
-	background-position: top;
 }
 
 .container {

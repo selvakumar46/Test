@@ -1,7 +1,6 @@
-<%@page import="com.kfc.model.Products"%>
-<%@page import="com.kfc.daoimpl.ProductDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,24 +28,17 @@ label {
 </style>
 </head>
 <body>
-<%int productId=Integer.parseInt( request.getParameter("productId1")); 
-ProductDaoImpl cart=new ProductDaoImpl();
-Products products=new Products(productId,null,null,0,null,null,null);
-
-Products meal=cart.validateProduct1(products);
-%>
-
 	<form action="deleteProduct1" method="post">
 	<div class="container">
 		<h3><b>Confirm to delete this Meal</b></h3><br> <br>
 		<label><b>Product Id</b></label>
-		<input type="text" value="<%=meal.getProductId() %>" name="productId2" > <br> <br>
-		<label><b>Prodduct Name</b></label>
-		<input type="text" value="<%=meal.getProductName()%>" disabled><br><br>
-		<label><b>Prodduct Price</b></label>
-		<input type="text" value="<%=meal.getPrice()%>" disabled><br><br>
-		<label><b>Prodduct Status</b></label>
-		<input type="text" value="<%=meal.getProductStatus()%>" disabled><br><br>
+		<input type="text" value="${delMeal.productId}" name="productId2" > <br> <br>
+		<label><b>Product Name</b></label>
+		<input type="text" value="${delMeal.productName}" disabled><br><br>
+		<label><b>Product Price</b></label>
+		<input type="text" value="${delMeal.price}" disabled><br><br>
+		<label><b>Product Status</b></label>
+		<input type="text" value="${delMeal.productStatus}" disabled><br><br>
 		<button type="submit" class="btn btn-success btn-sm">Confirm</button>
 		</div>
 	</form>
