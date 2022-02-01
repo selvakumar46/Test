@@ -36,7 +36,6 @@ Products products=new Products(productId,null,null,0,null,null,null);
 Products meal=cart.validateProduct1(products);
 %>
 
-	<center>
 	<form action="deleteProduct1" method="post">
 	<div class="container">
 		<h3><b>Confirm to delete this Meal</b></h3><br> <br>
@@ -51,6 +50,6 @@ Products meal=cart.validateProduct1(products);
 		<button type="submit" class="btn btn-success btn-sm">Confirm</button>
 		</div>
 	</form>
-	</center>
+
 </body>
 </html>

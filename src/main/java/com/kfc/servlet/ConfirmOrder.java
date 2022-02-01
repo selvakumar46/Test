@@ -1,6 +1,7 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kfc.daoimpl.ProductDaoImpl;
-import com.kfc.model.Products;
+import com.kfc.daoimpl.OrdersDaoImpl;
+import com.kfc.model.Orders;
+import com.kfc.model.User;
 
 /**
- * Servlet implementation class AddCart
+ * Servlet implementation class ConfirmOrder
  */
-@WebServlet("/addCart")
-public class AddCart extends HttpServlet {
+@WebServlet("/ConfirmOrder")
+public class ConfirmOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddCart() {
+	public ConfirmOrder() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,24 +39,14 @@ public class AddCart extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		String productName = (String) request.getParameter("productName");
-		ProductDaoImpl cart = new ProductDaoImpl();
-		Products products = new Products(0, productName, null, 0, null, null, null, null);
-		Products meal = cart.validateProduct(products);
-		request.setAttribute("validateProduct", meal);
-		session.setAttribute("validateProduct1", meal);
-		RequestDispatcher rd = request.getRequestDispatcher("product.jsp");
+		User user = (User) session.getAttribute("currentUser");
+		int userId = user.getUserId();
+		Orders order1 = new Orders(0, 0, 0, 0, null);
+		OrdersDaoImpl ordDao = new OrdersDaoImpl();
+		List<Orders> allCart = ordDao.allCart(order1);
+		request.setAttribute("allCart", allCart);
+		RequestDispatcher rd = request.getRequestDispatcher("confirmOrder.jsp");
 		rd.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

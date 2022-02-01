@@ -3,6 +3,7 @@
 <%@page import="com.kfc.daoimpl.ProductDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,65 +19,57 @@ body {
 .container{
 	margin-top:200px;
 	}
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: 100%;
+	padding: 20px;
+	border-radius: 3px;
+	border: thin;
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+th, td {
+	padding: 10px;
+}
 </style>
 </head>
 <body>
-	<%
-	ProductDaoImpl products = new ProductDaoImpl();
-	List<Products> showProduct;
-	
-	showProduct = products.showProductAdmin();
-	%>
-	<p>
-					<b>Product list</b>
-				</p>
+	<strong>Product list</strong>
 	<table>
 		<tbody>
+		<th>
 			<tr>
-				
-			 <%
- int count = 0;
-			 int i=showProduct.size();
- for (Products meals : showProduct) {
- %>
-
-					<td>
-						<table id="productTable">
-							<tbody>
-								<tr>
-
-									<td><span>Meal name: <b> <%=meals.getProductName()%></b>
-									</span><br> <span> meal Description: <%=meals.getDescription()%>
-									</span><br> <span>meal price:<b> <%=meals.getPrice()%></b>
-									</span><br> <span>Meal Type:<%=meals.getProductType()%>
-									</span><br> <span>Meal Status:<%=meals.getProductStatus()%></span><br>
-									
-									<span> <a href="StatusUpdate.jsp?proName=<%=meals.getProductName() %>" > <button type="submit" class="btn btn-primary btn-sm">Update</button> </a></span>
-
-										<span>
-										 	<%session.setAttribute("productName", meals.getProductName()); %>
-											<a href="Delete.jsp?productId1=<%=meals.getProductId()%>"> <button type="submit" class="btn btn-secondary btn-sm"   >Delete</button></a>
-									</span></td>
-								</tr>
-							</tbody>
-						</table>
-
-				</td> 
-<%
- count++;
-
- if (count == 3) {
- %>
+			<c:set var="count" value="1" />
+			<c:forEach items="${showProductAdmin}" var="products">
+			<td>
+				<div class="card">
+					<img src="${products.productImg}" style="width: 100%"><br>
+					${products.productName}<br>
+					${products.description}<br>
+					${products.price}<br>
+					${products.productType}<br>
+					${products.productStatus}<br>
+					<a href="StatusUpdate.jsp?proName=${products.productName}" > <button type="submit" class="btn btn-primary btn-sm">Update</button> </a>
+					<a href="Delete.jsp?productId1=${products.productId}"> <button type="submit" class="btn btn-secondary btn-sm"   >Delete</button></a>
+				</div>
+				<td><c:choose>
+							<c:when test="${count==3}">
 			</tr>
 			<tr>
-				<%
-				count = 0;
+				<c:set var="count" value="1" />
+				</c:when>
+				<c:otherwise>
+					<c:set var="count" value="${count+1}" />
+				</c:otherwise>
+				</c:choose>
 
-				}
-				}
-				%>
+				</c:forEach>
 
 			</tr>
+			</th>
 		</tbody>
 	</table>
 <center>

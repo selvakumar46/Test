@@ -18,6 +18,7 @@ import com.kfc.model.CartItem;
 import com.kfc.model.Invoice;
 import com.kfc.model.Orders;
 import com.kfc.model.Products;
+import com.kfc.model.User;
 
 /**
  * Servlet implementation class InsertOrder
@@ -41,13 +42,14 @@ public class InsertOrder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session=request.getSession();
+		User user=(User)session.getAttribute("currentUser");
 		CartItemDaoImpl cartDao = new CartItemDaoImpl();
 		ProductDaoImpl productDao = new ProductDaoImpl();
-		HttpSession session = request.getSession();
 		String address = request.getParameter("address");
 		session.setAttribute("address", address);
-		int userId = (int) session.getAttribute("userId");
+		int userId = user.getUserId();
 		Orders orders = new Orders(0, 0, userId, 0, null);
 		OrdersDaoImpl ordDao = new OrdersDaoImpl();
 		boolean flag;
@@ -66,7 +68,7 @@ public class InsertOrder extends HttpServlet {
 			Orders deleteOrder = new Orders(0, productId, userId1, 0, null);
 			flag = ordDao.delOrderCart(deleteOrder);
 			if (flag == true) {
-				int userId2 = (int) session.getAttribute("userId");
+				int userId2 = user.getUserId();
 				String address1 = (String) session.getAttribute("address");
 				LocalDate date = LocalDate.now();
 				double price = (double) session.getAttribute("totalPrice");
@@ -77,7 +79,7 @@ public class InsertOrder extends HttpServlet {
 
 				if (flag1 == true) {
 
-					response.sendRedirect("OrderConfirm.jsp");
+					response.sendRedirect("orderConfirm.jsp");
 				} else {
 					response.sendRedirect("cart.jsp");
 				}

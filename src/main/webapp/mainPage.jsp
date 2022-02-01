@@ -127,7 +127,7 @@ input {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=${user.userId}"><button type="submit"
+				<a href="ShowCart"><button type="submit"
 						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
@@ -160,7 +160,7 @@ input {
 		</h3>
 	</div>
 	<div>
-		<form action="BucketMeals.jsp" method="post">
+		<form action="BucketMeals" method="post">
 			<div>
 				<b>Bucket meals:</b>
 				<button type="submit" class="btn btn-success btn-sm">Submit</button>

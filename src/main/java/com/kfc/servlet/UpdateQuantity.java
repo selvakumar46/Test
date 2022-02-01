@@ -12,18 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import com.kfc.daoimpl.ProductDaoImpl;
 import com.kfc.model.Products;
+import com.kfc.model.User;
 
 /**
- * Servlet implementation class AddCart
+ * Servlet implementation class UpdateQuantity
  */
-@WebServlet("/addCart")
-public class AddCart extends HttpServlet {
+@WebServlet("/UpdateQuantity")
+public class UpdateQuantity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddCart() {
+	public UpdateQuantity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,24 +38,16 @@ public class AddCart extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		String productName = (String) request.getParameter("productName");
-		ProductDaoImpl cart = new ProductDaoImpl();
-		Products products = new Products(0, productName, null, 0, null, null, null, null);
-		Products meal = cart.validateProduct(products);
-		request.setAttribute("validateProduct", meal);
-		session.setAttribute("validateProduct1", meal);
-		RequestDispatcher rd = request.getRequestDispatcher("product.jsp");
-		rd.forward(request, response);
+//		User user=(User)session.getAttribute("currentUser");
+		String pName = request.getParameter("pname");
+		ProductDaoImpl productDao = new ProductDaoImpl();
+		Products product = new Products(0, pName, null, 0, null, null, null, null);
+		Products meal = productDao.validateProduct(product);
+//		int userId=user.getUserId();
+		if (meal != null) {
+			request.setAttribute("meals", meal);
+			RequestDispatcher rd = request.getRequestDispatcher("updateCart.jsp");
+			rd.forward(request, response);
+		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

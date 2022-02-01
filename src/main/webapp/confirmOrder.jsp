@@ -1,11 +1,6 @@
-<%@page import="com.kfc.model.User"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kfc.daoimpl.OrdersDaoImpl"%>
-<%@page import="java.util.Set"%>
-<%@page import="com.kfc.model.Orders"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +15,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 .container {
@@ -129,20 +125,9 @@ label {
 </style>
 </head>
 <body>
-	<%
-	int userId = (int) session.getAttribute("userId");
-	%>
-	<%
-	OrdersDaoImpl ordDao = new OrdersDaoImpl();
-	Orders order1 = new Orders();
-	order1.setUserId(userId);
-	List<Orders> allCart = ordDao.allCart(order1);
-	%>
-	<%
-	User user = (User) session.getAttribute("currentUser");
-	%>
+	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " width="150px" height="100px"margin-top: "20px" >
+	<img src="image/KFC Logo2.png " width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -151,15 +136,14 @@ label {
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
 					class="rounded-circle" height="25" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><%=user.getUserName()%></strong>
+					class="d-none d-sm-block ms-7"><c:out
+							value="${user.userName}" /> </strong>
 				</a>
 				<div class="d-flex">
-					<a href="mainPage.jsp">
-						<button type="submit" class="btn btn-light button">Home</button>
-					</a> <a class="" href="showProducts.jsp">
+					<a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="showOrders.jsp?userId=<%=user.getUserId()%>"><button
-							type="submit" class="btn btn-light button">My Orders</button></a>
+					</a> <a href="MyOrders?userid1=${user.userId}"><button type="submit"
+							class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
@@ -171,8 +155,8 @@ label {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=<%=user.getUserId()%>"><button
-						type="submit" class="btn btn-light button">My Cart</button></a>
+				<a href="ShowCart"><button type="submit"
+						class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
 

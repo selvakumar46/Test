@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kfc.daoimpl.OrdersDaoImpl;
 import com.kfc.model.Orders;
+import com.kfc.model.Products;
+import com.kfc.model.User;
 
 /**
  * Servlet implementation class InsertCart
@@ -34,12 +36,14 @@ public class InsertCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("hello selva: ").append(request.getContextPath());
+//		response.getWriter().append("hello selva: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		double price = (double) session.getAttribute("productPrice");
-		int productId = (int) session.getAttribute("productId");
+		Products products=(Products)session.getAttribute("validateProduct1");	
+		User currentUser=(User)session.getAttribute("currentUser");
+		double price = products.getPrice();
+		int productId = products.getProductId();
 		int quantity = Integer.parseInt(request.getParameter("Quantity"));
-		int userId = (int) session.getAttribute("userId");
+		int userId = currentUser.getUserId();
 		double totalPrice = quantity * price;
 		Orders cart = new Orders(0, productId, userId, quantity, totalPrice);
 		OrdersDaoImpl orderDao = new OrdersDaoImpl();

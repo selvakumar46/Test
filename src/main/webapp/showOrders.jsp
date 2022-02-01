@@ -1,4 +1,3 @@
-<%@page import="com.kfc.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -186,27 +185,31 @@ th, td {
 						items="${cancelOrder}" var="orderList">
 						<td>
 							<div class="card">
-								${orderList.productName} <br> ${orderList.quantity} <br>
-								${orderList.totalPrice} <br> ${orderList.orderDate} <br>
+								${orderList.productName} <br>
+								 ${orderList.quantity} <br>
+								${orderList.totalPrice} <br> 
+								${orderList.orderDate} <br>
 
 								<a href="CancelOrder?cartId=${orderList.cartId}">
 									<button type="submit" class="btn btn-outline-danger btn-sm">cancel
 										order</button>
 								</a>
 							</div>
-						<td><c:choose>
-								<c:when test="${count==3}">
+						<td>
 			</tr>
-			<tr>
-				<c:set var="count" value="1" />
+			<c:choose>
+				<c:when test="${count==3}">
+
+					<tr>
+						<c:set var="count" value="1" />
+					</tr>
 				</c:when>
 				<c:otherwise>
 					<c:set var="count" value="${count+1}" />
+					</
 				</c:otherwise>
-				</c:choose>
-				</c:forEach>
-			</tr>
-			</th>
+			</c:choose>
+			</c:forEach>
 		</tbody>
 	</table>
 	<table>

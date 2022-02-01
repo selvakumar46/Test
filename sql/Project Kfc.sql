@@ -46,7 +46,7 @@ alter table products_kfc drop column product_img;
 commit;
 
 select * from products_kfc where product_status='Available';
-update products_kfc set product_img='image\Big 12 Bucket.jpg' where product_id=82;
+update products_kfc set product_img='image\red_bull.jpg' where product_id=9;
 select * from products_kfc;
 
 --------------------------------------------------------------------------------------------------------------------------------
@@ -146,3 +146,5 @@ select * from user_kfc where mail_id= 'selvaganesankgs@gmail.com';
 select * from PRODUCTS_KFC where lower(product_name ) like 'friend%';
 select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items;
 select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items;
+select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from PRODUCTS_KFC where product_name like'Classic%';
+commit;

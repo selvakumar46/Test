@@ -31,7 +31,7 @@ body {
 		<form action="update.jsp">
 			<button type="submit" class="btn btn-primary btn-sm">Update</button>
 		</form><br>
-		<form action="showProductsAdmin.jsp">
+		<form action="ShowProductsAdmin">
 			<button type="submit" class="btn btn-primary btn-sm ">List of products</button> 
 		</form><br>
 		</div>

@@ -1,20 +1,21 @@
-<%@page import="com.kfc.model.User"%>
-<%@page import="com.kfc.model.Orders"%>
-<%@page import="com.kfc.daoimpl.OrdersDaoImpl"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Cart KFC</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style >
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
 body {
-		background: linear-gradient(to bottom right, #BDB76B, white);
+	background: linear-gradient(to bottom right, #BDB76B, white);
 }
+
 .topnav {
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
@@ -59,6 +60,7 @@ body {
 	padding: 20px 20px;
 	color: blanchedalmond;
 }
+
 .moveTop {
 	width: 1198 px;
 	margin-left: 150px;
@@ -103,23 +105,19 @@ body {
 	opacity: 1;
 	right: 0;
 }
-
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: 100%;
+	padding: 50px;
+	border-radius: 5px;
+	border: thin;
+}
 </style>
 </head>
 <body>
-	<%
-	String pName=request.getParameter("pname");
-	int userId=Integer.parseInt(request.getParameter("userId"));
-	OrdersDaoImpl orderDao = new OrdersDaoImpl();
-	Orders order = new Orders();
-	order.setUserId(userId);
-	List<Orders> showOrders;
-	showOrders = orderDao.showOrders(order);
-	
-	%>
-	
-	<%User user=(User)session.getAttribute("currentUser"); %>
-<!--logoImage -->
+	<c:set value="${currentUser}" var="user"/>
+	<!--logoImage -->
 	<img src="image/KFC Logo2.png " width="150px" height="100px"margin-top: "20px" >
 	<!-- navbar-->
 	<div class="moveTop">
@@ -129,14 +127,14 @@ body {
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
 					class="rounded-circle" height="25" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><%=user.getUserName()%></strong>
+					class="d-none d-sm-block ms-7"><c:out value="${user.userName}"/></strong>
 				</a>
 				<div class="d-flex">
 					<a href="mainPage.jsp">
 						<button type="submit" class="btn btn-light button">Home</button>
-					</a> <a class="" href="showProducts.jsp">
+					</a> <a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="showOrders.jsp?userId=<%=user.getUserId()%>"><button
+					</a> <a href="MyOrders?userId2=${user.userId}"><button
 							type="submit" class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
@@ -149,7 +147,7 @@ body {
 				<!-- Left elements -->
 
 				<!-- Center elements -->
-				<a href="cart.jsp?userId=<%=user.getUserId()%>"><button
+				<a href="ShowCart"><button
 						type="submit" class="btn btn-light button">My Cart</button></a>
 
 				<!-- Center elements -->
@@ -161,73 +159,54 @@ body {
 			</div>
 		</nav>
 	</div>
-	<!-- Navbar --> <br>
-			<h3><b><i>Your Cart</i> </b></h3>
-	<%
-	int count = 0;
-	
-	for (Orders cart : showOrders) {
-	%>
-
-	<td>
-		<table id="cartTable">
-			<tbody>
-				<tr>
-
-					<td>
-						<span><b>Product Name:  <%=cart.getProductName() %><b></b></span> <br>
-						<span><b>Product Price: <%=cart.getPrice() %></b></span><br>
-						<span>Quantity:<%=cart.getQuantity() %></span> <a href="updateCart.jsp?pname=<%=cart.getProductName()%>" >
-						<button type="submit" >Update</button></a><br> 
-						<span> Total Price: <%=cart.getTotalPrice()%></span><br>
-							<span> <a href="delCart.jsp?pname=<%=cart.getProductName()%>">
-									<button type="submit" class="btn btn-danger btn-sm">Remove</button>
-								</a>
-						</span>
-						
-					 	
-					</td>
+	<!-- Navbar -->
+	<br>
+	<h3>
+		<strong><em>Your Cart</em></strong>
+	</h3>
+	<table>
+		<tbody>
+			<tr>
+			<th>
+			<c:set var="count" value="1"/>
+				<c:forEach items="${cart}" var="showCart">
+				<td>
+				<div class="container">
+					Product Name : <b>${showCart.productName}</b><br>
+					Product Price : <b>${showCart.price}</b><br>
+					Qauntity : <b>${showCart.quantity}</b>
+		<a href="UpdateQuantity?pname=${showCart.productName}">
+			<button type="submit">Update</button>
+		</a>
+		<br> 
+					Total Price : <b>${showCart.totalPrice}</b><br>
+		<a href="delCart.jsp?pname=${showCart.productName}">
+			<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+		</a><br><br>
+		
+				</div>
+				
+				<td>
+				<c:choose>
+				<c:when test="">
+						<c:otherwise>
+							<c:set var="count" value="${count+1}"/>
+						</c:otherwise>
+						</c:when>
+				</c:choose>
+				</c:forEach>
 				</tr>
-			</tbody>
-		</table>
-
-	</td> <br>
-	
-	<%
-	count++;
-
-	if (count == 4) {
-	%>
-	</tr>
-	<tr>
-		<%
-		count = 0;
-
-		}
-		}
-		%>
-
-	</tr>
-	</tbody>
+				</th>
+		</tbody>	
 	</table>
-	
-	 <%int userId1=(int)session.getAttribute("userId");
-		Orders orders=new Orders();
-		orders.setUserId(userId1);
-		double totalPrice=orderDao.sumOfPrice(order);
-		session.setAttribute("totalPrice", totalPrice);
-	 %>
-	<span> <a href="payment.jsp?userId=<%=order.getUserId()%>">
-									<button type="submit" class="btn btn-primary btn-sm" value="<%=totalPrice%>"><%=totalPrice%></button>
-								</a>
-								<%session.setAttribute("userId",order.getUserId()); %>
-						</span>
-<span> <a href="deleteCart.jsp?userId=<%=order.getUserId()%>">
-									<button type="submit" class="btn btn-dark btn-sm">Clear Cart</button>
-								</a>
-								<%session.setAttribute("userId",order.getUserId()); %>
-						</span>
-	
-
-</body>
-</html>
+	<a href="payment.jsp">
+			<button type="submit" class="btn btn-primary btn-sm"
+				value="${totalPrice}">
+				<c:out value="${totalPrice}" />
+			</button>
+		</a>
+		<a href="deleteCart.jsp">
+			<button type="submit" class="btn btn-dark btn-sm">Clear Cart</button>
+		</a>
+	</body>
+	</html>

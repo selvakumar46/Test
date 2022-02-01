@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 					rd.forward(request, response);
 
 				} else if (role.equals("Admin")) {
-					response.sendRedirect("AdminPage.jsp");
+					response.sendRedirect("adminPage.jsp");
 				}
 			} else {
 
