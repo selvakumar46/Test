@@ -44,8 +44,9 @@ public class ShowCart extends HttpServlet {
 		OrdersDaoImpl orderDao = new OrdersDaoImpl();
 		Orders order = new Orders(0, 0, userId, 0, null);
 		List<Orders> showOrders = orderDao.showOrders(order);
-		double totalPrice=orderDao.sumOfPrice(order);
+		double totalPrice = orderDao.sumOfPrice(order);
 		request.setAttribute("totalPrice", totalPrice);
+		session.setAttribute("totalPrice", totalPrice);
 		request.setAttribute("cart", showOrders);
 		RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
 		rd.forward(request, response);

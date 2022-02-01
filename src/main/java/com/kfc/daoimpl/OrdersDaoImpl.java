@@ -59,7 +59,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		return listOfOrders;
 	}
 
-	public Orders delOrder(Orders deleteOrders) {
+	public boolean delOrder(Orders deleteOrders) {
 		Orders orders = new Orders();
 		String delQuery = "delete  from order_kfc where user_id=? ";
 		Connection con = ConnectionUtil.getDBConnection();
@@ -68,11 +68,11 @@ public class OrdersDaoImpl implements OrdersDao {
 			pstmt = con.prepareStatement(delQuery);
 			pstmt.setInt(1, deleteOrders.getUserId());
 			pstmt.executeUpdate();
-			return orders;
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return orders;
+		return false;
 
 	}
 

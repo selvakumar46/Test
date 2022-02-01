@@ -3,6 +3,7 @@ package com.kfc.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,16 +36,14 @@ public class OrderStatusServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		CartItemDaoImpl cartDao = new CartItemDaoImpl();
 		List<CartItem> status = cartDao.orderStatus();
 		HttpSession session = request.getSession();
-		session.setAttribute("status", status);
-		if (status != null) {
-			response.sendRedirect("OrderStatus.jsp");
-		} else {
-			response.sendRedirect("Update.jsp");
-		}
+		request.setAttribute("status", status);
+		RequestDispatcher rd = request.getRequestDispatcher("orderStatus.jsp");
+		rd.forward(request, response);
+
 	}
 
 	/**

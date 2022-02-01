@@ -11,6 +11,7 @@
 <style >
 body {
 		background: linear-gradient(to bottom right, #BDB76B, white);
+		background-attachment: fixed;
 }
 .container{
 	margin-top:200px;
@@ -20,13 +21,13 @@ body {
 </head>
 <body>
 	<center>
-	<form action="InsertProduct.jsp">
+	<form action="insertProduct.jsp">
 		<div class="container" >
 			<h4>Insert New Meal</h4>
 			<button type="submit" class="btn btn-outline-success btn-sm">Submit</button>
 		</div>
 		</form> <br>
-	<form action="NewAdmin.jsp">
+	<form action="newAdmin.jsp">
 		<div>
 			<h4>Insert New Admin</h4><button type="submit" class="btn btn-outline-success btn-sm">Submit</button>
 		</div>

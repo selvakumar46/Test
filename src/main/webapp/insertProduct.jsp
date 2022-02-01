@@ -10,6 +10,7 @@
 <style >
 body {
 		background: linear-gradient(to bottom right, #BDB76B, white);
+		background-attachment: fixed;
 }
 .container{
 	margin-top:150px;
@@ -46,7 +47,7 @@ label {
 			<button type="reset" class="btn btn-outline-danger btn-sm mov">Reset</button>
 			</div>
 		</form> <br>
-		<a href="AdminPage.jsp"> <button type="submit" class="btn btn-outline-dark btn-sm">Home</button> </a>
+		<a href="adminPage.jsp"> <button type="submit" class="btn btn-outline-dark btn-sm">Home</button> </a>
 	</center>
 
 </body>

@@ -73,12 +73,12 @@ public class CartItemDaoImpl implements cartItemDao {
 	}
 
 	public boolean updateStatus(CartItem cart) {
-		String update = "update  cart_items  set status='Delevered' where user_id=? ";
+		String update = "update  cart_items  set status='Delevered' where cart_id=? ";
 		Connection con = ConnectionUtil.getDBConnection();
 		try {
 			PreparedStatement pstmt = con.prepareStatement(update);
 
-			pstmt.setInt(1, cart.getUserId());
+			pstmt.setInt(1, cart.getCartId());
 
 			pstmt.executeUpdate();
 			return true;
@@ -134,7 +134,7 @@ public class CartItemDaoImpl implements cartItemDao {
 	public List<CartItem> orderStatus() {
 		List<CartItem> allCart = new ArrayList<CartItem>();
 		CartItem cart = null;
-		String query = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered'";
+		String query = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered' order by cart_id";
 		Connection con = ConnectionUtil.getDBConnection();
 		try {
 			PreparedStatement pstmt = con.prepareStatement(query);

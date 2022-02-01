@@ -167,7 +167,7 @@ input {
 			</div>
 		</form>
 		<br>
-		<form action="TrendMeals.jsp" method="post">
+		<form action="TrendingMeal" method="post">
 			<div>
 				<b>Trending meals:</b>
 				<button type="submit" class="btn btn-success btn-sm">Submit</button>

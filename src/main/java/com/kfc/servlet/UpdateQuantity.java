@@ -46,6 +46,7 @@ public class UpdateQuantity extends HttpServlet {
 //		int userId=user.getUserId();
 		if (meal != null) {
 			request.setAttribute("meals", meal);
+			session.setAttribute("meals", meal);
 			RequestDispatcher rd = request.getRequestDispatcher("updateCart.jsp");
 			rd.forward(request, response);
 		}

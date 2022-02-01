@@ -10,6 +10,7 @@
 <style >
 body {
 		background: linear-gradient(to bottom right, #BDB76B, white);
+		background-attachment: fixed;
 }
 .container{
 	margin-top:100px;

@@ -14,6 +14,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 .topnav {
@@ -180,7 +181,7 @@ body {
 		</a>
 		<br> 
 					Total Price : <b>${showCart.totalPrice}</b><br>
-		<a href="delCart.jsp?pname=${showCart.productName}">
+		<a href="delCart?productName=${showCart.productName}">
 			<button type="submit" class="btn btn-danger btn-sm">Remove</button>
 		</a><br><br>
 		
@@ -205,7 +206,7 @@ body {
 				<c:out value="${totalPrice}" />
 			</button>
 		</a>
-		<a href="deleteCart.jsp">
+		<a href="DeleteAllCart">
 			<button type="submit" class="btn btn-dark btn-sm">Clear Cart</button>
 		</a>
 	</body>

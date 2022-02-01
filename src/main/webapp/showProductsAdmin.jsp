@@ -1,6 +1,3 @@
-<%@page import="com.kfc.model.Products"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kfc.daoimpl.ProductDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -73,7 +70,7 @@ th, td {
 		</tbody>
 	</table>
 <center>
-	<a href="AdminPage.jsp" ><button type="submit" class="btn btn-dark">Home</button></a>
+	<a href="adminPage.jsp" ><button type="submit" class="btn btn-dark">Home</button></a>
 </center>
 	
 </body>

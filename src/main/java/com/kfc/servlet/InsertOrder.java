@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,8 +80,8 @@ public class InsertOrder extends HttpServlet {
 				boolean flag1 = invoiceDao.insert(invoice);
 
 				if (flag1 == true) {
-
-					response.sendRedirect("orderConfirm.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("orderConfirm.jsp");
+					rd.forward(request, response);
 				} else {
 					response.sendRedirect("cart.jsp");
 				}

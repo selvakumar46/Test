@@ -9,7 +9,7 @@ public interface OrdersDao {
 
 	public List<Orders> showOrders(Orders order);
 
-	public Orders delOrder(Orders deleteOrders);
+	public boolean delOrder(Orders deleteOrders);
 
 	public boolean updateOrder(Orders updateOrders);
 

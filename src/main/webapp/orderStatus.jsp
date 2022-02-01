@@ -1,7 +1,6 @@
-<%@page import="com.kfc.model.CartItem"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,70 +8,58 @@
 <title>Order status update</title>
 <style>
 body {
-		background: linear-gradient(to bottom right, #BDB76B, white);
+	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 .container {
 	margin-top: 270px;
 }
-table,th,tr {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 20px;
-}
-td{
+
+table, th, tr {
 	border: 1px solid black;
-  border-collapse: collapse;
-  padding: 20px;
+	border-collapse: collapse;
+	padding: 20px;
+}
+
+td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 20px;
 }
 </style>
 </head>
 <body>
-	<%List<CartItem> status =(List<CartItem>) session.getAttribute("status"); %>
-	
-	<center>
-		<form action="Orderstatus">
 		<b>Order Status</b>
 		<table id="orderStatus">
+		<caption><h2>List of Orders</h2></caption>
 			<tr>
-					<th>Cart Id</th>
-					<th>Product Id</th>
-					<th>User Id</th>
-					<th>Product Name</th>
-					<th>Quantity</th>
-					<th>Total price</th>
-					<th>Status</th>
-					<th>Order Date</th>
-					<th>Remark</th>
-					</tr>
-		</table>
-		<% int count=0;
-		for (CartItem cart : status){
-			%>
-			<table id="orderStatus"  border="1" cellspacing="0px">
-				
-					
-				
-				<tbody>
+				<th>Cart Id</th>
+				<th>Product Id</th>
+				<th>User Id</th>
+				<th>Product Name</th>
+				<th>Quantity</th>
+				<th>Total price</th>
+				<th>Status</th>
+				<th>Order Date</th>
+				<th>Update</th>
+			</tr>
+			<c:forEach items="${status}" var="orders">
 				<tr>
-					<td><%= cart.getCartId()%></td>
-					<td><%= cart.getProductId() %></td>
-					<td><%= cart.getUserId() %></td>
-					<td><%= cart.getProductName() %></td>
-					<td><%= cart.getQuantity() %></td>
-					<td><%= cart.getTotalPrice() %></td>
-					<td><%= cart.getStatus() %></td>
-					<td><%= cart.getOrderDate() %></td>
-					<td><a href="Orderstatus?userId1=<%=cart.getUserId()%>,orderDate=<%= cart.getOrderDate()%>"> <button type="submit">Delevered</button></a> </td>
-					</tr>
-				</tbody>
-			</table>
-<%session.setAttribute("userId1", cart.getUserId()); %>
-<%session.setAttribute("orderDate1", cart.getOrderDate()); %>
-		<% }%>
-		
-		</form>
-	</center>
-
+					<td><c:out value="${orders.cartId}" /></td>
+					<td><c:out value="${orders.productId}" /></td>
+					<td><c:out value="${orders.userId}" /></td>
+					<td><c:out value="${orders.productName}" /></td>
+					<td><c:out value="${orders.quantity}" /></td>
+					<td><c:out value="${orders.totalPrice}" /></td>
+					<td><c:out value="${orders.status}" /></td>
+					<td><c:out value="${orders.orderDate}" /></td>
+					<td><a
+							href="OrderStatusUpdate?cartId=${orders.cartId}">
+							<button type="submit">Delivered</button>
+						</a></td>
+				</tr>
+			</c:forEach>
+		</table>
 </body>
 </html>
