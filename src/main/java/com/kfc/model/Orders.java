@@ -85,15 +85,6 @@ public class Orders {
 	public Orders() {
 		super();
 	}
-
-	public Orders(String productName, double price, int Quantity, double totalPrice, int productId) {
-		this.productName = productName;
-		this.price = price;
-		this.quantity = Quantity;
-		this.totalPrice = totalPrice;
-		this.productId = productId;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(orderId, productId, quantity, totalPrice, userId);
@@ -111,5 +102,18 @@ public class Orders {
 		return orderId == other.orderId && productId == other.productId && quantity == other.quantity
 				&& Objects.equals(totalPrice, other.totalPrice) && userId == other.userId;
 	}
+
+	public Orders(int orderId, int productId, int userId, int quantity, Double totalPrice, String productName,
+			double price) {
+		super();
+		this.orderId = orderId;
+		this.productId = productId;
+		this.userId = userId;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+		this.productName = productName;
+		this.price = price;
+	}
+	
 
 }

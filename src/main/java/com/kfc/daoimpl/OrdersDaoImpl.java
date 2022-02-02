@@ -38,7 +38,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	public List<Orders> showOrders(Orders order) {
 		List<Orders> listOfOrders = new ArrayList<Orders>();
 
-		String query = "select pr.product_name,pr.product_price,ord.quantity,ord.total_price,pr.product_id from products_kfc pr inner join order_kfc ord on ord.product_id=pr.product_id where user_id=?";
+		String query = "select ord.cart_id,pr.product_id,ord.user_id,ord.quantity,ord.total_price,pr.product_name,pr.product_price from products_kfc pr inner join order_kfc ord on ord.product_id=pr.product_id where user_id=?";
 		Orders orders = null;
 		Connection con = ConnectionUtil.getDBConnection();
 		CallableStatement cstmt;
@@ -47,7 +47,7 @@ public class OrdersDaoImpl implements OrdersDao {
 			cstmt.setInt(1, order.getUserId());
 			ResultSet rs = cstmt.executeQuery();
 			while (rs.next()) {
-				orders = new Orders(rs.getString(1), rs.getDouble(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5));
+				orders = new Orders(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5), rs.getString(6), rs.getDouble(7));
 				listOfOrders.add(orders);
 			}
 			return listOfOrders;
@@ -153,4 +153,48 @@ public class OrdersDaoImpl implements OrdersDao {
 		return invoiceBill;
 
 	}
+
+	public Orders check(Orders stt) {
+		System.out.println("Hii");
+		System.out.println(stt.getOrderId());
+		System.out.println(stt.getProductId());
+		Orders order = null;
+		Connection con = ConnectionUtil.getDBConnection();
+		String query = "SELECT cart_id,product_id,user_id,quantity,total_price FROM order_kfc where cart_id=? and product_id =?";
+		try {
+			PreparedStatement stmt = con.prepareStatement(query);
+
+			stmt.setInt(1, stt.getOrderId());
+			stmt.setInt(2, stt.getProductId());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				order = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
+			}
+			return order;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return order;
+	}
+
+	public boolean increase(Orders stt) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+
+		con = ConnectionUtil.getDBConnection();
+		String query = "  update  order_kfc set quantity =? where order_id=? and product_id =?";
+		try {
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, stt.getQuantity());
+			stmt.setInt(2, stt.getOrderId());
+			stmt.setInt(3, stt.getProductId());
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

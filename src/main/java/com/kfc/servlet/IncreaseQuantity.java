@@ -1,9 +1,6 @@
 package com.kfc.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,16 +13,16 @@ import com.kfc.model.Orders;
 import com.kfc.model.User;
 
 /**
- * Servlet implementation class ShowCart
+ * Servlet implementation class IncreaseQuantity
  */
-@WebServlet("/ShowCart")
-public class ShowCart extends HttpServlet {
+@WebServlet("/IncreaseQuantity")
+public class IncreaseQuantity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ShowCart() {
+	public IncreaseQuantity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -38,19 +35,28 @@ public class ShowCart extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("currentUser");
-		int userId = user.getUserId();
-		OrdersDaoImpl orderDao = new OrdersDaoImpl();
-		Orders order = new Orders(0, 0, userId, 0, null);
-		List<Orders> showOrders = orderDao.showOrders(order);
-		System.out.println(showOrders);
-		double totalPrice = orderDao.sumOfPrice(order);
-		request.setAttribute("totalPrice", totalPrice);
-		session.setAttribute("totalPrice", totalPrice);
-		request.setAttribute("cart", showOrders);
-		RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-		rd.forward(request, response);
+		{
+
+			OrdersDaoImpl orderDao = new OrdersDaoImpl();
+			HttpSession session = request.getSession();
+			User user = (User) session.getAttribute("currentUser");
+			int userId = user.getUserId();
+			int productId = Integer.parseInt(request.getParameter("pId"));
+			Orders orders = new Orders(productId, 0, userId, 0, null);
+			Orders order = orderDao.check(orders);
+			System.out.println(order);
+			int quantity = order.getQuantity();
+
+			if (quantity > 0 && !(quantity > 9)) {// check quantity
+				orders.setQuantity(quantity + 1);
+				orderDao.increase(order);
+				response.sendRedirect("ShowCart");
+
+			} else {
+
+				response.sendRedirect("ShowCart");
+			}
+		}
 	}
 
 	/**

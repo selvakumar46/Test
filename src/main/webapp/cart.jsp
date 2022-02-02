@@ -174,15 +174,17 @@ body {
 						var="showCart">
 						<td>
 							<div class="container">
+							<b>${showCart.orderId}</b>
 								Product Name : <b>${showCart.productName}</b><br> Product
-								Price : <b>${showCart.price}</b><br> Qauntity : <b>${showCart.quantity}</b>
-								<a href="UpdateQuantity?pname=${showCart.productName}">
-									<button type="submit">Update</button>
-								</a> <br> Total Price : <b>${showCart.totalPrice}</b><br>
-								<a href="delCart?productName=${showCart.productName}">
+								Price : <b>${showCart.price}</b><br> Qauntity : <input
+									type="button" value="-"
+									onclick="window.location='DecreaseQuantity?pId=<c:out value="${showCart.getOrderId()}" />'">
+								<b>${showCart.quantity}</b> <input type="button" value="+"
+									onclick="window.location='IncreaseQuantity?pId=<c:out value="${showCart.getOrderId()}" />'">
+								<br> Total Price : <b>${showCart.totalPrice}</b><br> <a
+									href="delCart?productName=${showCart.productName}">
 									<button type="submit" class="btn btn-danger btn-sm">Remove</button>
-								</a><br>
-								<br>
+								</a><br> <br>
 
 							</div>
 						<td><c:choose>
