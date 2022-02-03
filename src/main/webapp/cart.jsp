@@ -178,9 +178,9 @@ body {
 								Product Name : <b>${showCart.productName}</b><br> Product
 								Price : <b>${showCart.price}</b><br> Qauntity : <input
 									type="button" value="-"
-									onclick="window.location='DecreaseQuantity?pId=<c:out value="${showCart.getOrderId()}" />'">
+									onclick="window.location='DecreaseQuantity?pId=<c:out value="${showCart.orderId}" />'">
 								<b>${showCart.quantity}</b> <input type="button" value="+"
-									onclick="window.location='IncreaseQuantity?pId=<c:out value="${showCart.getOrderId()}" />'">
+									onclick="window.location='IncreaseQuantity?pId=<c:out value="${showCart.orderId}" />'">
 								<br> Total Price : <b>${showCart.totalPrice}</b><br> <a
 									href="delCart?productName=${showCart.productName}">
 									<button type="submit" class="btn btn-danger btn-sm">Remove</button>

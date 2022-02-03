@@ -18,8 +18,6 @@
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
 	background-attachment: fixed;
-	background-size: 100%;
-	
 }
 
 .container {
@@ -27,46 +25,45 @@ body {
 	background-attachment: fixed;
 	
 }
-label {
-	display: inline-block;
-	width: 160px;
-	font-color: yellow;
-	text-align: right;
-	margin-left: 340px;;
-}
-.exception {
-	color: red;
-	backround-color: white;
-	font-size: 15px;
-	float: center;
-	margin-right: -150px;
-}
 .head{
-	margin-left: 500px;
-	margin-top: 100px;	
+	margin-left: 75px;
+	margin-top: 40px;	
 }
 button{
-	margin-left: 550px;
+	margin-left: 170px;
 }
-
+.registerform{
+    background-color: whitesmoke;
+    height: 315px;
+    width: 300px;
+    position: absolute;
+    left: 500px;
+    top: 100px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px green;
+    margin-top:35px;
+}
+.input{
+	margin-left: 55px;
+}
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="registerform">
 		
 
 			<form action="login" method="post">
 
-
+			
 				<h2 class="head"><em>Login KFC</em></h2>
-				<label> <strong>Mail ID:</strong></label><input type="email" name="mailId"
-					autofocus required placeholder="ex:kfc@gmail.com"> <br>
-				<br><label><strong>Mobile Number:</strong></label><input type="number" name="mobileNumber"
-					required placeholder="Enter mobile Number"> <br> <br>
-				<button type="submit" class="button btn btn-success btn-sm">Login</button><br>
+				<input type="email" name="mailId"
+					autofocus required placeholder="Mail Id" class="input"> <br>
+				<br><input type="number" name="mobileNumber"
+					required placeholder="Mobile Number" class="input"> <br> <br>
+				<button type="submit" style="margin-left: 125px;" class="btn btn-success btn-sm">Login</button><br>
 				
 			</form><br>
-			<a href="register.jsp"><button type="submit" class="btn btn-success btn-sm">SignUp</button></a> <br> <br>
+			<a href="register.jsp"><button type="submit" class="btn btn-success btn-sm" style="margin-left: 120px;">SignUp</button></a> <br> <br>
 			<br>
 	</div>
 </body>

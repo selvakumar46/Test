@@ -29,7 +29,7 @@ label {
 }
 
 h2 {
-	margin-right: 20px;;
+	margin-left: 80px;;
 	margin-top: 55px;
 }
 
@@ -49,75 +49,50 @@ button {
 	border-radius: 3px;
 	border: thin;
 }
-.registerform{
-    background-color: whitesmoke;
-    height: 515px;
-    width: 400px;
-    position: absolute;
-    left: 480px;
-    top: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px black;
-    margin-top:25px;
+
+.registerform {
+	background-color: whitesmoke;
+	height: 380px;
+	width: 350px;
+	position: absolute;
+	left: 480px;
+	top: 70px;
+	border-radius: 15px;
+	box-shadow: 0 0 5px green;
+	margin-top: 25px;
 }
-.registerform .registerformcontent{
-    position: relative;
-    padding-left: 110px;
-    bottom: 25px;
-    left: -40px;
+
+input {
+	margin-left: 70px;
 }
-.registerform .registerformcontent button{
-    
-    position: relative;
-    left: 80px;
-    bottom: 30px;
-    font-weight:bolder;
-    color:black;
-}
-.registerform .registerformcontent input{
-   width: 250px;
-   height: 30px;
-   border-radius: 2px;
-}
-.registerform .registerformcontent h1{
-    position: relative;
-    left: 25px;
-    top: 40px;
- }
 </style>
 </head>
 <body>
-	 <div class="registerform">
+	<div class="registerform">
 		<form action="s1" method="post" class="was-validated">
 			<h2>
-				<i>Register KFC</i>
+				<em>Register KFC</em>
 			</h2>
 			<br>
 			<div class="mb-1 mt-1">
-				<label class="form-label"> <b> User Name : </b>
-				</label><input type="text" name="name" class="form-control"
-					pattern="[A-Za-z]{3,}" title="Enter Name max three characters">
+				<input type="text" name="name" pattern="[A-Za-z]{3,}"
+					title="Enter Name max three characters" placeholder="User Name">
 			</div>
 			<div class="mb-1 mt-1">
-				<label class="form-label"><b>mobile number :</b> </label> <input
-					type="text" name="mobileNumber" class="form-control"
-					pattern="[6-9][0-9]{9}" title="Enter your 10- digit mobile number">
+				<input type="text" name="mobileNumber" pattern="[6-9][0-9]{9}"
+					title="Enter your 10- digit mobile number" placeholder="Mobile Number">
 			</div>
 			<div class="mb-1 mt-1">
-				<label class="form-label"><b>E Mail : </b></label> <input
-					type="email" name="mailId" class="form-control"
+				<input type="email" name="mailId"
 					pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
-					title="Enter your mailId In correctly example:kfc@gmail.com">
+					title="Enter your mailId In correctly example:kfc@gmail.com" placeholder="Mail Id">
 			</div>
-			<button type="submit" style="margin-left:155px" class="btn btn-primary" value="SignUp">SignUp</button>
-			<br> <b class="bold" style="margin-left:175px">(or)</b>
-
-
-
-
+			<button type="submit" style="margin-left: 125px"
+				class="btn btn-primary" value="SignUp">SignUp</button>
+			<br></br>
 		</form>
-		<a href="login.jsp"><button type="submit" class="btn btn-success" style="margin-left:160px"
-				value="SignUp">Login</button></a>
+		<a href="login.jsp"><button type="submit" class="btn btn-success"
+				style="margin-left: 130px" value="SignUp">Login</button></a>
 	</div>
 </body>
 </html>

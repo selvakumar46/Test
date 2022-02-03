@@ -118,7 +118,7 @@ foreign key(user_id)references user_kfc (user_id));
 --------------------------------------------------------------------------------------------------------------------------------
 select * from cart_items where user_id=24;
 select * from cart_items where  order_date ='28-12-2021';
-select ,ord.cart_id,ord.user_id,pr.product_name,pr.product_price,ord.quantity,ord.total_price from products_kfc pr inner join order_kfc ord on ord.product_id=pr.product_id where user_id=126;
+select ord.cart_id,ord.user_id,pr.product_id,pr.product_name,pr.product_price,ord.quantity,ord.total_price from products_kfc pr inner join order_kfc ord on ord.product_id=pr.product_id where user_id=126;
 select pr.product_name,ord.quantity,ord.total_price,pr.product_id from products_kfc pr inner join order_kfc ord on ord.product_id=pr.product_id where user_id=126;
 select * from cart_items where status='Ordered' and user_id=126;
 ---------------------------------------------------------------------------------------------------------------------------------

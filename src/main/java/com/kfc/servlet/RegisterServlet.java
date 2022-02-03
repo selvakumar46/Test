@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kfc.daoimpl.UserDaoImpl;
+import com.kfc.exception.InvalidUserException;
 import com.kfc.exception.UsedMailIdException;
 import com.kfc.exception.UsedMobileNumberException;
 import com.kfc.model.User;
@@ -39,7 +40,8 @@ public class RegisterServlet extends HttpServlet {
 		// dao object
 		UserDaoImpl userDao = new UserDaoImpl();
 		HttpSession session = request.getSession();
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter out = response.getWriter();
 		PrintWriter pw = response.getWriter();
 		String name = request.getParameter("name");
 		long mobileNumber = Long.parseLong(request.getParameter("mobileNumber"));
@@ -53,37 +55,43 @@ public class RegisterServlet extends HttpServlet {
 			if (usedMail == null) {
 				User user = new User(0, name, mailId, mobileNumber, null);
 				boolean flag = userDao.insertUser(user);
-				if (flag == true) {
-					response.sendRedirect("login.jsp");
+				try {
+					if (flag == true) {
+						throw new InvalidUserException();
+					} else {
+						try {
+							throw new UsedMobileNumberException();
+						} catch (UsedMobileNumberException e) {
+							session.setAttribute("UsedNumber", "invalid");
+							String validate = e.getMessage();
+							response.sendRedirect(validate);
 
-				} else {
-					pw.write("inavalid Entry");
-					response.sendRedirect("Register.jsp");
+						}
+					}
+				} catch (InvalidUserException e) {
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Register Successfully');");
+					out.println("location='login.jsp';");
+					out.println("</script>");
 				}
 
 			} else {
-				try {
-					throw new UsedMailIdException();
-				} catch (UsedMailIdException e) {
-					session.setAttribute("UsedMailId", "invalid");
-					String validate = e.getMessage();
-					response.sendRedirect(validate);
-
-				}
+				pw.write("inavalid Entry");
+				response.sendRedirect("register.jsp");
 			}
+
 		} else {
 			try {
-				throw new UsedMobileNumberException();
-			} catch (UsedMobileNumberException e) {
-				session.setAttribute("UsedNumber", "invalid");
+				throw new UsedMailIdException();
+			} catch (UsedMailIdException e) {
+				session.setAttribute("UsedMailId", "invalid");
 				String validate = e.getMessage();
 				response.sendRedirect(validate);
 
 			}
 		}
-
 	}
-
+//
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
