@@ -49,26 +49,26 @@ label {
 			<h2>
 				<em>Add New Meal</em>
 			</h2>
-			<label for="mealName" id="mealName"><b>Meal Name</b></label> <input
+			<label for="mealName" id="mealName"><strong>Meal Name</strong></label> <input
 				type="text" name="mealName" id="mealName" required autofocus
 				placeholder="Enter meal name..."> <br> <br> <label
-				for="mealDescription" id="mealDescription"><b>Meal
-					Description</b></label> <input type="text" name="mealDescription"
+				for="mealDescription" id="mealDescription"><strong>Meal
+					Description</strong></label> <input type="text" name="mealDescription"
 				id="mealDescription" required
 				placeholder="Enter meal description..."> <br> <br>
-			<label for="mealPrice" id="mealPrice"><b>Meal Price</b></label> <input
+			<label for="mealPrice" id="mealPrice"><strong>Meal Price</strong></label> <input
 				type="number" name="mealPrice" id="mealPrice" min="0" required
 				placeholder="Enter meal price..."> <br> <br> <label
-				for="mealType" id="mealType"><b>Meal Type</b></label> <select
+				for="mealType" id="mealType"><strong>Meal Type</strong></label> <select
 				name="mealType" id="meal">
 				<option>Veg</option>
 				<option>non-veg</option>
-			</select> <br> <br> <label for="mealStatus" id="mealStatus"><b>Meal
-					Status</b></label> <select name="mealStatus" id="mealStatus">
+			</select> <br> <br> <label for="mealStatus" id="mealStatus"><strong>Meal
+					Status</strong></label> <select name="mealStatus" id="mealStatus">
 				<option>Available</option>
 				<option>Sold-Out</option>
-			</select> <br> <br> <label for="mealCatogory" id="mealcatogory"><b>Meal
-					Category</b></label> <select>
+			</select> <br> <br> <label for="mealCatogory" id="mealcatogory"><strong>Meal
+					Category</strong></label> <select>
 				<option>Bucket Meals</option>
 				<option>Trending</option>
 				<option>Snacks</option>

@@ -65,7 +65,7 @@ button {
 	<div class="registerform">
 		<form action="statusUpdate" method="post">
 			<h3><ul>Change Meal Status</ul></h3>
-			<label for="update" id="productName"><b>Meal Name</b></label> <input
+			<label for="update" id="productName"><strong>Meal Name</strong></label> <input
 				name="productName" value="${validMeal.productName}"> <br>
 			<br> <label for="status" id="productStatus"><b>Meal
 					Status</b></label> <select>

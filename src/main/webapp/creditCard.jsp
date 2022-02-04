@@ -181,15 +181,15 @@ label {
 
 			<form action="payment" method="post">
 
-				<label for="cardNumber"><b>Card Number:</b></label> <input
+				<label for="cardNumber"><b>Card Number:</b></label> <input id="cardNumber"
 					type="text" name="cardNumber" pattern="[0-9]{16}"
 					title="enter 16 digit card number" required
 					placeholder="16 digit card number"><br> <br> <label
-					for="cardType"><b>Card type</b></label> <input type="text"
+					for="cardType"><strong>Card type</strong></label> <input type="text" id="cardNumber"
 					name="cardType" required placeholder="(ex:visa)"> <br>
-				<br> <label for="cardDate"><b>Card exp Date:</b></label> <input
+				<br> <label for="cardDate"><strong>Card exp Date:</strong></label> <input id="cardDate"
 					type="date" name="cardDate" id="cardDate" min="<%=date%>" required><br>
-				<br> <label for="cvv"><b>Cvv:</label></b> <input
+				<br> <label for="cvv"><strong>Cvv:</label></strong> <input id="cvvNumber"
 					type="password" name="Cvv" pattern="[0-9]{3}"
 					title="enter 3 digit cvv number" required
 					placeholder="3 digit cvv number"><br> <br>

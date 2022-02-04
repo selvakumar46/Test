@@ -161,7 +161,7 @@ button {
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
-						<input autocomplete="off" type="search" name="search"
+						<input id="search" autocomplete="off" type="search" name="search"
 							class="form-control " placeholder="search by meal" />
 						<button type="submit" class="btn btn-dark btn-sm">search</button>
 					</form>
