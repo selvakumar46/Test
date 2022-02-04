@@ -2,10 +2,13 @@ package com.kfc.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,6 +202,57 @@ public class CartItemDaoImpl implements cartItemDao {
 			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return invoice;
+	}
+
+	public double oneDaySales(CartItem cartDate) {
+		LocalDate localDate1 = LocalDate.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String localDate = localDate1.format(myFormatObj);
+		double cartPrice = 0;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = ConnectionUtil.getDBConnection();
+		String query = "select sum(total_price) as today_sales from cart_items where status='Delevered' and to_char(order_date,'dd-MM-yyyy')='"
+				+ localDate + "'";
+		try {
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				cartPrice = rs.getDouble(1);
+			}
+			return cartPrice;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cartPrice;
+	}
+
+	public List<CartItem> oneDaySales1(CartItem cartDate) {
+		List<CartItem> sales=new ArrayList<>();
+		LocalDate localDate1 = LocalDate.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String localDate = localDate1.format(myFormatObj);
+		CartItem cart = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = ConnectionUtil.getDBConnection();
+		String query = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where to_char(order_date,'dd-MM-yyyy')='"
+				+ localDate + "'";
+		try {
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				cart =new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
+						rs.getDouble(6), rs.getString(7), rs.getDate(8));
+				sales.add(cart);
+			}
+			return sales;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sales;
 	}
 
 	@Override

@@ -175,7 +175,7 @@ th, td {
 
 						<div id="myDropdown" class="dropdown-content">
 							<a href="insertProduct.jsp"> Insert New Meal</a> <a href="newAdmin.jsp">Add
-								New Admin</a> <a href="#">Contact</a>
+								New Admin</a><a href="TodaySalesReport">Sales Report(Today)</a>
 						</div>
 					</div>
 				</a> <a class="" href="adminPage.jsp">

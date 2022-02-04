@@ -13,13 +13,13 @@ public class CartItem {
 	private double totalPrice;
 	private String status;
 	private Date orderDate;
-	private LocalDate orderDate1;
+	private Date orderDate1;
 
-	public LocalDate getOrderDate1() {
+	public Date getOrderDate1() {
 		return orderDate1;
 	}
 
-	public void setOrderDate1(LocalDate orderDate1) {
+	public void setOrderDate1(Date orderDate1) {
 		this.orderDate1 = orderDate1;
 	}
 
@@ -100,7 +100,7 @@ public class CartItem {
 		this.orderDate = orderDate;
 	}
 
-	public CartItem(LocalDate date) {
+	public CartItem(Date date) {
 		this.orderDate1 = date;
 	}
 
@@ -111,7 +111,6 @@ public class CartItem {
 	public CartItem(double double1) {
 		this.totalPrice = double1;
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(cartId, orderDate, productId, productName, quantity, status, totalPrice, userId);
@@ -140,7 +139,7 @@ public class CartItem {
 				+ ", orderDate=" + orderDate + "]";
 	}
 
-	public double sumOfPrice(LocalDate date, int userId2) {
+	public double sumOfPrice(Date date, int userId2) {
 		this.orderDate1 = date;
 		this.userId = userId2;
 		return 0;

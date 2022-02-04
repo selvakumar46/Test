@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>List Of Users</title>
+<title>sales report</title>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
@@ -205,111 +205,36 @@ nav {
   background-color: #f1f1f1;
 }
 </style>
-		
-</head>
 <body>
-	</head>
-<body>
-	<c:set value="${currentUser1}" var="user" />
-	<!--logoImage -->
-	<img src="image/KFC Logo2.png " width="150px" height="100px">
-	<!-- navbar-->
-	<div class="moveTop">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid justify-content-between">
-				<!-- Left elements -->
-				<a class="nav-link d-sm-flex align-items-lg-center"> <img
-					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><c:out
-							value="${user.userName}" /> </strong>
-					<div class=" dropdown">
-						<button onclick="myFunction()" class="btn btn-light dropbtn">
-							Menu <i class="fa fa-caret-down"></i>
-						</button>
-
-						<div id="myDropdown" class="dropdown-content">
-							<a href="insertProduct.jsp"> Insert New Meal</a> <a
-								href="newAdmin.jsp">Add New Admin</a> <a href="TodaySalesReport">Sales Report(Today)</a>
-						</div>
-					</div> <a class="" href="adminPage.jsp">
-						<button type="submit" class="btn btn-light  button">Home</button>
-				</a>
-				</a> <a class="" href="ShowProductsAdmin">
-					<button type="submit" class="btn btn-light  button">List
-						of Meals</button>
-				</a> <a class="" href="OrderStatus">
-					<button type="submit" class="btn btn-light  button">Orders</button>
-
-					<!-- Left elements --> <!-- Right elements --> <a href="login.jsp"><button
-							type="submit" class="btn btn-light button">Logout</button></a> <!-- Right elements -->
-			</div>
-		</nav>
-	</div>
-	<br />
-	<!-- Navbar -->
-	<label for="myInput" id="">Search</label><input type="text" id="myInput" onkeyup="search()" placeholder="Search for names.." title="Type in a name">
+	<strong>Today's sales report :</strong><br/><br/>
 	<table id="myTable" class="display css-serial" style="width:100%">
 		<caption></caption>
 		<tr class="header">
 			<th>S.No</th>
+			<th>Cart Id</th>
+			<th>Product Id</th>
 			<th>User Id</th>
-			<th>User Name</th>
-			<th>User Mail-Id</th>
-			<th>Mobile Number</th>
-			<th>Role</th>
+			<th>Product Name</th>
+			<th>Quantity</th>
+			<th>Total Price </th>
+			<th>Order Status</th>
+			<th>Order Date</th>
 		</tr>
-		<c:forEach items="${allUser}" var="user">
+		<c:forEach items="${list}" var="user">
 			<tr>
 				<td align="center"></td>
+				<td align="center"><c:out value="${user.cartId}" /></td>
+				<td align="center"><c:out value="${user.productId}" /></td>
 				<td align="center"><c:out value="${user.userId}" /></td>
-				<td align="center"><c:out value="${user.userName}" /></td>
-				<td align="center"><c:out value="${user.mailId}" /></td>
-				<td align="center"><c:out value="${user.mobileNumber}" /></td>
-				<td align="center"><c:out value="${user.roleType}" /></td>
+				<td align="center"><c:out value="${user.productName}" /></td>
+				<td align="center"><c:out value="${user.quantity}" /></td>
+				<td align="center">&#8377;<c:out value="${user.totalPrice}" /></td>
+				<td align="center"><c:out value="${user.status}" /></td>
+				<td align="center"><c:out value="${user.orderDate}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<script>
-		/* When the user clicks on the button, 
-		 toggle between hiding and showing the dropdown content */
-		function myFunction() {
-			document.getElementById("myDropdown").classList.toggle("show");
-		}
-
-		// Close the dropdown if the user clicks outside of it
-		window.onclick = function(event) {
-			if (!event.target.matches('.dropbtn')) {
-				var dropdowns = document
-						.getElementsByClassName("dropdown-content");
-				var i;
-				for (i = 0; i < dropdowns.length; i++) {
-					var openDropdown = dropdowns[i];
-					if (openDropdown.classList.contains('show')) {
-						openDropdown.classList.remove('show');
-					}
-				}
-			}
-		}
-		function search() {
-			  var input, filter, table, tr, td, i, txtValue;
-			  input = document.getElementById("myInput");
-			  filter = input.value.toUpperCase();
-			  table = document.getElementById("myTable");
-			  tr = table.getElementsByTagName("tr");
-			  for (i = 0; i < tr.length; i++) {
-			    td = tr[i].getElementsByTagName("td")[2];
-			    if (td) {
-			      txtValue = td.textContent || td.innerText;
-			      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-			        tr[i].style.display = "";
-			      } else {
-			        tr[i].style.display = "none";
-			      }
-			    }       
-			  }
-			}
-		
-		</script>
+	<strong>Total Sales Amount is : <c:out value="${oneDaySales}"/></strong><br/></br>
+	<a href="adminPage.jsp"><button type="submit" class="btn btn-outline-dark">Back</button></a>
 </body>
 </html>

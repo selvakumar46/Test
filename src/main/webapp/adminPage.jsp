@@ -189,7 +189,7 @@ nav {
 
 						<div id="myDropdown" class="dropdown-content">
 							<a href="insertProduct.jsp"> Insert New Meal</a> <a href="newAdmin.jsp">Add
-								New Admin</a> <a href="#">Sales Analyze(Today)</a>
+								New Admin</a> <a href="TodaySalesReport">Sales Report(Today)</a>
 						</div>
 					</div>
 				</a> <a class="" href="ShowProductsAdmin">
@@ -217,7 +217,7 @@ nav {
 		<img src="image/Bucket.png" width="800px" height="300px"
 			alt="Kfc Food Special">
 		<h4>
-			<b>Hi Admin<c:out value="${user.userName}"></c:out></b>
+			<b>Hi <c:out value="${user.userName}"></c:out>(Admin)</b>
 		</h4>
 		<h3>
 			<b>Welcome to KFC</b>
