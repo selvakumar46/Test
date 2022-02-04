@@ -186,6 +186,7 @@ th, td {
 								<label>Total Price : &#8377;</label> <strong><c:out
 										value="${orderList.totalPrice}" /> </strong> <br> <label>Order
 									Date :</label> <strong><c:out value="${orderList.orderDate}" />
+									<label>Order Status :</label> <strong><c:out value="${orderList.status}" />	</strong>
 								</strong><br> <a href="CancelOrder?cartId=${orderList.cartId}">
 									<button type="submit" class="btn btn-outline-danger btn-sm">cancel
 										order</button>
@@ -221,7 +222,8 @@ th, td {
 								<strong><c:out value=" ${orderList1.quantity}" /></strong> <br>
 								<label>Total Price : &#8377;</label> <strong><c:out
 										value="${orderList1.totalPrice}" /> </strong> <br> <label>Order
-									Date :</label> <strong><c:out value="${orderList1.orderDate}" />
+									Date :</label> <strong><c:out value="${orderList1.orderDate}" /><br/></strong>
+									<label>Order Status :</label> <strong><c:out value="${orderList1.status}" /></strong>
 							</div>
 							</td>
 						<td><c:choose>

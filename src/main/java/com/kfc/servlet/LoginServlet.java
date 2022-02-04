@@ -53,7 +53,11 @@ public class LoginServlet extends HttpServlet {
 					rd.forward(request, response);
 
 				} else if (role.equals("Admin")) {
-					response.sendRedirect("adminPage.jsp");
+					request.setAttribute("currentUser1", currentUser);
+					session.setAttribute("currentUser", currentUser);
+					request.setAttribute("userId", currentUser.getUserId());
+					RequestDispatcher rd = request.getRequestDispatcher("adminPage.jsp");
+					rd.forward(request, response);
 				}
 			} else {
 

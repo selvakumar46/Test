@@ -153,7 +153,6 @@ input {
 			</h3>
 		</div>
 	</center>
-	-
 	<div>
 		<div></div>
 		<h3>

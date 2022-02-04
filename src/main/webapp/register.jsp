@@ -86,7 +86,7 @@ input {
 			<div class="mb-1 mt-1">
 				<input type="email" name="mailId"
 					pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
-					title="Enter your mailId In correctly example:kfc@gmail.com"
+					title="Looks like you forgot something"
 					placeholder="Mail Id">
 			</div>
 			<button type="submit" style="margin-left: 125px"

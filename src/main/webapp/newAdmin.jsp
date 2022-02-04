@@ -21,7 +21,7 @@ body {
 }
 
 h2 {
-	margin-right: -100px;
+	margin-top: 30px;
 }
 
 .center {
@@ -32,35 +32,51 @@ label {
 	display: inline-block;
 	width: 165px;
 	text-align: right;
-	margin-left: -40px;;
+	margin-left: -30px;;
+}
+
+.registerform {
+	background-color: whitesmoke;
+	height: 420px;
+	width: 370px;
+	position: absolute;
+	left: 480px;
+	top: 50px;
+	border-radius: 15px;
+	box-shadow: 0 0 5px green;
+	margin-top: 25px;
+}
+
+.button {
+	margin-right: 70px;
 }
 </style>
 </head>
 <body>
-	<center>
+	<div class="registerform">
 		<form action="newAdmin">
-			<div class="container">
-				<h2>New Admin</h2>
-				<br> <label for="adminName" id="adminName"><b>Admin
-						Name</b></label> <input type="text" name="adminName" required autofocus>
-				<br> <br> <label for="adminMailId" id="adminMailId"><b>Admin
-						MailId</b></label> <input type="text" name="adminMailId"
-					pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
-					title="Enter your mailId In correctly example:kfc@gmail.com"
-					required> <br> <br> <label for="adminNumber"
-					id="adminNumber"><b>Mobile Number</b></label> <input type="number"
-					name="adminNumber" pattern="[6-9][0-9]{9}"
-					title="Enter your 10- digit mobile number" min="0" required>
-				<br> <br>
-				<center class="center">
-					<button type="submit" class="btn btn-success btn-sm">Submit</button>
-					<button type="reset" class="btn btn-danger btn-sm">Reset</button>
-				</center>
-			</div>
+			<h2>Add New Admin</h2>
+			<br> <label for="adminName" id="adminName"><b>Admin
+					Name</b></label> <input type="text" name="adminName" required autofocus>
+			<br> <br> <label for="adminMailId" id="adminMailId"><b>Admin
+					MailId</b></label> <input type="text" name="adminMailId"
+				pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
+				title="Enter your mailId In correctly example:kfc@gmail.com"
+				required> <br> <br> <label for="adminNumber"
+				id="adminNumber"><b>Mobile Number</b></label> <input type="number"
+				name="adminNumber" pattern="[6-9][0-9]{9}"
+				title="Enter your 10- digit mobile number" min="0" required>
+			<br> <br>
+			<center>
+				<button type="submit" class="btn btn-success btn-sm">Submit</button>
+				<button type="reset" class="btn btn-danger btn-sm">Reset</button>
+			</center>
 		</form>
-		<br> <a href="AdminPage.jsp"><center class="center">
+		<br>
+		<center>
+			<a href="adminPage.jsp">
 				<button type="submit" class="btn btn-outline-dark btn-sm">Home</button>
-			</center></a>
-	</center>
+			</a>
+		</center>
 </body>
 </html>

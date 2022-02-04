@@ -39,9 +39,9 @@ public class NewAdmin extends HttpServlet {
 		UserDaoImpl userDao = new UserDaoImpl();
 		boolean flag = userDao.insertAdmin(admin);
 		if (flag == true) {
-			response.sendRedirect("AdminPage.jsp");
+			response.sendRedirect("adminPage.jsp");
 		} else {
-			response.sendRedirect("NewAdmin.jsp");
+			response.sendRedirect("newAdmin.jsp");
 
 		}
 	}
