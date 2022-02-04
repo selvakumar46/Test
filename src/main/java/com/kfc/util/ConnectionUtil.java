@@ -1,7 +1,11 @@
 package com.kfc.util;
 
+import java.beans.Statement;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionUtil {
@@ -22,6 +26,51 @@ public class ConnectionUtil {
 		}
 
 		return con;
+	}
+
+	public static void close(PreparedStatement pstmt, Connection con) {
+		try {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void closeStatement(CallableStatement cstmt, Connection con, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (cstmt != null) {
+				cstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void close(PreparedStatement pstmt, Connection con, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

@@ -14,14 +14,14 @@ import com.kfc.util.ConnectionUtil;
 public class ProductDaoImpl implements ProductDao {
 	public List<Products> showProduct() {
 		List<Products> listOfProducts = new ArrayList<Products>();
-//		
+		ResultSet rs = null;
 		String query = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc where product_status='Available'";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		Products products = null;
 		try {
 			pstmt = con.prepareStatement(query);
-			ResultSet rs = pstmt.executeQuery(query);
+			rs = pstmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getString(8));
@@ -30,6 +30,8 @@ public class ProductDaoImpl implements ProductDao {
 			return listOfProducts;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 
 		return listOfProducts;
@@ -38,13 +40,14 @@ public class ProductDaoImpl implements ProductDao {
 
 	public Products validateProduct(Products products) {
 		Products productValid = null;
+		ResultSet rs = null;
 		String validatePro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc where product_name=?";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(validatePro);
 			pstmt.setString(1, products.getProductName());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				productValid = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
@@ -52,6 +55,8 @@ public class ProductDaoImpl implements ProductDao {
 			return productValid;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return productValid;
 
@@ -61,7 +66,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String delProd = "delete  from products_kfc where product_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		boolean flag = false;
 		try {
 			pstmt = con.prepareStatement(delProd);
@@ -75,6 +80,8 @@ public class ProductDaoImpl implements ProductDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return flag;
@@ -84,7 +91,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String updateProduct = "update products_kfc set product_status=? where product_name=? ";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = con.prepareStatement(updateProduct);
@@ -94,6 +101,8 @@ public class ProductDaoImpl implements ProductDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return false;
@@ -103,7 +112,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		String insert = "insert into products_kfc(product_name,description,product_price,product_type,product_status,catogory) values (?,?,?,?,?,?)";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(insert);
 			pstmt.setString(1, productInsert.getProductName());
@@ -116,6 +125,8 @@ public class ProductDaoImpl implements ProductDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return false;
@@ -123,13 +134,14 @@ public class ProductDaoImpl implements ProductDao {
 
 	public Products validateProduct1(Products product) {
 		Products productValid = null;
+		ResultSet rs = null;
 		String validatePro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc where product_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(validatePro);
 			pstmt.setInt(1, product.getProductId());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				productValid = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
@@ -137,6 +149,8 @@ public class ProductDaoImpl implements ProductDao {
 			return productValid;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return productValid;
 
@@ -144,13 +158,14 @@ public class ProductDaoImpl implements ProductDao {
 
 	public List<Products> showTrending() {
 		List<Products> listOfProducts = new ArrayList<Products>();
+		ResultSet rs = null;
 		String query = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc where catogory='Trending' and product_status='Available'";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		Products products = null;
 		try {
 			pstmt = con.prepareStatement(query);
-			ResultSet rs = pstmt.executeQuery(query);
+			rs = pstmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getString(8));
@@ -159,21 +174,23 @@ public class ProductDaoImpl implements ProductDao {
 			return listOfProducts;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
-
 		return listOfProducts;
 
 	}
 
 	public List<Products> showBucket() {
 		List<Products> listOfProducts = new ArrayList<Products>();
+		ResultSet rs = null;
 		String query = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc where catogory='Bucket Meals' and product_status='Available'";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		Products products = null;
 		try {
 			pstmt = con.prepareStatement(query);
-			ResultSet rs = pstmt.executeQuery(query);
+			rs = pstmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getString(8));
@@ -182,6 +199,8 @@ public class ProductDaoImpl implements ProductDao {
 			return listOfProducts;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 
 		return listOfProducts;
@@ -190,13 +209,14 @@ public class ProductDaoImpl implements ProductDao {
 
 	public List<Products> showProductAdmin() {
 		List<Products> listOfProducts = new ArrayList<Products>();
+		ResultSet rs = null;
 		String query = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from products_kfc ";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		Products products = null;
 		try {
 			pstmt = con.prepareStatement(query);
-			ResultSet rs = pstmt.executeQuery(query);
+			rs = pstmt.executeQuery(query);
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
 						rs.getString(6), rs.getString(7), rs.getString(8));
@@ -205,8 +225,9 @@ public class ProductDaoImpl implements ProductDao {
 			return listOfProducts;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
-
 		return listOfProducts;
 
 	}
@@ -215,15 +236,17 @@ public class ProductDaoImpl implements ProductDao {
 
 		String updateProduct = "update products_kfc set product_price=? where product_name=? ";
 		Connection con = ConnectionUtil.getDBConnection();
-
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(updateProduct);
+			pstmt = con.prepareStatement(updateProduct);
 			pstmt.setDouble(1, products.getPrice());
 			pstmt.setString(2, products.getProductName());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return false;
@@ -234,10 +257,12 @@ public class ProductDaoImpl implements ProductDao {
 				+ proName + "%'";
 		List<Products> listOfProducts = new ArrayList<Products>();
 		Products products = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		Connection con = ConnectionUtil.getDBConnection();
 		try {
-			PreparedStatement pstmt = con.prepareStatement(pro);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt = con.prepareStatement(pro);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
@@ -248,8 +273,9 @@ public class ProductDaoImpl implements ProductDao {
 			return listOfProducts;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
-
 		return listOfProducts;
 	}
 

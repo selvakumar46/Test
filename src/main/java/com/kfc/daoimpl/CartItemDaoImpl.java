@@ -19,8 +19,9 @@ public class CartItemDaoImpl implements cartItemDao {
 	public boolean insertCart(CartItem carts) {
 		String insert = "insert into cart_items (product_id,user_id,product_name,quantity,total_price)values (?,?,?,?,?)";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(insert);
+			pstmt = con.prepareStatement(insert);
 			pstmt.setInt(1, carts.getProductId());
 			pstmt.setInt(2, carts.getUserId());
 			pstmt.setString(3, carts.getProductName());
@@ -32,6 +33,8 @@ public class CartItemDaoImpl implements cartItemDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return false;
@@ -41,10 +44,12 @@ public class CartItemDaoImpl implements cartItemDao {
 		List<CartItem> cartItem = new ArrayList<>();
 		String show = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered'and user_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(show);
+			pstmt = con.prepareStatement(show);
 			pstmt.setInt(1, user.getUserId());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CartItem cartItems = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
 						rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getDate(8));
@@ -52,6 +57,8 @@ public class CartItemDaoImpl implements cartItemDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return cartItem;
 
@@ -60,13 +67,16 @@ public class CartItemDaoImpl implements cartItemDao {
 	public boolean delete1(CartItem cart) {
 		String delete = "delete from cart_items where cart_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(delete);
+			pstmt = con.prepareStatement(delete);
 			pstmt.setInt(1, cart.getCartId());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return false;
@@ -75,8 +85,9 @@ public class CartItemDaoImpl implements cartItemDao {
 	public boolean updateStatus(CartItem cart) {
 		String update = "update  cart_items  set status='Delevered' where cart_id=? ";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(update);
+			pstmt = con.prepareStatement(update);
 
 			pstmt.setInt(1, cart.getCartId());
 
@@ -84,6 +95,8 @@ public class CartItemDaoImpl implements cartItemDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return false;
 
@@ -94,19 +107,22 @@ public class CartItemDaoImpl implements cartItemDao {
 		CartItem cart = null;
 		String show = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where user_id=? and status='Ordered' order by(order_date) desc";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(show);
+			pstmt = con.prepareStatement(show);
 			pstmt.setInt(1, carts.getUserId());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
 						rs.getDouble(6), rs.getString(7), rs.getDate(8));
 				invoice.add(cart);
-
 			}
 			return invoice;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return invoice;
 	}
@@ -116,17 +132,20 @@ public class CartItemDaoImpl implements cartItemDao {
 		String query = "select sum(total_price ) as totalPrice from cart_items where to_char(order_date,'yyyy-MM-dd')='"
 				+ date + "' and user_id= " + userId2 + "";
 		Connection con = ConnectionUtil.getDBConnection();
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
 		try {
-			CallableStatement pstmt = con.prepareCall(query);
-			ResultSet rs = pstmt.executeQuery();
+			cstmt = con.prepareCall(query);
+			rs = cstmt.executeQuery();
 			while (rs.next()) {
 				invoiceBill = rs.getDouble(1);
 			}
 			return invoiceBill;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.closeStatement(cstmt, con, rs);
 		}
-
 		return invoiceBill;
 
 	}
@@ -136,20 +155,22 @@ public class CartItemDaoImpl implements cartItemDao {
 		CartItem cart = null;
 		String query = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where status='Ordered' order by cart_id";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(query);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt = con.prepareStatement(query);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
 						rs.getDouble(6), rs.getString(7), rs.getDate(8));
 				allCart.add(cart);
-
 			}
 			return allCart;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
-
 		return allCart;
 	}
 
@@ -159,10 +180,12 @@ public class CartItemDaoImpl implements cartItemDao {
 		String show = "select cart_id,product_id,user_id,product_name,quantity,total_price,status,order_date from cart_items where user_id=? and status='Delevered' order by(order_date) desc";
 
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(show);
+			pstmt = con.prepareStatement(show);
 			pstmt.setInt(1, carts.getUserId());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
 						rs.getDouble(6), rs.getString(7), rs.getDate(8));
@@ -172,6 +195,8 @@ public class CartItemDaoImpl implements cartItemDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return invoice;
 	}

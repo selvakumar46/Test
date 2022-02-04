@@ -18,7 +18,7 @@ public class OrdersDaoImpl implements OrdersDao {
 
 		String insertOrder = "insert into order_kfc (product_id,user_id,quantity,total_price) values (?,?,?,?)";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(insertOrder);
 			pstmt.setInt(1, order.getProductId());
@@ -30,6 +30,8 @@ public class OrdersDaoImpl implements OrdersDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return false;
 
@@ -41,11 +43,12 @@ public class OrdersDaoImpl implements OrdersDao {
 		String query = "select ord.cart_id,pr.product_id,ord.user_id,ord.quantity,ord.total_price,pr.product_name,pr.product_price from products_kfc pr inner join order_kfc ord on ord.product_id=pr.product_id where user_id=?";
 		Orders orders = null;
 		Connection con = ConnectionUtil.getDBConnection();
-		CallableStatement cstmt;
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
 		try {
 			cstmt = con.prepareCall(query);
 			cstmt.setInt(1, order.getUserId());
-			ResultSet rs = cstmt.executeQuery();
+			rs = cstmt.executeQuery();
 			while (rs.next()) {
 				orders = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5),
 						rs.getString(6), rs.getDouble(7));
@@ -55,6 +58,8 @@ public class OrdersDaoImpl implements OrdersDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(cstmt, con, rs);
 		}
 
 		return listOfOrders;
@@ -64,7 +69,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Orders orders = new Orders();
 		String delQuery = "delete  from order_kfc where user_id=? ";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(delQuery);
 			pstmt.setInt(1, deleteOrders.getUserId());
@@ -72,6 +77,8 @@ public class OrdersDaoImpl implements OrdersDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return false;
 
@@ -80,8 +87,9 @@ public class OrdersDaoImpl implements OrdersDao {
 	public boolean updateOrder(Orders updateOrders) {
 		String update = "update order_kfc set quantity=?, total_price=?  where user_id=? and product_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(update);
+			pstmt = con.prepareStatement(update);
 			pstmt.setInt(1, updateOrders.getQuantity());
 			pstmt.setDouble(2, updateOrders.getTotalPrice());
 			pstmt.setInt(3, updateOrders.getUserId());
@@ -90,6 +98,8 @@ public class OrdersDaoImpl implements OrdersDao {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 
 		return false;
@@ -99,18 +109,22 @@ public class OrdersDaoImpl implements OrdersDao {
 	public List<Orders> allCart(Orders order1) {
 
 		List<Orders> viewAll = new ArrayList<Orders>();
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		String query = "select cart_id,product_id,user_id,quantity,total_price from order_kfc where user_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
 		try {
-			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, order1.getUserId());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Orders order = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
 				viewAll.add(order);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return viewAll;
 	}
@@ -118,7 +132,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	public boolean delOrderCart(Orders deleteOrder) {
 		String delQuery = "delete  from order_kfc where user_id=? and product_id=? ";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(delQuery);
 			pstmt.setInt(1, deleteOrder.getUserId());
@@ -129,6 +143,8 @@ public class OrdersDaoImpl implements OrdersDao {
 
 		catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return false;
 
@@ -139,16 +155,20 @@ public class OrdersDaoImpl implements OrdersDao {
 //		System.out.println(date);
 		String query = "select sum(total_price) as totalPrice from order_kfc where user_id=?";
 		Connection con = ConnectionUtil.getDBConnection();
+		CallableStatement cstmt = null;
+		ResultSet rs = null;
 		try {
-			CallableStatement pstmt = con.prepareCall(query);
-			pstmt.setInt(1, user.getUserId());
-			ResultSet rs = pstmt.executeQuery();
+			cstmt = con.prepareCall(query);
+			cstmt.setInt(1, user.getUserId());
+			rs = cstmt.executeQuery();
 			while (rs.next()) {
 				invoiceBill = rs.getDouble(1);
 			}
 			return invoiceBill;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.closeStatement(cstmt, con, rs);
 		}
 
 		return invoiceBill;
@@ -157,40 +177,45 @@ public class OrdersDaoImpl implements OrdersDao {
 
 	public Orders check(Orders stt) {
 		Orders order = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		Connection con = ConnectionUtil.getDBConnection();
 		String query = "SELECT cart_id,product_id,user_id,quantity,total_price FROM order_kfc where cart_id=? and user_id =?";
 		try {
-			PreparedStatement stmt = con.prepareStatement(query);
-
-			stmt.setInt(1, stt.getOrderId());
-			stmt.setInt(2, stt.getUserId());
-			ResultSet rs = stmt.executeQuery();
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, stt.getOrderId());
+			pstmt.setInt(2, stt.getUserId());
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				order = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
 			}
 			return order;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return order;
 	}
 
 	public boolean increase(Orders stt) {
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		con = ConnectionUtil.getDBConnection();
 		String query = "  update  order_kfc set quantity=?,total_price=? where cart_id=? and user_id=?";
 		try {
-			stmt = con.prepareStatement(query);
-			stmt.setInt(1, stt.getQuantity());
-			stmt.setDouble(2, stt.getTotalPrice());
-			stmt.setInt(3, stt.getOrderId());
-			stmt.setInt(4, stt.getUserId());
-			stmt.executeUpdate();
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, stt.getQuantity());
+			pstmt.setDouble(2, stt.getTotalPrice());
+			pstmt.setInt(3, stt.getOrderId());
+			pstmt.setInt(4, stt.getUserId());
+			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return false;
 	}
