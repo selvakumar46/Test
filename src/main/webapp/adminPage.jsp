@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin KFC</title>
@@ -171,7 +171,7 @@ nav {
 <body>
 	<c:set value="${currentUser1}" var="user" />
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " width="150px" height="100px">
+	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -179,12 +179,12 @@ nav {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /> </strong>
 					<div class=" dropdown">
 						<button onclick="myFunction()" class="btn btn-light dropbtn">
-							Menu <i class="fa fa-caret-down"></i>
+							Menu <em class="fa fa-caret-down"></em>
 						</button>
 
 						<div id="myDropdown" class="dropdown-content">
@@ -198,7 +198,7 @@ nav {
 				</a> <a href="ShowUsers"><button type="submit"
 						class="btn btn-light button">User List</button></a> <a class=""
 					href="OrderStatus">
-					<button type="submit" class="btn btn-light  button">Orders</button>
+					<button type="submit" class="btn btn-light  button">Order</button>
 				</a>
 
 				<!-- Left elements -->
@@ -217,10 +217,10 @@ nav {
 		<img src="image/Bucket.png" width="800px" height="300px"
 			alt="Kfc Food Special">
 		<h4>
-			<b>Hi <c:out value="${user.userName}"></c:out>(Admin)</b>
+			<strong>Hi <c:out value="${user.userName}"></c:out>(Admin)</strong>
 		</h4>
 		<h3>
-			<b>Welcome to KFC</b>
+			<strong>Welcome to KFC</strong>
 		</h3>
 	</div>
 	</center>

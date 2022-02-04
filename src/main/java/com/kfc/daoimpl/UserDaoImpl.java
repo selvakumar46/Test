@@ -15,16 +15,18 @@ public class UserDaoImpl implements UserDao {
 	public boolean insertUser(User user) {
 		String insertQuery = "insert into user_kfc(user_name,mobile_number,mail_id)values(?,?,?)";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pst = null;
+		PreparedStatement pstmt = null;
 		try {
-			pst = con.prepareStatement(insertQuery);
-			pst.setString(1, user.getUserName());
-			pst.setLong(2, user.getMobileNumber());
-			pst.setString(3, user.getMailId());
-			pst.executeUpdate();
+			pstmt = con.prepareStatement(insertQuery);
+			pstmt.setString(1, user.getUserName());
+			pstmt.setLong(2, user.getMobileNumber());
+			pstmt.setString(3, user.getMailId());
+			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return false;
 	}
@@ -58,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 		User user2 = new User();
 		String updateQuery = "update user_kfc set mail_id=? where mobile_number=? ";
 		Connection con = ConnectionUtil.getDBConnection();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(updateQuery);
 			pstmt.setString(1, user1.getMailId());
@@ -66,6 +68,8 @@ public class UserDaoImpl implements UserDao {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con);
 		}
 		return user2;
 	}
@@ -177,7 +181,9 @@ public class UserDaoImpl implements UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		finally {
+			ConnectionUtil.close(pstmt, con,rs );
+		}
 		return allUser;
 	}
 

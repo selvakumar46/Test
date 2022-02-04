@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
 <meta charset="ISO-8859-1">
 <title>Cart KFC</title>
 <link
@@ -120,7 +120,7 @@ body {
 <body>
 	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " width="150px" height="100px">
+	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px" width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">

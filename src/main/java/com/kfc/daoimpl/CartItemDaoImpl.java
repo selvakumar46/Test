@@ -224,12 +224,14 @@ public class CartItemDaoImpl implements cartItemDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return cartPrice;
 	}
 
 	public List<CartItem> oneDaySales1(CartItem cartDate) {
-		List<CartItem> sales=new ArrayList<>();
+		List<CartItem> sales = new ArrayList<>();
 		LocalDate localDate1 = LocalDate.now();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String localDate = localDate1.format(myFormatObj);
@@ -243,7 +245,7 @@ public class CartItemDaoImpl implements cartItemDao {
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				cart =new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
+				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
 						rs.getDouble(6), rs.getString(7), rs.getDate(8));
 				sales.add(cart);
 			}
@@ -251,6 +253,8 @@ public class CartItemDaoImpl implements cartItemDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(pstmt, con, rs);
 		}
 		return sales;
 	}
