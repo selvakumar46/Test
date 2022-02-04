@@ -45,8 +45,8 @@ public class InsertOrder extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session=request.getSession();
-		User user=(User)session.getAttribute("currentUser");
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("currentUser");
 		CartItemDaoImpl cartDao = new CartItemDaoImpl();
 		ProductDaoImpl productDao = new ProductDaoImpl();
 		String address = request.getParameter("address");
@@ -80,7 +80,7 @@ public class InsertOrder extends HttpServlet {
 				boolean flag1 = invoiceDao.insert(invoice);
 
 				if (flag1 == true) {
-					RequestDispatcher rd=request.getRequestDispatcher("orderConfirm.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("orderConfirm.jsp");
 					rd.forward(request, response);
 				} else {
 					response.sendRedirect("cart.jsp");

@@ -38,8 +38,8 @@ public class InsertCart extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("hello selva: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		Products products=(Products)session.getAttribute("validateProduct1");	
-		User currentUser=(User)session.getAttribute("currentUser");
+		Products products = (Products) session.getAttribute("validateProduct1");
+		User currentUser = (User) session.getAttribute("currentUser");
 		double price = products.getPrice();
 		int productId = products.getProductId();
 		int quantity = Integer.parseInt(request.getParameter("Quantity"));

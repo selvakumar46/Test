@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public LoginServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -36,8 +35,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		String mailId = request.getParameter("mailId");
@@ -64,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} catch (InvalidUserException e) {
-			out.println("<script type=\"text/javascript\">");
+			out.println("<script type=\"tex	t/javascript\">");
 			out.println("alert('Invlid MailId or Password');");
 			out.println("location='login.jsp';");
 			out.println("</script>");
@@ -77,7 +74,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>complete</title>
-<style >
+<style>
 body {
-		background: linear-gradient(to bottom right, #BDB76B, white);
+	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 </style>
 </head>

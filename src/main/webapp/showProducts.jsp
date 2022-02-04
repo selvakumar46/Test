@@ -198,8 +198,10 @@ th, td {
 						<div class="card">
 							<img src="${productList.productImg}" style="width: 100%"><br>
 
-							${productList.productName} <br> ${productList.description} <br>
-							${productList.price} <br> ${productList.productType} <br>
+							${productList.productName} <br> 
+							${productList.description} <br>
+							&#8377;${productList.price} <br> 
+							${productList.productType} <br>
 							${productList.productStatus} <br> <a
 								href="addCart?productName=${productList.productName }">
 								<button type="submit" class="btn btn-outline-dark btn-sm">Add

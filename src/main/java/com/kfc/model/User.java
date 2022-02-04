@@ -68,8 +68,6 @@ public class User {
 				&& Objects.equals(userName, other.userName);
 	}
 
-	
-
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub

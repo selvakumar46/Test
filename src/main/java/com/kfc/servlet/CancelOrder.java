@@ -19,7 +19,7 @@ import com.kfc.model.CartItem;
  */
 @WebServlet("/CancelOrder")
 public class CancelOrder extends HttpServlet {
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("served at: ").append(request.getContextPath());
@@ -34,7 +34,7 @@ public class CancelOrder extends HttpServlet {
 			} catch (CancelOrderException e) {
 				request.setAttribute("CancelOrder", "Success");
 				String validate = e.getMessage();
-				RequestDispatcher rd=request.getRequestDispatcher(validate);
+				RequestDispatcher rd = request.getRequestDispatcher(validate);
 				rd.forward(request, response);
 
 			}
@@ -43,5 +43,4 @@ public class CancelOrder extends HttpServlet {
 		}
 	}
 
-	
 }

@@ -85,6 +85,7 @@ public class Orders {
 	public Orders() {
 		super();
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(orderId, productId, quantity, totalPrice, userId);
@@ -114,6 +115,5 @@ public class Orders {
 		this.productName = productName;
 		this.price = price;
 	}
-	
 
 }

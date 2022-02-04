@@ -18,6 +18,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 nav {
@@ -114,8 +115,8 @@ input {
 				<div class="d-flex">
 					<a class="" href="showProducts">
 						<button type="submit" class="btn btn-light  button">Menu</button>
-					</a> <a href="MyOrders?userid1=${user.userId}"><button type="submit"
-							class="btn btn-light button">My Orders</button></a>
+					</a> <a href="MyOrders?userid1=${user.userId}"><button
+							type="submit" class="btn btn-light button">My Orders</button></a>
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">

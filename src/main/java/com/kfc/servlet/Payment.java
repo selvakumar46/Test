@@ -38,16 +38,16 @@ public class Payment extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		User user=(User)session.getAttribute("currentUser");
+		User user = (User) session.getAttribute("currentUser");
 		int userId = user.getUserId();
 		long cardNumber = Long.parseLong(request.getParameter("cardNumber"));
 		String cardType = request.getParameter("cardType");
 		com.kfc.model.Payment payment = new com.kfc.model.Payment(userId, userId, cardNumber, cardType, cardType, null);
 		PaymentDaoImpl payDao = new PaymentDaoImpl();
 		boolean flag = payDao.card(payment);
-		
+
 		if (flag == true) {
-			RequestDispatcher rd=request.getRequestDispatcher("confirmOrder.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("confirmOrder.jsp");
 			rd.forward(request, response);
 
 		} else {

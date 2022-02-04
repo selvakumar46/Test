@@ -21,22 +21,24 @@ import com.kfc.model.User;
 @WebServlet("/MyOrders")
 public class MyOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MyOrders() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MyOrders() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session=request.getSession();
+		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("currentUser");
 		int userId = user.getUserId();
 		CartItemDaoImpl cartDao = new CartItemDaoImpl();
@@ -48,13 +50,15 @@ public class MyOrders extends HttpServlet {
 		request.setAttribute("deleveredOrder", showOrders1);
 		RequestDispatcher rd = request.getRequestDispatcher("showOrders.jsp");
 		rd.forward(request, response);
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

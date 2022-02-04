@@ -20,7 +20,8 @@ body {
 	margin-top: 270px;
 	margin-left: 550px;
 }
-button{
+
+button {
 	margin-left: 100px;
 }
 </style>

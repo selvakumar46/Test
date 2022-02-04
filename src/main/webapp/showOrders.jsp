@@ -14,6 +14,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 .topnav {
@@ -111,11 +112,12 @@ th, td {
 }
 
 .card {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	background-color: ;
+	box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
 	width: 100%;
-	padding: 20px;
-	border-radius: 3px;
+	padding: 30px;
+	border-radius: 5px;
 	border: thin;
 }
 </style>
@@ -174,14 +176,17 @@ th, td {
 		<tbody>
 
 			<tr>
-				<th><c:set var="count" value="1" /> <c:forEach
+				<c:set var="count" value="1" /> <c:forEach
 						items="${cancelOrder}" var="orderList">
 						<td>
-							<div class="card">
-								${orderList.productName} <br> ${orderList.quantity} <br>
-								${orderList.totalPrice} <br> ${orderList.orderDate} <br>
-
-								<a href="CancelOrder?cartId=${orderList.cartId}">
+							<div class="">
+								<label>Meal Name :</label> <strong><c:out
+										value="${orderList.productName}" /> </strong><br> <label>Quantity :</label>
+								<strong><c:out value=" ${orderList.quantity}" /></strong> <br>
+								<label>Total Price : &#8377;</label> <strong><c:out
+										value="${orderList.totalPrice}" /> </strong> <br> <label>Order
+									Date :</label> <strong><c:out value="${orderList.orderDate}" />
+								</strong><br> <a href="CancelOrder?cartId=${orderList.cartId}">
 									<button type="submit" class="btn btn-outline-danger btn-sm">cancel
 										order</button>
 								</a>
@@ -189,10 +194,10 @@ th, td {
 						<td>
 			</tr>
 			<c:choose>
-				<c:when test="${count==3}">
+				<c:when test="${count==4}">
 
 					<tr>
-						<c:set var="count" value="1" />
+						<c:set var="count" value="0" />
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -203,18 +208,25 @@ th, td {
 			</c:forEach>
 		</tbody>
 	</table>
+	<br>
 	<table>
 		<tbody>
 			<tr>
-				<th><c:forEach items="${deleveredOrder }" var="orderList1">
+				<c:set var="count" value="1" /> <c:forEach
+						items="${deleveredOrder }" var="orderList1">
 						<td>
-							<div class="card">
-								${orderList1.productName} <br> ${orderList1.quantity} <br>
-								${orderList1.totalPrice} <br> ${orderList1.orderDate} <br>
+							<div class="">
+								<label>Meal Name :</label> <strong><c:out
+										value="${orderList1.productName}" /> </strong><br> <label>Quantity :</label>
+								<strong><c:out value=" ${orderList1.quantity}" /></strong> <br>
+								<label>Total Price : &#8377;</label> <strong><c:out
+										value="${orderList1.totalPrice}" /> </strong> <br> <label>Order
+									Date :</label> <strong><c:out value="${orderList1.orderDate}" />
 							</div>
+							</td>
 						<td><c:choose>
-								<c:when test="${count==3}">
-			</tr>
+								<c:when test="${count==4}">
+			
 			<tr>
 				<c:set var="count" value="1" />
 				</c:when>
@@ -222,9 +234,11 @@ th, td {
 					<c:set var="count" value="${count+1}" />
 				</c:otherwise>
 				</c:choose>
+				</td>
 				</c:forEach>
 			</tr>
 			</th>
+			</tr>
 		</tbody>
 	</table>
 </body>

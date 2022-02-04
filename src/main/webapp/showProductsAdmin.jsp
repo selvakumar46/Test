@@ -15,6 +15,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 .container {
@@ -55,8 +56,9 @@ th, td {
 							${products.productStatus}<br> <a
 								href="ProductStatus?proName=${products.productName}">
 								<button type="submit" class="btn btn-primary btn-sm">Update</button>
-							</a> <a href="DeleteProductConfirm?productName=${products.productName}">
-								<button type="submit" class="btn btn-secondary btn-sm">Delete</button>
+							</a> <a
+								href="DeleteProductConfirm?productName=${products.productName}">
+								<button type="submit" style=" margin-right: 90px;"  class="btn btn-secondary btn-sm">Delete</button>
 							</a>
 						</div>
 					<td><c:choose>
@@ -77,8 +79,7 @@ th, td {
 		</tbody>
 	</table>
 	<center>
-		<a href="adminPage.jsp"><button type="submit"
-				class="btn btn-dark">Home</button></a>
+		<a href="adminPage.jsp"><button type="submit" class="btn btn-dark">Home</button></a>
 	</center>
 
 </body>

@@ -80,12 +80,14 @@ input {
 			</div>
 			<div class="mb-1 mt-1">
 				<input type="text" name="mobileNumber" pattern="[6-9][0-9]{9}"
-					title="Enter your 10- digit mobile number" placeholder="Mobile Number">
+					title="Enter your 10- digit mobile number"
+					placeholder="Mobile Number">
 			</div>
 			<div class="mb-1 mt-1">
 				<input type="email" name="mailId"
 					pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
-					title="Enter your mailId In correctly example:kfc@gmail.com" placeholder="Mail Id">
+					title="Enter your mailId In correctly example:kfc@gmail.com"
+					placeholder="Mail Id">
 			</div>
 			<button type="submit" style="margin-left: 125px"
 				class="btn btn-primary" value="SignUp">SignUp</button>

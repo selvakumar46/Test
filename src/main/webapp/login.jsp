@@ -23,48 +23,56 @@ body {
 .container {
 	margin-top: 140px;
 	background-attachment: fixed;
-	
 }
-.head{
+
+.head {
 	margin-left: 75px;
-	margin-top: 40px;	
+	margin-top: 40px;
 }
-button{
+
+button {
 	margin-left: 170px;
 }
-.registerform{
-    background-color: whitesmoke;
-    height: 315px;
-    width: 300px;
-    position: absolute;
-    left: 500px;
-    top: 100px;
-    border-radius: 15px;
-    box-shadow: 0 0 5px green;
-    margin-top:35px;
+
+.registerform {
+	background-color: whitesmoke;
+	height: 315px;
+	width: 300px;
+	position: absolute;
+	left: 500px;
+	top: 100px;
+	border-radius: 15px;
+	box-shadow: 0 0 5px green;
+	margin-top: 35px;
 }
-.input{
+
+.input {
 	margin-left: 55px;
 }
 </style>
 </head>
 <body>
 	<div class="registerform">
-		
 
-			<form action="login" method="post">
 
-			
-				<h2 class="head"><em>Login KFC</em></h2>
-				<input type="email" name="mailId"
-					autofocus required placeholder="Mail Id" class="input"> <br>
-				<br><input type="number" name="mobileNumber"
-					required placeholder="Mobile Number" class="input"> <br> <br>
-				<button type="submit" style="margin-left: 125px;" class="btn btn-success btn-sm">Login</button><br>
-				
-			</form><br>
-			<a href="register.jsp"><button type="submit" class="btn btn-success btn-sm" style="margin-left: 120px;">SignUp</button></a> <br> <br>
+		<form action="login" method="post">
+
+
+			<h2 class="head">
+				<em>Login KFC</em>
+			</h2>
+			<input type="email" name="mailId" autofocus required
+				placeholder="Mail Id" class="input"> <br> <br>
+			<input type="number" name="mobileNumber" required
+				placeholder="Mobile Number" class="input"> <br> <br>
+			<button type="submit" style="margin-left: 125px;"
+				class="btn btn-success btn-sm">Login</button>
 			<br>
+
+		</form>
+		<br> <a href="register.jsp"><button type="submit"
+				class="btn btn-success btn-sm" style="margin-left: 120px;">SignUp</button></a>
+		<br> <br> <br>
 	</div>
 </body>
 </html>

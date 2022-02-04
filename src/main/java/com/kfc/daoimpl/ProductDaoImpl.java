@@ -230,7 +230,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	public List<Products> searchProduct(String proName) {
-		String pro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from PRODUCTS_KFC where product_name  like '"+proName+"%'";
+		String pro = "select product_id,product_name,description,product_price,product_type,product_status,catogory,product_img from PRODUCTS_KFC where product_name  like '"
+				+ proName + "%'";
 		List<Products> listOfProducts = new ArrayList<Products>();
 		Products products = null;
 		Connection con = ConnectionUtil.getDBConnection();
@@ -238,12 +239,11 @@ public class ProductDaoImpl implements ProductDao {
 			PreparedStatement pstmt = con.prepareStatement(pro);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getString(2));
 				products = new Products(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
-				
+
 				listOfProducts.add(products);
-				
+
 			}
 			return listOfProducts;
 		} catch (SQLException e) {

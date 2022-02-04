@@ -14,6 +14,7 @@
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
 }
 
 .topnav {

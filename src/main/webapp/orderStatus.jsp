@@ -30,36 +30,37 @@ td {
 </style>
 </head>
 <body>
-		<b>Order Status</b>
-		<table id="orderStatus">
-		<caption><h2>List of Orders</h2></caption>
+	<b>Order Status</b>
+	<table id="orderStatus">
+		<caption>
+			<h2>List of Orders</h2>
+		</caption>
+		<tr>
+			<th>Cart Id</th>
+			<th>Product Id</th>
+			<th>User Id</th>
+			<th>Product Name</th>
+			<th>Quantity</th>
+			<th>Total price</th>
+			<th>Status</th>
+			<th>Order Date</th>
+			<th>Update</th>
+		</tr>
+		<c:forEach items="${status}" var="orders">
 			<tr>
-				<th>Cart Id</th>
-				<th>Product Id</th>
-				<th>User Id</th>
-				<th>Product Name</th>
-				<th>Quantity</th>
-				<th>Total price</th>
-				<th>Status</th>
-				<th>Order Date</th>
-				<th>Update</th>
+				<td><c:out value="${orders.cartId}" /></td>
+				<td><c:out value="${orders.productId}" /></td>
+				<td><c:out value="${orders.userId}" /></td>
+				<td><c:out value="${orders.productName}" /></td>
+				<td><c:out value="${orders.quantity}" /></td>
+				<td><c:out value="${orders.totalPrice}" /></td>
+				<td><c:out value="${orders.status}" /></td>
+				<td><c:out value="${orders.orderDate}" /></td>
+				<td><a href="OrderStatusUpdate?cartId=${orders.cartId}">
+						<button type="submit">Delivered</button>
+				</a></td>
 			</tr>
-			<c:forEach items="${status}" var="orders">
-				<tr>
-					<td><c:out value="${orders.cartId}" /></td>
-					<td><c:out value="${orders.productId}" /></td>
-					<td><c:out value="${orders.userId}" /></td>
-					<td><c:out value="${orders.productName}" /></td>
-					<td><c:out value="${orders.quantity}" /></td>
-					<td><c:out value="${orders.totalPrice}" /></td>
-					<td><c:out value="${orders.status}" /></td>
-					<td><c:out value="${orders.orderDate}" /></td>
-					<td><a
-							href="OrderStatusUpdate?cartId=${orders.cartId}">
-							<button type="submit">Delivered</button>
-						</a></td>
-				</tr>
-			</c:forEach>
-		</table>
+		</c:forEach>
+	</table>
 </body>
 </html>

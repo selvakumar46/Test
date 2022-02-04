@@ -47,7 +47,8 @@ public class OrdersDaoImpl implements OrdersDao {
 			cstmt.setInt(1, order.getUserId());
 			ResultSet rs = cstmt.executeQuery();
 			while (rs.next()) {
-				orders = new Orders(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5), rs.getString(6), rs.getDouble(7));
+				orders = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5),
+						rs.getString(6), rs.getDouble(7));
 				listOfOrders.add(orders);
 			}
 			return listOfOrders;
@@ -155,17 +156,14 @@ public class OrdersDaoImpl implements OrdersDao {
 	}
 
 	public Orders check(Orders stt) {
-		System.out.println("Hii");
-		System.out.println(stt.getOrderId());
-		System.out.println(stt.getProductId());
 		Orders order = null;
 		Connection con = ConnectionUtil.getDBConnection();
-		String query = "SELECT cart_id,product_id,user_id,quantity,total_price FROM order_kfc where cart_id=? and product_id =?";
+		String query = "SELECT cart_id,product_id,user_id,quantity,total_price FROM order_kfc where cart_id=? and user_id =?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(query);
 
 			stmt.setInt(1, stt.getOrderId());
-			stmt.setInt(2, stt.getProductId());
+			stmt.setInt(2, stt.getUserId());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				order = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
@@ -180,14 +178,14 @@ public class OrdersDaoImpl implements OrdersDao {
 	public boolean increase(Orders stt) {
 		Connection con = null;
 		PreparedStatement stmt = null;
-
 		con = ConnectionUtil.getDBConnection();
-		String query = "  update  order_kfc set quantity =? where order_id=? and product_id =?";
+		String query = "  update  order_kfc set quantity=?,total_price=? where cart_id=? and user_id=?";
 		try {
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, stt.getQuantity());
-			stmt.setInt(2, stt.getOrderId());
-			stmt.setInt(3, stt.getProductId());
+			stmt.setDouble(2, stt.getTotalPrice());
+			stmt.setInt(3, stt.getOrderId());
+			stmt.setInt(4, stt.getUserId());
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
