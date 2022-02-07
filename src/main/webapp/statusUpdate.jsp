@@ -67,8 +67,8 @@ button {
 			<h3><ul>Change Meal Status</ul></h3>
 			<label for="update" id="productName"><strong>Meal Name</strong></label> <input
 				name="productName" value="${validMeal.productName}"> <br>
-			<br> <label for="status" id="productStatus"><b>Meal
-					Status</b></label> <select>
+			<br> <label for="status" id="productStatus"><strong>Meal
+					Status</strong></label> <select>
 				<option>Availble</option>
 				<option>Sold-Out</option>
 			</select> <br> <br>
@@ -82,8 +82,8 @@ button {
 			<ul><h3>Change Meal Price</h3></ul>
 			<label for="update" id="productName1"><strong>Meal Name</strong></label> <input
 				name="productName1" value="${validMeal.productName}"> <br>
-			<br> <label for="status" id="productPrice"><b>Meal
-					Old Price </b></label> <input type="text" name="productPrice"
+			<br> <label for="status" id="productPrice"><strong>Meal
+					Old Price </strong></label> <input type="text" name="productPrice"
 				value="${validMeal.price }" disabled> <br> <br> <label
 				for="status" id="productNewPrice"><strong>Meal Price </strong></label> <input
 				type="number" id="number" name="productNewPrice" required

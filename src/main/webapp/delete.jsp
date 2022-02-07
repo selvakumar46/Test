@@ -48,7 +48,7 @@ label {
 				<h3>
 					<strong>Confirm to delete this Meal</strong>
 				</h3>
-				<br> <label><b>Meal Id</b></label> <input
+				<br> <label><strong>Meal Id</strong></label> <input
 					type="text" value="${delMeal.productId}" name="productId2">
 				<br> <br> <label><strong>Meal Name</strong></label> <input
 					type="text" value="${delMeal.productName}" disabled><br>

@@ -144,7 +144,7 @@ nav {
 				<center>Hi <c:out value="${user.userName}"></c:out></center>
 			</h4>
 			<h3>
-				<b>Welcome to KFC</b>
+				<strong>Welcome to KFC</strong>
 			</h3>
 		</div>
 	</center>

@@ -128,7 +128,8 @@ body {
 <body>
 	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px" width="150px" height="100px">
+	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px"
+		width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -136,8 +137,8 @@ body {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><c:out
+					class="rounded-circle" height="25" width="#" alt="image for b/w" />
+					<strong class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
@@ -173,7 +174,7 @@ body {
 	<!-- Navbar -->
 	<br>
 	<br>
-		<h3>Meals list</h3>
+	<h3>Meals list</h3>
 
 	<table>
 		<tbody>
@@ -186,11 +187,11 @@ body {
 										items="${searchProduct}" var="search">
 										<td>
 											<div class="card">
-												<img src="${search.productImg}" alt="searchImage" style="width: 100%" ><br>
-												${search.productName} <br> ${search.description} <br>
-												${search.price} <br> ${search.productType} <br>
-												${search.productStatus} <br> <a
-													href="addCart?productName=${productList.productName }">
+												<img src="${search.productImg}" alt="searchImage"
+													style="width: 100%"><br> ${search.productName}
+												<br> ${search.description} <br> ${search.price} <br>
+												${search.productType} <br> ${search.productStatus} <br>
+												<a href="addCart?productName=${productList.productName }">
 													<button type="submit" class="btn btn-outline-dark btn-sm">Add
 														Cart</button>
 												</a>
@@ -211,6 +212,7 @@ body {
 							</tr>
 							</th>
 						</tbody>
+					</table>
 					</table>
 </body>
 </html>

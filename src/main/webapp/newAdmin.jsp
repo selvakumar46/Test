@@ -63,7 +63,7 @@ label {
 				pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
 				title="Enter your mailId In correctly example:kfc@gmail.com"
 				required> <br> <br> <label for="adminNumber"
-				id="adminNumber"><b>Mobile Number</b></label> <input type="number"
+				id="adminNumber"><strong>Mobile Number</strong></label> <input type="number"
 				name="adminNumber" pattern="[6-9][0-9]{9}"
 				title="Enter your 10- digit mobile number" min="0" required>
 			<br> <br>

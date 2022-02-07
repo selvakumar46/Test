@@ -170,7 +170,7 @@ th, td {
 	<!-- Navbar -->
 	<p>
 	<h3>
-		<b>Your Orders </b>
+		<strong>Your Orders </strong>
 	</h3>
 	<table id="showOrders">
 		<tbody>

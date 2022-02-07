@@ -162,7 +162,7 @@ input {
 	<div>
 		<form action="BucketMeals" method="post">
 			<div>
-				<b>Bucket meals:</b>
+				<strong>Bucket meals:</strong>
 				<button type="submit" class="btn btn-success btn-sm">Submit</button>
 			</div>
 		</form>
