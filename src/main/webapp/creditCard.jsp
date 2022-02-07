@@ -139,7 +139,7 @@ label {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -175,21 +175,18 @@ label {
 	</div>
 	<!-- Navbar -->
 
-	<center>
 		<h3>Credit Card details:</h3>
 		<div class="container">
-
 			<form action="payment" method="post">
-
-				<label for="cardNumber"><b>Card Number:</b></label> <input id="cardNumber"
+				<label for="cardNumber"><strong>Card Number:</strong></label> <input id="cardNumber"
 					type="text" name="cardNumber" pattern="[0-9]{16}"
 					title="enter 16 digit card number" required
 					placeholder="16 digit card number"><br> <br> <label
 					for="cardType"><strong>Card type</strong></label> <input type="text" id="cardNumber"
 					name="cardType" required placeholder="(ex:visa)"> <br>
-				<br> <label for="cardDate"><strong>Card exp Date:</strong></label> <input id="cardDate"
+				<br> <label for="cardDate"><strong>Card Expire Date:</strong></label> <input id="cardDate"
 					type="date" name="cardDate" id="cardDate" min="<%=date%>" required><br>
-				<br> <label for="cvv"><strong>Cvv:</label></strong> <input id="cvvNumber"
+				<br> <label for="cvv"><strong>Cvv: </strong></label> <input id="cvvNumber"
 					type="password" name="Cvv" pattern="[0-9]{3}"
 					title="enter 3 digit cvv number" required
 					placeholder="3 digit cvv number"><br> <br>
@@ -201,7 +198,5 @@ label {
 
 			</form>
 		</div>
-	</center>
-
 </body>
 </html>

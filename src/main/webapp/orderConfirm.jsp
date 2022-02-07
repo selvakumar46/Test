@@ -37,7 +37,7 @@ button {
 		<form action="mainPage.jsp">
 			<div>
 				<h2>
-					<b><i>Your Order Will Placed Successfully</i></b>
+					<strong><em>Your Order Will Placed Successfully</em></strong>
 				</h2>
 				<button type="Submit" class="btn btn-outline-danger btn-sm">Home</button>
 			</div>

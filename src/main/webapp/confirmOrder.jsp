@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>confirmOrder</title>
+<title>Confirm Order</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -135,7 +135,7 @@ label {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -170,12 +170,12 @@ label {
 		</nav>
 	</div>
 	<!-- Navbar -->
-	<center class="container">
+	<div class="container">
 		<form action="insertOrder" method="post">
-			<b>Enter Delevery Address:</b> <input type="text" name="address">
+			<strong>Enter Delivery Address:</strong> <input type="text" id="address" name="address">
 			<button type="submit" class="btn btn-outline-dark btn-sm">Submit</button>
 			<br>
 		</form>
-	</center>
+	</div>
 </body>
 </html>

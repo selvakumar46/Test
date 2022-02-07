@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>complete</title>
+<title>Order Complete</title>
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);

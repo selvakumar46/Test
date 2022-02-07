@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>delete</title>
+<title>Delete Meal</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -46,15 +46,15 @@ label {
 		<form action="deleteProduct1" method="post">
 			<div class="container">
 				<h3>
-					<b>Confirm to delete this Meal</b>
+					<strong>Confirm to delete this Meal</strong>
 				</h3>
 				<br> <label><b>Meal Id</b></label> <input
 					type="text" value="${delMeal.productId}" name="productId2">
-				<br> <br> <label><b>Meal Name</b></label> <input
+				<br> <br> <label><strong>Meal Name</strong></label> <input
 					type="text" value="${delMeal.productName}" disabled><br>
-				<br> <label><b>Meal Price</b></label> <input type="text"
-					value="${delMeal.price}" disabled><br> <br> <label><b>Meal
-						Status</b></label> <input type="text" value="${delMeal.productStatus}"
+				<br> <label><strong>Meal Price</strong></label> <input type="text"
+					value="${delMeal.price}" disabled><br> <br> <label><strong>Meal
+						Status</strong></label> <input type="text" value="${delMeal.productStatus}"
 					disabled><br> <br>
 				<button type="submit" style="margin-left: 130px;" class="btn btn-success btn-sm">Confirm</button>
 			</div>

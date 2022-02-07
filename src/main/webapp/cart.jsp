@@ -2,8 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
 <meta charset="ISO-8859-1">
 <title>Cart KFC</title>
 <link
@@ -128,7 +128,7 @@ body {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -174,13 +174,13 @@ body {
 						var="showCart">
 						<td>
 							<div class="container">
-								Product Name : <b>${showCart.productName}</b><br> Product
-								Price : &#8377;<b>${showCart.price}</b><br> Qauntity : <input
+								Product Name : <Strong>${showCart.productName}</Strong><br> Product
+								Price : &#8377;<strong>${showCart.price}</strong><br> Quantity : <input
 									type="button" value="-"
 									onclick="window.location='DecreaseQuantity?orderId=<c:out value="${showCart.orderId}" />'">
-								<b>${showCart.quantity}</b> <input type="button" value="+"
+								<strong>${showCart.quantity}</strong> <input type="button" value="+"
 									onclick="window.location='IncreaseQuantity?orderId=<c:out value="${showCart.orderId}" />'">
-								<br> Total Price : &#8377;<b>${showCart.totalPrice}</b><br> <a
+								<br> Total Price : &#8377;<strong>${showCart.totalPrice}</strong><br> <a
 									href="delCart?productName=${showCart.productName}">
 									<button type="submit" class="btn btn-danger btn-sm">Remove</button>
 								</a><br> <br>

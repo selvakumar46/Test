@@ -75,17 +75,17 @@ input {
 			</h2>
 			<br>
 			<div class="mb-1 mt-1">
-				<input type="text" name="name" pattern="[A-Za-z]{3,}"
+				<input type="text" name="name" pattern="[A-Za-z]{3,}" id="name"
 					title="Enter Name max three characters" placeholder="User Name">
 			</div>
 			<div class="mb-1 mt-1">
-				<input type="text" name="mobileNumber" pattern="[6-9][0-9]{9}"
+				<input type="text" name="mobileNumber" pattern="[6-9][0-9]{9}" id="mobilenumber"
 					title="Enter your 10- digit mobile number"
 					placeholder="Mobile Number">
 			</div>
 			<div class="mb-1 mt-1">
 				<input type="email" name="mailId"
-					pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
+					pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}" id="mailId"
 					title="Looks like you forgot something"
 					placeholder="Mail Id">
 			</div>

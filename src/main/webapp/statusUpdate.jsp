@@ -80,13 +80,13 @@ button {
 	<div class="registerform1" style="margin-bottom: 50px;">
 		<form action="PriceUpdate">
 			<ul><h3>Change Meal Price</h3></ul>
-			<label for="update" id="productName1"><b>Meal Name</b></label> <input
+			<label for="update" id="productName1"><strong>Meal Name</strong></label> <input
 				name="productName1" value="${validMeal.productName}"> <br>
 			<br> <label for="status" id="productPrice"><b>Meal
 					Old Price </b></label> <input type="text" name="productPrice"
 				value="${validMeal.price }" disabled> <br> <br> <label
-				for="status" id="productNewPrice"><b>Meal Price </b></label> <input
-				type="number" name="productNewPrice" required
+				for="status" id="productNewPrice"><strong>Meal Price </strong></label> <input
+				type="number" id="number" name="productNewPrice" required
 				placeholder="Enter new price..."> <br> <br>
 			<button type="submit" style="margin-right: 100px;" class="btn btn-outline-success btn-sm">Update</button>
 			<button type="reset" style="margin-right: 100px;" class="btn btn-outline-primary btn-sm">Cancel</button>

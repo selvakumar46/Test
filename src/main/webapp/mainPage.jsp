@@ -108,7 +108,7 @@ input {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /> </strong>
 				</a>
@@ -146,17 +146,17 @@ input {
 			<img src="image/Bucket.png" width="800px" height="300px"
 				alt="Kfc Food Special">
 			<h4>
-				<b>Hi <c:out value="${user.userName}"></c:out></b>
+				<strong>Hi <c:out value="${user.userName}"></c:out></strong>
 			</h4>
 			<h3>
-				<b>Welcome to KFC</b>
+				<strong>Welcome to KFC</strong>
 			</h3>
 		</div>
 	</center>
 	<div>
 		<div></div>
 		<h3>
-			<b>Categories:</b>
+			<strong>Categories:</strong>
 		</h3>
 	</div>
 	<div>
@@ -169,7 +169,7 @@ input {
 		<br>
 		<form action="TrendingMeal" method="post">
 			<div>
-				<b>Trending meals:</b>
+				<strong>Trending meals:</strong>
 				<button type="submit" class="btn btn-success btn-sm">Submit</button>
 			</div>
 		</form>

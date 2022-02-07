@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Cart</title>
+<title>Cart View</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -25,7 +25,7 @@ body {
 <body>
 	<form action="insertCart">
 		<div class="container">
-			<b>Enter Quantity: </b><input type="number" name="Quantity" min="1"
+			<strong>Enter Quantity: </strong><input type="number" id="quantity" name="Quantity" min="1"
 				autofocus>
 			<button type="submit" class="btn btn-info btn-sm">Submit</button>
 		</div>

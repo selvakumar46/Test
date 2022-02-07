@@ -15,7 +15,7 @@ body {
 	<form action="upateCart" method="post">
 		<div>
 			<strong>Enter how many quantity you want:</strong> <input
-				type="number" name="quantity">
+				type="number" id="quantity" name="quantity">
 			<button type="submit">Submit</button>
 		</div>
 	</form>

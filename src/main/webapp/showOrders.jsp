@@ -133,7 +133,7 @@ th, td {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -147,7 +147,7 @@ th, td {
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
-						<input autocomplete="off" type="search" name="search"
+						<input autocomplete="off" type="search" name="search" id="search"
 							class="form-control " placeholder="search by meal" />
 						<button type="submit" class="btn btn-dark btn-sm">search</button>
 					</form>

@@ -56,10 +56,10 @@ label {
 	<div class="registerform">
 		<form action="newAdmin">
 			<h2>Add New Admin</h2>
-			<br> <label for="adminName" id="adminName"><b>Admin
-					Name</b></label> <input type="text" name="adminName" required autofocus>
-			<br> <br> <label for="adminMailId" id="adminMailId"><b>Admin
-					MailId</b></label> <input type="text" name="adminMailId"
+			<br> <label for="adminName" id="adminName"><strong>Admin
+					Name</strong></label> <input type="text" name="adminName" required autofocus>
+			<br> <br> <label for="adminMailId" id="adminMailId"><strong>Admin
+					MailId</strong></label> <input type="text" name="adminMailId"
 				pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
 				title="Enter your mailId In correctly example:kfc@gmail.com"
 				required> <br> <br> <label for="adminNumber"
@@ -78,5 +78,6 @@ label {
 				<button type="submit" class="btn btn-outline-dark btn-sm">Home</button>
 			</a>
 		</center>
+		</div>
 </body>
 </html>

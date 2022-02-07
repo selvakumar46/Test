@@ -136,7 +136,7 @@ body {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -150,7 +150,7 @@ body {
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
-						<input autocomplete="off" type="search" name="search"
+						<input autocomplete="off" type="search" name="search" id="search"
 							class="form-control " placeholder="search by meal" />
 						<button type="submit" class="btn btn-dark btn-sm">search</button>
 					</form>
@@ -173,10 +173,7 @@ body {
 	<!-- Navbar -->
 	<br>
 	<br>
-
-	<center>
-		<b><h3>Meals list</h3></b>
-	</center>
+		<h3>Meals list</h3>
 
 	<table>
 		<tbody>
@@ -189,8 +186,7 @@ body {
 										items="${searchProduct}" var="search">
 										<td>
 											<div class="card">
-												<img src="${search.productImg}" style="width: 100%"><br>
-
+												<img src="${search.productImg}" alt="searchImage" style="width: 100%" ><br>
 												${search.productName} <br> ${search.description} <br>
 												${search.price} <br> ${search.productType} <br>
 												${search.productStatus} <br> <a

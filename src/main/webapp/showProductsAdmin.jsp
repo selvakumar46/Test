@@ -165,12 +165,12 @@ th, td {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /> </strong>
 					<div class=" dropdown">
 						<button onclick="myFunction()" class="btn btn-light dropbtn">
-							Menu <i class="fa fa-caret-down"></i>
+							Menu <em class="fa fa-caret-down"></em>
 						</button>
 
 						<div id="myDropdown" class="dropdown-content">
@@ -205,7 +205,7 @@ th, td {
 				<c:forEach items="${showProductAdmin}" var="products">
 					<td>
 						<div class="card">
-							<img src="${products.productImg}" style="width: 100%"><br>
+							<img src="${products.productImg}" alt="Meals" style="width: 100%"><br>
 							${products.productName}<br> ${products.description}<br>
 							${products.price}<br> ${products.productType}<br>
 							${products.productStatus}<br> <a

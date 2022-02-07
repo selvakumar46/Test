@@ -147,7 +147,7 @@ button {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -192,7 +192,7 @@ button {
 				<c:forEach items="${bucketMeals}" var="productList">
 					<td>
 						<div class="card">
-							<img src="${productList.productImg}" style="width: 100%"><br>
+							<img src="${productList.productImg}" style="width: 100%" height="#" alt="BucketMeals"><br>
 
 							${productList.productName} <br> ${productList.description} <br>
 							${productList.price} <br> ${productList.productType} <br>

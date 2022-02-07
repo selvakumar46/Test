@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>payment</title>
+<title>Payment Details</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -119,7 +119,7 @@ body {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" alt="image for b/w" /> <strong
+					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
 					class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
@@ -156,12 +156,12 @@ body {
 	<!-- Navbar -->
 	<center>
 		<h3>
-			<b><i>Payment Process</i></b>
+			<strong><em>Payment Process</em></strong>
 		</h3>
 		<div>
 
 			<form action="creditCard.jsp">
-				<label for="payments"><b>Choose a payment method:</b></label> <select
+				<label for="payments"><strong>Choose a payment method:</strong></label> <select
 					name="Paymrnts" id="payments">
 					<option value="Creditcard">Credit Card</option>
 
