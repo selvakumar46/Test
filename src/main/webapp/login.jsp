@@ -13,13 +13,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<link rel="stylesheet" href="assets/css/background.css">
 <style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
 .container {
 	margin-top: 140px;
 	background-attachment: fixed;
@@ -62,8 +57,8 @@ button {
 				<em>Login KFC</em>
 			</h2>
 			<input type="email" name="mailId" autofocus required
-				placeholder="Mail Id" class="input"> <br> <br>
-			<input type="number" name="mobileNumber" required
+				placeholder="Mail Id" class="input"> <br> <br> <input
+				type="number" name="mobileNumber" required
 				placeholder="Mobile Number" class="input"> <br> <br>
 			<button type="submit" style="margin-left: 125px;"
 				class="btn btn-success btn-sm">Login</button>

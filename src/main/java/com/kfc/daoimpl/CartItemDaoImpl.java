@@ -55,7 +55,7 @@ public class CartItemDaoImpl implements cartItemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				CartItem cartItems = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-						rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getDate(8));
+						rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getTimestamp(8).toLocalDateTime());
 				cartItem.add(cartItems);
 			}
 		} catch (SQLException e) {
@@ -118,7 +118,7 @@ public class CartItemDaoImpl implements cartItemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
-						rs.getDouble(6), rs.getString(7), rs.getDate(8));
+						rs.getDouble(6), rs.getString(7), rs.getTimestamp(8).toLocalDateTime());
 				invoice.add(cart);
 			}
 			return invoice;
@@ -165,7 +165,7 @@ public class CartItemDaoImpl implements cartItemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
-						rs.getDouble(6), rs.getString(7), rs.getDate(8));
+						rs.getDouble(6), rs.getString(7),rs.getTimestamp(8).toLocalDateTime());
 				allCart.add(cart);
 			}
 			return allCart;
@@ -191,7 +191,7 @@ public class CartItemDaoImpl implements cartItemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
-						rs.getDouble(6), rs.getString(7), rs.getDate(8));
+						rs.getDouble(6), rs.getString(7), rs.getTimestamp(8).toLocalDateTime());
 				invoice.add(cart);
 			}
 			return invoice;
@@ -222,7 +222,6 @@ public class CartItemDaoImpl implements cartItemDao {
 			}
 			return cartPrice;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(pstmt, con, rs);
@@ -246,12 +245,11 @@ public class CartItemDaoImpl implements cartItemDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				cart = new CartItem(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5),
-						rs.getDouble(6), rs.getString(7), rs.getDate(8));
+						rs.getDouble(6), rs.getString(7), rs.getTimestamp(8).toLocalDateTime());
 				sales.add(cart);
 			}
 			return sales;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(pstmt, con, rs);

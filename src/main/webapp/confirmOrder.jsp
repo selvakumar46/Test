@@ -12,12 +12,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="assets/css/background.css">
 <style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
 .container {
 	margin-top: 50px;
 }

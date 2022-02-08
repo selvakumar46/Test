@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -230,7 +231,7 @@ nav {
 				<td><c:out value="${orders.quantity}" /></td>
 				<td><c:out value="${orders.totalPrice}" /></td>
 				<td><c:out value="${orders.status}" /></td>
-				<td><c:out value="${orders.orderDate}" /></td>
+				<td>${orders.orderDate.format( DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</td>
 				<td><a href="OrderStatusUpdate?cartId=${orders.cartId}">
 						<button type="submit">Delivered</button>
 				</a></td>

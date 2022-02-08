@@ -1,8 +1,9 @@
 package com.kfc.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Products {
+public class Products implements Serializable{
 	private int productId;
 	private String productName;
 	private String description;

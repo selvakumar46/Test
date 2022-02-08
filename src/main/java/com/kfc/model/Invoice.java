@@ -1,9 +1,10 @@
 package com.kfc.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Invoice {
+public class Invoice implements Serializable {
 	private int invoiceId;
 
 	private int userId;

@@ -10,90 +10,10 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
-.container {
-	margin-top: 270px;
-	margin-left: 550px;
-}
-
-nav {
-	padding: 10px;
-}
-
-.downnav {
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	text-align: center;
-	margin-top: 100px;
-	/* size: 300px; */
-	height: 50px;
-	position: relative;
-}
-
-.downnav a {
-	float: center;
-	text-align: center;
-	font-size: 18px;
-	padding: 20px 20px;
-	color: blanchedalmond;
-}
-
-.slide {
-	margin-top: 20px;
-}
-
-.moveTop {
-	width: 1198 px;
-	margin-left: 150px;
-	margin-top: -90px;
-}
-
-.button {
-	border-radius: 4px;
-	background-color: #0000FF;
-	border: none;
-	color: #FFFAFA;
-	text-align: center;
-	font-size: 23px;
-	padding: 2px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: move;
-	margin: 5px;
-}
-
-.button span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
-
-.button span:after {
-	content: '\00bb';
-	position: absolute;
-	opacity: 10;
-	top: 0;
-	right: -20px;
-	transition: 0.5s;
-}
-
-.button:hover span {
-	padding-right: 25px;
-}
-
-.button:hover span:after {
-	opacity: 1;
-	right: 0;
-}
-</style>
+	<link rel="stylesheet" href="assets/css/indexNav.css">
+	<link rel="stylesheet" href="assets/css/background.css">
 <body>
-	<c:set value="${currentUser}" var="user"></c:set>
+	<c:set value="${currentUser}" var="user"/>
 	<!--logoImage -->
 	<img src="image/KFC Logo2.png "alt="KFC_Logo" width="150px" width="150px" height="100px">
 	<!-- navbar-->

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,7 +113,7 @@ th, td {
 }
 
 .card {
-	background-color: ;
+	background-color:;
 	box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
 	width: 100%;
@@ -125,7 +126,8 @@ th, td {
 <body>
 	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px" width="150px" height="100px">
+	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px"
+		width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -133,8 +135,8 @@ th, td {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><c:out
+					class="rounded-circle" height="25" width="#" alt="image for b/w" />
+					<strong class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
@@ -176,23 +178,24 @@ th, td {
 		<tbody>
 
 			<tr>
-				<c:set var="count" value="1" /> <c:forEach
-						items="${cancelOrder}" var="orderList">
-						<td>
-							<div class="">
-								<label>Meal Name :</label> <strong><c:out
-										value="${orderList.productName}" /> </strong><br> <label>Quantity :</label>
-								<strong><c:out value=" ${orderList.quantity}" /></strong> <br>
-								<label>Total Price : &#8377;</label> <strong><c:out
-										value="${orderList.totalPrice}" /> </strong> <br> <label>Order
-									Date :</label> <strong><c:out value="${orderList.orderDate}" />
-									<label>Order Status :</label> <strong><c:out value="${orderList.status}" />	</strong>
-								</strong><br> <a href="CancelOrder?cartId=${orderList.cartId}">
-									<button type="submit" class="btn btn-outline-danger btn-sm">cancel
-										order</button>
-								</a>
-							</div>
-						<td>
+				<c:set var="count" value="1" />
+				<c:forEach items="${cancelOrder}" var="orderList">
+					<td>
+						<div class="">
+							<label>Meal Name :</label> <strong><c:out
+									value="${orderList.productName}" /> </strong><br> <label>Quantity
+								:</label> <strong><c:out value=" ${orderList.quantity}" /></strong> <br>
+							<label>Total Price : &#8377;</label> <strong><c:out
+									value="${orderList.totalPrice}" /> </strong> <br> <label>Order
+								Date :</label> <strong> ${orderList.orderDate.format( DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</strong><br />
+							<label>Order Status :</label> <strong><c:out
+									value="${orderList.status}" /> </strong> </strong><br> <a
+								href="CancelOrder?cartId=${orderList.cartId}">
+								<button type="submit" class="btn btn-outline-danger btn-sm">cancel
+									order</button>
+							</a>
+						</div>
+					<td>
 			</tr>
 			<c:choose>
 				<c:when test="${count==4}">
@@ -213,30 +216,30 @@ th, td {
 	<table>
 		<tbody>
 			<tr>
-				<c:set var="count" value="1" /> <c:forEach
-						items="${deleveredOrder }" var="orderList1">
-						<td>
-							<div class="">
-								<label>Meal Name :</label> <strong><c:out
-										value="${orderList1.productName}" /> </strong><br> <label>Quantity :</label>
-								<strong><c:out value=" ${orderList1.quantity}" /></strong> <br>
-								<label>Total Price : &#8377;</label> <strong><c:out
-										value="${orderList1.totalPrice}" /> </strong> <br> <label>Order
-									Date :</label> <strong><c:out value="${orderList1.orderDate}" /><br/></strong>
-									<label>Order Status :</label> <strong><c:out value="${orderList1.status}" /></strong>
-							</div>
-							</td>
-						<td><c:choose>
-								<c:when test="${count==4}">
-			
-			<tr>
 				<c:set var="count" value="1" />
-				</c:when>
-				<c:otherwise>
-					<c:set var="count" value="${count+1}" />
-				</c:otherwise>
-				</c:choose>
-				</td>
+				<c:forEach items="${deleveredOrder }" var="orderList1">
+					<td>
+						<div class="">
+							<label>Meal Name :</label> <strong><c:out
+									value="${orderList1.productName}" /> </strong><br> <label>Quantity
+								:</label> <strong><c:out value=" ${orderList1.quantity}" /></strong> <br>
+							<label>Total Price : &#8377;</label> <strong><c:out
+									value="${orderList1.totalPrice}" /> </strong> <br> <label>Order
+								Date :</label><strong> ${orderList1.orderDate.format( DateTimeFormatter.ofPattern("dd-MM-yyyy"))}</strong><br />
+							<label>Order Status :</label> <strong><c:out
+									value="${orderList1.status}" /></strong>
+						</div>
+					</td>
+					<td><c:choose>
+							<c:when test="${count==4}">
+
+								<tr>
+									<c:set var="count" value="1" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="count" value="${count+1}" />
+							</c:otherwise>
+						</c:choose></td>
 				</c:forEach>
 			</tr>
 			</th>

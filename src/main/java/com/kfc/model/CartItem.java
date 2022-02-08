@@ -1,10 +1,12 @@
 package com.kfc.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class CartItem {
+public class CartItem implements Serializable{
 	private int cartId;
 	private int productId;
 	private int userId;
@@ -12,7 +14,7 @@ public class CartItem {
 	private int quantity;
 	private double totalPrice;
 	private String status;
-	private Date orderDate;
+	private LocalDateTime orderDate;
 	private Date orderDate1;
 
 	public Date getOrderDate1() {
@@ -79,16 +81,16 @@ public class CartItem {
 		this.status = status;
 	}
 
-	public Date getOrderDate() {
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 
 	public CartItem(int cartId, int productId, int userId, String productName, int quantity, double totalPrice,
-			String status, Date orderDate) {
+			String status, LocalDateTime orderDate) {
 		super();
 		this.cartId = cartId;
 		this.productId = productId;

@@ -1,0 +1,5 @@
+@charset "ISO-8859-1";
+body {
+	background: linear-gradient(to bottom right, #BDB76B, white);
+	background-attachment: fixed;
+}

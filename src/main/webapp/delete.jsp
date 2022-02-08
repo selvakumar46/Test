@@ -11,13 +11,9 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="assets/css/background.css">
 
 <style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
 .container {
 	margin-top: 20px;
 }
@@ -28,6 +24,7 @@ label {
 	text-align: right;
 	margin-left: -35px;;
 }
+
 .registerform {
 	background-color: whitesmoke;
 	height: 400px;
@@ -48,15 +45,16 @@ label {
 				<h3>
 					<strong>Confirm to delete this Meal</strong>
 				</h3>
-				<br> <label><strong>Meal Id</strong></label> <input
-					type="text" value="${delMeal.productId}" name="productId2">
-				<br> <br> <label><strong>Meal Name</strong></label> <input
-					type="text" value="${delMeal.productName}" disabled><br>
-				<br> <label><strong>Meal Price</strong></label> <input type="text"
+				<br> <label><strong>Meal Id</strong></label> <input type="text"
+					value="${delMeal.productId}" name="productId2"> <br> <br>
+				<label><strong>Meal Name</strong></label> <input type="text"
+					value="${delMeal.productName}" disabled><br> <br>
+				<label><strong>Meal Price</strong></label> <input type="text"
 					value="${delMeal.price}" disabled><br> <br> <label><strong>Meal
 						Status</strong></label> <input type="text" value="${delMeal.productStatus}"
 					disabled><br> <br>
-				<button type="submit" style="margin-left: 130px;" class="btn btn-success btn-sm">Confirm</button>
+				<button type="submit" style="margin-left: 130px;"
+					class="btn btn-success btn-sm">Confirm</button>
 			</div>
 		</form>
 	</div>

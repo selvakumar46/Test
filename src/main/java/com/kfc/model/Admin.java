@@ -1,8 +1,9 @@
 package com.kfc.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Admin {
+public class Admin implements Serializable{
 	private String adminName;
 	private String mailId;
 	private long mobileNumber;

@@ -10,12 +10,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="assets/css/background.css">
 <style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
 .container {
 	margin-top: 100px;
 }
@@ -63,8 +59,8 @@ label {
 				pattern="[a-z0-9]+[@][a-z]+[.][a-z]{2,3}"
 				title="Enter your mailId In correctly example:kfc@gmail.com"
 				required> <br> <br> <label for="adminNumber"
-				id="adminNumber"><strong>Mobile Number</strong></label> <input type="number"
-				name="adminNumber" pattern="[6-9][0-9]{9}"
+				id="adminNumber"><strong>Mobile Number</strong></label> <input
+				type="number" name="adminNumber" pattern="[6-9][0-9]{9}"
 				title="Enter your 10- digit mobile number" min="0" required>
 			<br> <br>
 			<center>
@@ -78,6 +74,6 @@ label {
 				<button type="submit" class="btn btn-outline-dark btn-sm">Home</button>
 			</a>
 		</center>
-		</div>
+	</div>
 </body>
 </html>
