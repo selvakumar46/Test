@@ -57,7 +57,7 @@ button {
 				<em>Login KFC</em>
 			</h2>
 			<input type="email" name="mailId" autofocus required
-				placeholder="Mail Id" class="input"> <br> <br> <input
+				placeholder="Mail Id" class="input" id="mailId"> <br> <br> <input
 				type="number" name="mobileNumber" required
 				placeholder="Mobile Number" class="input"> <br> <br>
 			<button type="submit" style="margin-left: 125px;"

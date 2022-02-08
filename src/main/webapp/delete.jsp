@@ -45,13 +45,13 @@ label {
 				<h3>
 					<strong>Confirm to delete this Meal</strong>
 				</h3>
-				<br> <label><strong>Meal Id</strong></label> <input type="text"
+				<br> <label><strong>Meal Id</strong></label> <input type="text" id="productId"
 					value="${delMeal.productId}" name="productId2"> <br> <br>
-				<label><strong>Meal Name</strong></label> <input type="text"
+				<label><strong>Meal Name</strong></label> <input type="text" id="mealName"
 					value="${delMeal.productName}" disabled><br> <br>
-				<label><strong>Meal Price</strong></label> <input type="text"
+				<label><strong>Meal Price</strong></label> <input type="text" id="mealPrice"
 					value="${delMeal.price}" disabled><br> <br> <label><strong>Meal
-						Status</strong></label> <input type="text" value="${delMeal.productStatus}"
+						Status</strong></label> <input type="text" value="${delMeal.productStatus}" id="mealStatus"
 					disabled><br> <br>
 				<button type="submit" style="margin-left: 130px;"
 					class="btn btn-success btn-sm">Confirm</button>

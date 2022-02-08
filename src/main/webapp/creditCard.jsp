@@ -149,7 +149,7 @@ label {
 
 					<!-- Search form -->
 					<form action="searchProduct" class="input-group w-auto">
-						<input autocomplete="off" type="search" name="search"
+						<input autocomplete="off" type="search" name="search" id="search"
 							class="form-control " placeholder="search by meal" />
 						<button type="submit" class="btn btn-dark btn-sm">search</button>
 					</form>
