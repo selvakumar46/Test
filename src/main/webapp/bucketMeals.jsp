@@ -12,6 +12,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="assets/css/background.css">
+<link rel="stylesheet" href="assets/css/userNav.css">
 <style>
 .container {
 	margin-top: 270px;
@@ -26,96 +27,6 @@ label {
 
 button {
 	margin-right: -80px;;
-}
-
-.topnav {
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	size: 500px;
-	width: 1200px;
-	position: relative;
-	margin-top: -110px;
-	margin-left: 150px;
-}
-
-.topnav a {
-	float: left;
-	color: #ffffff;
-	text-align: center;
-	padding: 20px 20px;
-	font-size: 18px;
-}
-
-.topnav-right {
-	float: right;
-}
-
-.search {
-	text-align: center;
-	align-self: center;
-}
-
-.downnav {
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	text-align: center;
-	margin-top: 100px;
-	/* size: 300px; */
-	height: 50px;
-	position: relative;
-}
-
-.downnav a {
-	float: center;
-	text-align: center;
-	font-size: 18px;
-	padding: 20px 20px;
-	color: blanchedalmond;
-}
-
-.moveTop {
-	width: 1198 px;
-	margin-left: 150px;
-	margin-top: -90px;
-}
-
-.button {
-	border-radius: 4px;
-	background-color: #0000FF;
-	border: none;
-	color: #FFFAFA;
-	text-align: center;
-	font-size: 23px;
-	padding: 2px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: move;
-	margin: 5px;
-}
-
-.button span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
-
-.button span:after {
-	content: '\00bb';
-	position: absolute;
-	opacity: 10;
-	top: 0;
-	right: -20px;
-	transition: 0.5s;
-}
-
-.button:hover span {
-	padding-right: 25px;
-}
-
-.button:hover span:after {
-	opacity: 1;
-	right: 0;
 }
 
 .card {
@@ -135,7 +46,8 @@ button {
 <body>
 	<c:set value="${currentUser}" var="user"></c:set>
 	<!--logoImage -->
-	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px" width="150px" height="100px">
+	<img src="image/KFC Logo2.png " alt="KFC_Logo" width="150px"
+		width="150px" height="100px">
 	<!-- navbar-->
 	<div class="moveTop">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -143,8 +55,8 @@ button {
 				<!-- Left elements -->
 				<a class="nav-link d-sm-flex align-items-lg-center"> <img
 					src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-					class="rounded-circle" height="25" width="#" alt="image for b/w" /> <strong
-					class="d-none d-sm-block ms-7"><c:out
+					class="rounded-circle" height="25" width="#" alt="image for b/w" />
+					<strong class="d-none d-sm-block ms-7"><c:out
 							value="${user.userName}" /></strong>
 				</a>
 				<div class="d-flex">
@@ -188,7 +100,8 @@ button {
 				<c:forEach items="${bucketMeals}" var="productList">
 					<td>
 						<div class="card">
-							<img src="${productList.productImg}" style="width: 100%" height="#" alt="BucketMeals"><br>
+							<img src="${productList.productImg}" style="width: 100%"
+								height="#" alt="BucketMeals"><br>
 
 							${productList.productName} <br> ${productList.description} <br>
 							${productList.price} <br> ${productList.productType} <br>

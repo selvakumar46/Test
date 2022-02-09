@@ -25,13 +25,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="assets/js/dropdown.js"></script>
 <script type="text/javascript" src="assets/js/searchByName.js"></script>
-
+<link rel="stylesheet" href="assets/css/background.css">
 <style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
 .container {
 	margin-top: 270px;
 }

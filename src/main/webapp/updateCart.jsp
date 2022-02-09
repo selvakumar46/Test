@@ -4,12 +4,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>update cart Kfc</title>
-<style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-</style>
+<link rel="stylesheet" href="assets/css/background.css">
 </head>
 <body>
 	<form action="upateCart" method="post">

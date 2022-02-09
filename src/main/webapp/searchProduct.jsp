@@ -11,57 +11,9 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="assets/css/userNav.css">
+<link rel="stylesheet" href="assets/css/background.css">
 <style>
-body {
-	background: linear-gradient(to bottom right, #BDB76B, white);
-	background-attachment: fixed;
-}
-
-.topnav {
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	size: 500px;
-	width: 1200px;
-	position: relative;
-	margin-top: -110px;
-	margin-left: 150px;
-}
-
-.topnav a {
-	float: left;
-	color: #ffffff;
-	text-align: center;
-	padding: 20px 20px;
-	font-size: 18px;
-}
-
-.topnav-right {
-	float: right;
-}
-
-.search {
-	text-align: center;
-	align-self: center;
-}
-
-.downnav {
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	text-align: center;
-	margin-top: 100px;
-	/* size: 300px; */
-	height: 50px;
-	position: relative;
-}
-
-.downnav a {
-	float: center;
-	text-align: center;
-	font-size: 18px;
-	padding: 20px 20px;
-	color: blanchedalmond;
-}
-
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.3s;
@@ -79,11 +31,7 @@ body {
 	padding: 2px 0px;
 }
 
-.moveTop {
-	width: 1198 px;
-	margin-left: 150px;
-	margin-top: -90px;
-}
+
 
 .button {
 	border-radius: 4px;
