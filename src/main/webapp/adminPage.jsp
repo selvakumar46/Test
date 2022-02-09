@@ -15,6 +15,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="assets/css/background.css">
 <link rel="stylesheet" href="assets/css/adminNav.css">
+<script type="text/javascript" src="assets/js/dropdown.js"></script>
 <style>
 .slide {
 	margin-right: 50px;
@@ -79,27 +80,5 @@
 			<strong>Welcome to KFC</strong>
 		</h3>
 	</div>
-	<script>
-		/* When the user clicks on the button, 
-		 toggle between hiding and showing the dropdown content */
-		function myFunction() {
-			document.getElementById("myDropdown").classList.toggle("show");
-		}
-
-		// Close the dropdown if the user clicks outside of it
-		window.onclick = function(event) {
-			if (!event.target.matches('.dropbtn')) {
-				var dropdowns = document
-						.getElementsByClassName("dropdown-content");
-				var i;
-				for (i = 0; i < dropdowns.length; i++) {
-					var openDropdown = dropdowns[i];
-					if (openDropdown.classList.contains('show')) {
-						openDropdown.classList.remove('show');
-					}
-				}
-			}
-		}
-	</script>
 </body>
 </html>

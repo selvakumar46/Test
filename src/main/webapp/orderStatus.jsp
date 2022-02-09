@@ -14,6 +14,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="assets/js/dropdown.js"></script>
 <style>
 body {
 	background: linear-gradient(to bottom right, #BDB76B, white);
@@ -238,27 +239,5 @@ nav {
 			</tr>
 		</c:forEach>
 	</table>
-	<script>
-		/* When the user clicks on the button, 
-		 toggle between hiding and showing the dropdown content */
-		function myFunction() {
-			document.getElementById("myDropdown").classList.toggle("show");
-		}
-
-		// Close the dropdown if the user clicks outside of it
-		window.onclick = function(event) {
-			if (!event.target.matches('.dropbtn')) {
-				var dropdowns = document
-						.getElementsByClassName("dropdown-content");
-				var i;
-				for (i = 0; i < dropdowns.length; i++) {
-					var openDropdown = dropdowns[i];
-					if (openDropdown.classList.contains('show')) {
-						openDropdown.classList.remove('show');
-					}
-				}
-			}
-		}
-	</script>
 </body>
 </html>
