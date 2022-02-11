@@ -14,12 +14,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="assets/css/background.css">
+<link rel="stylesheet" href="assets/css/exception.css">
 <style>
-.container {
-	margin-top: 140px;
-	background-attachment: fixed;
-}
-
 .head {
 	margin-left: 75px;
 	margin-top: 40px;
@@ -47,18 +43,23 @@ button {
 </style>
 </head>
 <body>
+	<div class="exception">
+	<c:set value="${invalidUser}" var="invalidUser"/>
+		<c:if test="${not empty invalidUser}">
+			<h6>
+				<em>Invalid email or phone number</em>
+			</h6>
+		</c:if>
+		<c:remove var="invalidUser"/>
+	</div>
 	<div class="registerform">
-
-
 		<form action="login" method="post">
-
-
 			<h2 class="head">
 				<em>Login KFC</em>
 			</h2>
 			<input type="email" name="mailId" autofocus required
-				placeholder="Mail Id" class="input" id="mailId"> <br> <br> <input
-				type="number" name="mobileNumber" required
+				placeholder="Mail Id" class="input" id="mailId"> <br> <br>
+			<input type="number" name="mobileNumber" required
 				placeholder="Mobile Number" class="input"> <br> <br>
 			<button type="submit" style="margin-left: 125px;"
 				class="btn btn-success btn-sm">Login</button>

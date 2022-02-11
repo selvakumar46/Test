@@ -25,15 +25,8 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
-		super();
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
@@ -65,20 +58,11 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} catch (InvalidUserException e) {
-			out.println("<script type=\"tex	t/javascript\">");
-			out.println("alert('Invlid MailId or Password');");
-			out.println("location='login.jsp';");
-			out.println("</script>");
+			request.setAttribute("invalidUser", "invalid");
+			String validate=e.getMessage();
+			RequestDispatcher rd=request.getRequestDispatcher(validate);
+			rd.forward(request, response);
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }
